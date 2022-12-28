@@ -11,12 +11,15 @@ import SwiftUI
 struct YumeApp: App {
   var body: some Scene {
     let homeUseCase = Injection.init().provideHome()
+    let searchUseCase = Injection.init().provideSearch()
 
     let homePresenter = HomePresenter(homeUseCase: homeUseCase)
+    let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
 
     WindowGroup {
       ContentView()
         .environmentObject(homePresenter)
+        .environmentObject(searchPresenter)
     }
   }
 }

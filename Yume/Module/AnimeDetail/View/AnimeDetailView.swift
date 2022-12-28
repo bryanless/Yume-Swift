@@ -50,17 +50,15 @@ extension AnimeDetailView {
 
   var overviewDescription: some View {
     VStack(alignment: .leading) {
-      HStack {
-        Text("\(self.presenter.anime.mediaType)"
-             + " · \(self.presenter.anime.startSeason) \(self.presenter.anime.startSeasonYear)"
-             + " · \(self.presenter.anime.status)"
-        ).font(.caption)
-      }
+      Text("\(self.presenter.anime.mediaType)"
+           + " · \(self.presenter.anime.startSeason) \(self.presenter.anime.startSeasonYear)"
+           + " · \(self.presenter.anime.status)"
+      ).font(.caption)
 
       Text(self.presenter.anime.title)
         .font(.title3)
         .bold()
-        .lineLimit(2)
+        .lineLimit(3)
 
       Text(self.presenter.anime.source)
         .font(.caption2)
