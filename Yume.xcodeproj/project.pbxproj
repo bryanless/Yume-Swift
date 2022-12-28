@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931BBF65295C142200359359 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF64295C142200359359 /* Alamofire */; };
+		931BBF6A295C16B700359359 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF69295C16B700359359 /* Realm */; };
+		931BBF6C295C16B700359359 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF6B295C16B700359359 /* RealmSwift */; };
+		931BBF6F295C171000359359 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF6E295C171000359359 /* SDWebImageSwiftUI */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931BBF6F295C171000359359 /* SDWebImageSwiftUI in Frameworks */,
+				931BBF6C295C16B700359359 /* RealmSwift in Frameworks */,
+				931BBF6A295C16B700359359 /* Realm in Frameworks */,
+				931BBF65295C142200359359 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +145,19 @@
 				934AF4B12958A82100C413B4 /* Sources */,
 				934AF4B22958A82100C413B4 /* Frameworks */,
 				934AF4B32958A82100C413B4 /* Resources */,
+				931BBF66295C14AC00359359 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Yume;
+			packageProductDependencies = (
+				931BBF64295C142200359359 /* Alamofire */,
+				931BBF69295C16B700359359 /* Realm */,
+				931BBF6B295C16B700359359 /* RealmSwift */,
+				931BBF6E295C171000359359 /* SDWebImageSwiftUI */,
+			);
 			productName = Yume;
 			productReference = 934AF4B52958A82200C413B4 /* Yume.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +230,11 @@
 				Base,
 			);
 			mainGroup = 934AF4AC2958A82100C413B4;
+			packageReferences = (
+				931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 934AF4B62958A82200C413B4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -251,6 +271,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		931BBF66295C14AC00359359 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		934AF4B12958A82100C413B4 /* Sources */ = {
@@ -577,6 +618,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.4;
+			};
+		};
+		931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = exactVersion;
+				version = 10.33.0;
+			};
+		};
+		931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		931BBF64295C142200359359 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		931BBF69295C16B700359359 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		931BBF6B295C16B700359359 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		931BBF6E295C171000359359 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 934AF4AD2958A82100C413B4 /* Project object */;
 }
