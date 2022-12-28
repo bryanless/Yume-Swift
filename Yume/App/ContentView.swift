@@ -20,12 +20,12 @@ struct ContentView: View {
     TabView {
       HomeView(presenter: homePresenter)
         .tabItem {
-          Label("Home", systemImage: Icons.house)
+          Label("Home", systemImage: "house")
         }
         .tag(Tab.home)
       SearchView(presenter: searchPresenter)
         .tabItem {
-          Label("Search", systemImage: Icons.magnifyingGlass)
+          Label("Search", systemImage: "magnifyingglass")
         }
         .tag(Tab.search)
       //        Favorite()
@@ -45,11 +45,14 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static let homeUseCase = Injection.init().provideHome()
+  static let searchUseCase = Injection.init().provideSearch()
 
   static let homePresenter = HomePresenter(homeUseCase: homeUseCase)
+  static let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
 
   static var previews: some View {
     ContentView()
       .environmentObject(homePresenter)
+      .environmentObject(searchPresenter)
   }
 }

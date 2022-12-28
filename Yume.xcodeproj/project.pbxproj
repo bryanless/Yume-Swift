@@ -64,6 +64,7 @@
 		931BBFFD295CD86E00359359 /* SeeAllPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFFC295CD86E00359359 /* SeeAllPresenter.swift */; };
 		931BBFFF295CD8F800359359 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFFE295CD8F800359359 /* SeeAllView.swift */; };
 		931BC001295CD9AA00359359 /* SeeAllRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BC000295CD9AA00359359 /* SeeAllRouter.swift */; };
+		931BC003295CDF1B00359359 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BC002295CDF1B00359359 /* IconView.swift */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -124,7 +125,7 @@
 		931BBFCE295CAC9E00359359 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		931BBFD0295CADB800359359 /* AnimeCardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCardItem.swift; sourceTree = "<group>"; };
 		931BBFD2295CC74500359359 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		931BBFD4295CC79900359359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		931BBFD4295CC79900359359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		931BBFD5295CC81400359359 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		931BBFD8295CC94200359359 /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		931BBFD9295CC94300359359 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 		931BBFFC295CD86E00359359 /* SeeAllPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllPresenter.swift; sourceTree = "<group>"; };
 		931BBFFE295CD8F800359359 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		931BC000295CD9AA00359359 /* SeeAllRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllRouter.swift; sourceTree = "<group>"; };
+		931BC002295CDF1B00359359 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		934AF4B52958A82200C413B4 /* Yume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4B82958A82200C413B4 /* YumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeApp.swift; sourceTree = "<group>"; };
 		934AF4BA2958A82200C413B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				931BBFD7295CC92900359359 /* Font */,
 				934AF4BC2958A82200C413B4 /* Assets.xcassets */,
+				931BBFD4295CC79900359359 /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				931BBFD0295CADB800359359 /* AnimeCardItem.swift */,
+				931BC002295CDF1B00359359 /* IconView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -539,7 +543,6 @@
 		934AF4B72958A82200C413B4 /* Yume */ = {
 			isa = PBXGroup;
 			children = (
-				931BBFD4295CC79900359359 /* Info.plist */,
 				931BBF70295C176E00359359 /* App */,
 				931BBF74295C17F300359359 /* Core */,
 				931BBF7B295C186800359359 /* Module */,
@@ -772,6 +775,7 @@
 				931BBFA3295C398E00359359 /* HomeInteractor.swift in Sources */,
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
+				931BC003295CDF1B00359359 /* IconView.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
 				931BBF8E295C201500359359 /* AnimeRankingResponse.swift in Sources */,
 				931BBF96295C270D00359359 /* LocaleDataSource.swift in Sources */,
@@ -954,7 +958,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Yume/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Yume/Info.plist;
+				INFOPLIST_FILE = "Yume/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -983,7 +987,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Yume/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Yume/Info.plist;
+				INFOPLIST_FILE = "Yume/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

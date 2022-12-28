@@ -20,8 +20,9 @@ struct AnimeDetailView: View {
         }
       } else {
         ScrollView(.vertical, showsIndicators: false) {
-          VStack(alignment: .leading, spacing: Space.large) {
+          VStack(spacing: Space.large) {
             overview
+            stats
           }.padding(Space.medium)
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -35,6 +36,7 @@ extension AnimeDetailView {
     HStack(alignment: .top, spacing: Space.small) {
       mainPicture
       overviewDescription
+      Spacer()
     }
   }
 
@@ -67,6 +69,46 @@ extension AnimeDetailView {
 
       Text(self.presenter.anime.genre.joined(separator: " · "))
         .typography(.caption())
+    }
+  }
+
+  var stats: some View {
+    HStack(spacing: Space.small) {
+      VStack(spacing: Space.tiny) {
+        IconView(
+          icon: Icons.starOutlined,
+          color: .yellow
+        )
+        Text(self.presenter.anime.rating.description)
+      }.frame(width: 60.0)
+      VStack(spacing: Space.tiny) {
+        IconView(
+          icon: Icons.crownOutlined,
+          color: .orange
+        )
+        Text("#\(Formatter.formatNumber(self.presenter.anime.rank))")
+      }.frame(width: 60.0)
+      VStack(spacing: Space.tiny) {
+        IconView(
+          icon: Icons.trendingUp,
+          color: .green
+        )
+        Text("#\(Formatter.formatNumber(self.presenter.anime.popularity))")
+      }.frame(width: 60.0)
+      VStack(spacing: Space.tiny) {
+        IconView(
+          icon: Icons.usersOutlined,
+          color: .purple
+        )
+        Text(Formatter.formatNumber(self.presenter.anime.userAmount))
+      }.frame(width: 60.0)
+      VStack(spacing: Space.tiny) {
+        IconView(
+          icon: Icons.heartOutlined,
+          color: .red
+        )
+        Text(Formatter.formatNumber(self.presenter.anime.userAmount))
+      }.frame(width: 60.0)
     }
   }
 

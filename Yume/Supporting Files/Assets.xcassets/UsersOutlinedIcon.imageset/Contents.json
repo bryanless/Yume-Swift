@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "star.png",
+      "filename" : "users_outlined.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "star@2x.png",
+      "filename" : "users_outlined@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "star@3x.png",
+      "filename" : "users_outlined@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,5 +19,9 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true,
+    "template-rendering-intent" : "template"
   }
 }

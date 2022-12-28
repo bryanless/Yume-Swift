@@ -77,22 +77,28 @@ extension AnimeCardItem {
   var stats: some View {
     HStack(spacing: Space.small) {
       HStack(spacing: Space.tiny) {
-        Image(systemName: Icons.starOutlined)
-          .foregroundColor(.yellow)
-          .font(.system(size: 16))
+        IconView(
+          icon: Icons.starOutlined,
+          color: .yellow,
+          size: IconSize.small
+        )
         Text(anime.rating.description)
       }
       HStack(spacing: Space.tiny) {
-        Image(systemName: Icons.crownOutlined)
-          .foregroundColor(.yellow)
-          .font(.system(size: 16))
-        Text(anime.rank.description)
+        IconView(
+          icon: Icons.crownOutlined,
+          color: .orange,
+          size: IconSize.small
+        )
+        Text("#\(Formatter.formatNumber(anime.rank))")
       }
       HStack(spacing: Space.tiny) {
-        Image(systemName: Icons.chartLineUpTrendXyaxisOutlined)
-          .foregroundColor(.green)
-          .font(.system(size: 16))
-        Text(anime.popularity.description)
+        IconView(
+          icon: Icons.trendingUp,
+          color: .green,
+          size: IconSize.small
+        )
+        Text("#\(Formatter.formatNumber(anime.popularity))")
       }
     }
   }

@@ -6,5 +6,6 @@
 //
 
 struct Shape {
+  /// 8.0
   static let rounded = 8.0
 }
