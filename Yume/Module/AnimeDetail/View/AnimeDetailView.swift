@@ -53,20 +53,20 @@ extension AnimeDetailView {
       Text("\(self.presenter.anime.mediaType)"
            + " · \(self.presenter.anime.startSeason) \(self.presenter.anime.startSeasonYear)"
            + " · \(self.presenter.anime.status)"
-      ).font(.caption)
+      ).typography(.caption())
 
       Text(self.presenter.anime.title)
-        .font(.title3)
+        .typography(.title3())
         .bold()
         .lineLimit(3)
 
       Text(self.presenter.anime.source)
-        .font(.caption2)
+        .typography(.caption2())
 
       Spacer()
 
       Text(self.presenter.anime.genre.joined(separator: " · "))
-        .font(.caption)
+        .typography(.caption())
     }
   }
 

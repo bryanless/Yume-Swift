@@ -57,10 +57,10 @@ extension AnimeCardItem {
       Text("\(anime.mediaType)"
            + " · \(anime.startSeason) \(anime.startSeasonYear)"
            + " · \(anime.status)"
-      ).font(.caption)
+      ).typography(.caption())
 
       Text(anime.title)
-        .font(.body)
+        .typography(.body())
         .lineLimit(2)
     }
   }
@@ -70,9 +70,8 @@ extension AnimeCardItem {
       stats
       Text(Array(anime.genre.prefix(3))
         .joined(separator: " · "))
-        .font(.caption)
-        .lineLimit(1)
-    }
+      .lineLimit(1)
+    }.typography(.caption())
   }
 
   var stats: some View {
@@ -82,21 +81,18 @@ extension AnimeCardItem {
           .foregroundColor(.yellow)
           .font(.system(size: 16))
         Text(anime.rating.description)
-          .font(.caption)
       }
       HStack(spacing: Space.tiny) {
         Image(systemName: Icons.crownOutlined)
           .foregroundColor(.yellow)
           .font(.system(size: 16))
         Text(anime.rank.description)
-          .font(.caption)
       }
       HStack(spacing: Space.tiny) {
         Image(systemName: Icons.chartLineUpTrendXyaxisOutlined)
           .foregroundColor(.green)
           .font(.system(size: 16))
         Text(anime.popularity.description)
-          .font(.caption)
       }
     }
   }

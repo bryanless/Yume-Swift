@@ -34,7 +34,7 @@ extension AnimeItem {
 
   var content: some View {
     Text(anime.title)
-      .font(.caption)
+      .typography(.caption())
       .lineLimit(2, reservesSpace: true)
       .padding(
         EdgeInsets(

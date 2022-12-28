@@ -41,10 +41,10 @@ extension HomeView {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
         Text("Now Airing")
-          .font(.headline)
+          .typography(.headline())
         Spacer()
         Text("View all")
-          .font(.subheadline)
+          .typography(.subheadline())
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
@@ -63,10 +63,10 @@ extension HomeView {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
         Text("Most Popular")
-          .font(.headline)
+          .typography(.headline())
         Spacer()
         Text("View all")
-          .font(.subheadline)
+          .typography(.subheadline())
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
