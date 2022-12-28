@@ -1,5 +1,5 @@
 //
-//  AnimeEntity.swift
+//  PopularAnimeEntity.swift
 //  Yume
 //
 //  Created by Bryan on 28/12/22.
@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class AnimeEntity: Object {
+class PopularAnimeEntity: Object {
 
   @Persisted(primaryKey: true) var id: Int = 0
   @Persisted var title: String = ""
@@ -32,5 +32,6 @@ class AnimeEntity: Object {
   @Persisted var source: String = ""
   @Persisted var episodeDuration: Int = 0
   @Persisted var studios: List<String> = List<String>()
+  @Persisted var rankingOrder: Int = 0
 
 }

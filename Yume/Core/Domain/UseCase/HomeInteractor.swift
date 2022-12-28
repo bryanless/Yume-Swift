@@ -11,6 +11,7 @@ import Combine
 protocol HomeUseCase {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error>
+  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error>
 
 }
 
@@ -24,6 +25,10 @@ class HomeInteractor: HomeUseCase {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error> {
     return repository.getTopAllAnimes()
+  }
+
+  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getPopularAnimes()
   }
 
 }

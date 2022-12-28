@@ -20,8 +20,11 @@ struct AnimeDetailView: View {
         }
       } else {
         ScrollView(.vertical, showsIndicators: false) {
-          overview
-        }.navigationBarTitleDisplayMode(.inline)
+          VStack(alignment: .leading, spacing: Space.large) {
+            overview
+          }.padding(Space.medium)
+        }
+        .navigationBarTitleDisplayMode(.inline)
       }
     }
   }

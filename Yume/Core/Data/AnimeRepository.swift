@@ -11,6 +11,7 @@ import Combine
 protocol AnimeRepositoryProtocol {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error>
+  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error>
 
 }
 
@@ -49,6 +50,26 @@ extension AnimeRepository: AnimeRepositoryProtocol {
         } else {
           return self.locale.getTopAllAnimes()
             .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .eraseToAnyPublisher()
+        }
+      }.eraseToAnyPublisher()
+  }
+
+  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error> {
+    return self.locale.getPopularAnimes()
+      .flatMap { result -> AnyPublisher<[AnimeModel], Error> in
+        if result.isEmpty {
+          return self.remote.getPopularAnimes()
+            .map { AnimeRankingMapper.mapAnimeRankingResponsesToPopularAnimeEntities(input: $0) }
+            .flatMap { self.locale.addPopularAnimes(from: $0) }
+            .filter { $0 }
+            .flatMap { _ in self.locale.getPopularAnimes()
+                .map { AnimeRankingMapper.mapPopularAnimeEntitiesToDomains(input: $0) }
+            }
+            .eraseToAnyPublisher()
+        } else {
+          return self.locale.getPopularAnimes()
+            .map { AnimeRankingMapper.mapPopularAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()

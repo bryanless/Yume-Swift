@@ -31,4 +31,5 @@ struct AnimeModel: Equatable, Identifiable {
   let source: String
   let episodeDuration: Int
   let studios: [String]
+
 }

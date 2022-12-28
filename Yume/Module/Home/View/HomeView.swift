@@ -20,21 +20,63 @@ struct HomeView: View {
       } else {
         NavigationStack {
           ScrollView(.vertical, showsIndicators: false) {
-            ScrollView(.horizontal, showsIndicators: false) {
-              LazyHStack(spacing: Space.small) {
-                ForEach(self.presenter.animes) { anime in
-                  self.presenter.linkBuilder(for: anime) {
-                    AnimeItem(anime: anime)
-                  }.buttonStyle(.plain)
-                }
-              }
-            }
+            LazyVStack(spacing: Space.large) {
+              nowAiringAnime
+              popularAnime
+            }.padding(.vertical, Space.medium)
           }.navigationTitle("Home")
         }.onAppear {
-          if self.presenter.animes.count == 0 {
-            self.presenter.getTopAllAnimes()
+          if self.presenter.topAllAnimes.isEmpty
+              || self.presenter.popularAnimes.isEmpty {
+            self.presenter.setupHomeView()
           }
         }
+      }
+    }
+  }
+}
+
+extension HomeView {
+  var nowAiringAnime: some View {
+    VStack(spacing: Space.small) {
+      HStack(spacing: Space.small) {
+        Text("Now Airing")
+          .font(.headline)
+        Spacer()
+        Text("View all")
+          .font(.subheadline)
+      }.padding(.horizontal, Space.medium)
+
+      ScrollView(.horizontal, showsIndicators: false) {
+        LazyHStack(spacing: Space.small) {
+          ForEach(self.presenter.topAllAnimes) { anime in
+            self.presenter.linkBuilder(for: anime) {
+              AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
+          }
+        }.padding(.horizontal, Space.medium)
+      }
+    }
+  }
+
+  var popularAnime: some View {
+    VStack(spacing: Space.small) {
+      HStack(spacing: Space.small) {
+        Text("Most Popular")
+          .font(.headline)
+        Spacer()
+        Text("View all")
+          .font(.subheadline)
+      }.padding(.horizontal, Space.medium)
+
+      ScrollView(.horizontal, showsIndicators: false) {
+        LazyHStack(spacing: Space.small) {
+          ForEach(self.presenter.popularAnimes) { anime in
+            self.presenter.linkBuilder(for: anime) {
+              AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
+          }
+        }.padding(.horizontal, Space.medium)
       }
     }
   }

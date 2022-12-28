@@ -32,6 +32,7 @@ final class LocaleDataSource: NSObject {
 
 extension LocaleDataSource: LocaleDataSourceProtocol {
 
+  // MARK: - Get top anime series
   func getTopAllAnimes() -> AnyPublisher<[AnimeEntity], Error> {
     return Future<[AnimeEntity], Error> { completion in
       if let realm = self.realm {
@@ -46,6 +47,39 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
   }
 
   func addTopAllAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error> {
+    return Future<Bool, Error> { completion in
+      if let realm = self.realm {
+        do {
+          try realm.write {
+            for anime in animes {
+              realm.add(anime, update: .all)
+            }
+            completion(.success(true))
+          }
+        } catch {
+          completion(.failure(DatabaseError.requestFailed))
+        }
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  // MARK: - Get popular anime
+  func getPopularAnimes() -> AnyPublisher<[PopularAnimeEntity], Error> {
+    return Future<[PopularAnimeEntity], Error> { completion in
+      if let realm = self.realm {
+        let animes: Results<PopularAnimeEntity> = {
+          realm.objects(PopularAnimeEntity.self)
+        }()
+        completion(.success(animes.toArray(ofType: PopularAnimeEntity.self)))
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  func addPopularAnimes(from animes: [PopularAnimeEntity]) -> AnyPublisher<Bool, Error> {
     return Future<Bool, Error> { completion in
       if let realm = self.realm {
         do {

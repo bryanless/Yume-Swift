@@ -101,10 +101,6 @@ enum MediaType: String, Codable {
   case unknown, tv, ova
   case movie, special, ona
   case music
-
-  var name: String {
-    return rawValue.capitalized
-  }
 }
 
 enum MediaTypeName: String, Codable {
