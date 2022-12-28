@@ -36,6 +36,7 @@
 		931BBFB8295C4E1D00359359 /* AnimeDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFB7295C4E1D00359359 /* AnimeDetailInteractor.swift */; };
 		931BBFBD295C4F1300359359 /* AnimeDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFBC295C4F1300359359 /* AnimeDetailPresenter.swift */; };
 		931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFBE295C4FB400359359 /* AnimeDetailView.swift */; };
+		931BBFC1295C58BB00359359 /* FormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFC0295C58BB00359359 /* FormatterExtension.swift */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		931BBFB7295C4E1D00359359 /* AnimeDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailInteractor.swift; sourceTree = "<group>"; };
 		931BBFBC295C4F1300359359 /* AnimeDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailPresenter.swift; sourceTree = "<group>"; };
 		931BBFBE295C4FB400359359 /* AnimeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailView.swift; sourceTree = "<group>"; };
+		931BBFC0295C58BB00359359 /* FormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterExtension.swift; sourceTree = "<group>"; };
 		934AF4B52958A82200C413B4 /* Yume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4B82958A82200C413B4 /* YumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeApp.swift; sourceTree = "<group>"; };
 		934AF4BA2958A82200C413B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				931BBF91295C24B900359359 /* CustomErrorExtension.swift */,
+				931BBFC0295C58BB00359359 /* FormatterExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */,
 				931BBFB2295C477500359359 /* Space.swift in Sources */,
 				931BBF94295C26B900359359 /* AnimeRepository.swift in Sources */,
+				931BBFC1295C58BB00359359 /* FormatterExtension.swift in Sources */,
 				931BBFB6295C47C400359359 /* Icons.swift in Sources */,
 				931BBFAF295C447300359359 /* AnimeItem.swift in Sources */,
 				931BBFA3295C398E00359359 /* HomeInteractor.swift in Sources */,

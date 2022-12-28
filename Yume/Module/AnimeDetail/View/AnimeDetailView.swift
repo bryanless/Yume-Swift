@@ -20,10 +20,7 @@ struct AnimeDetailView: View {
         }
       } else {
         ScrollView(.vertical, showsIndicators: false) {
-          HStack(alignment: .top, spacing: Space.small) {
-            mainPicture
-            content
-          }
+          overview
         }.navigationBarTitleDisplayMode(.inline)
       }
     }
@@ -31,6 +28,12 @@ struct AnimeDetailView: View {
 }
 
 extension AnimeDetailView {
+  var overview: some View {
+    HStack(alignment: .top, spacing: Space.small) {
+      mainPicture
+      overviewDescription
+    }
+  }
 
   var mainPicture: some View {
     WebImage(url: URL(string: self.presenter.anime.mainPicture))
@@ -42,11 +45,28 @@ extension AnimeDetailView {
       .cornerRadius(Shape.rounded)
   }
 
-  var content: some View {
-    Text(self.presenter.anime.title)
-      .font(.title3)
-      .bold()
-      .lineLimit(2)
+  var overviewDescription: some View {
+    VStack(alignment: .leading) {
+      HStack {
+        Text("\(self.presenter.anime.mediaType)"
+             + " · \(self.presenter.anime.startSeason) \(self.presenter.anime.startSeasonYear)"
+             + " · \(self.presenter.anime.status)"
+        ).font(.caption)
+      }
+
+      Text(self.presenter.anime.title)
+        .font(.title3)
+        .bold()
+        .lineLimit(2)
+
+      Text(self.presenter.anime.source)
+        .font(.caption2)
+
+      Spacer()
+
+      Text(self.presenter.anime.genre.joined(separator: " · "))
+        .font(.caption)
+    }
   }
 
 }

@@ -13,6 +13,25 @@ class AnimeEntity: Object {
   @Persisted var id: Int = 0
   @Persisted var title: String = ""
   @Persisted var mainPicture: String = ""
+  @Persisted var alternativeTitleSynonyms: List<String> = List<String>()
+  @Persisted var alternativeTitleEnglish: String = ""
+  @Persisted var alternativeTitleJapanese: String = ""
+  @Persisted var startDate: String = ""
+  @Persisted var endDate: String = ""
+  @Persisted var synopsis: String = ""
+  @Persisted var rating: Double = 0
+  @Persisted var rank: Int = 0
+  @Persisted var popularity: Int = 0
+  @Persisted var userAmount: Int = 0
+  @Persisted var genre: List<String> = List<String>()
+  @Persisted var mediaType: String = ""
+  @Persisted var status: String = ""
+  @Persisted var episodeAmount: Int = 0
+  @Persisted var startSeason: String = ""
+  @Persisted var startSeasonYear: String = ""
+  @Persisted var source: String = ""
+  @Persisted var episodeDuration: Int = 0
+  @Persisted var studios: List<String> = List<String>()
 
   override static func primaryKey() -> String? {
     return "id"
