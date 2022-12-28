@@ -116,7 +116,16 @@ class HomePresenter: ObservableObject {
 //      .store(in: &cancellables)
 //  }
 
-  func linkBuilder<Content: View>(
+  func seeAllLinkBuilder<Content: View>(
+    for animes: [AnimeModel],
+    navigationTitle title: String,
+    @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(
+    destination: router.makeSeeAllView(for: animes, navigationTitle: title)) { content() }
+  }
+
+  func animeDetailLinkBuilder<Content: View>(
     for anime: AnimeModel,
     @ViewBuilder content: () -> Content
   ) -> some View {

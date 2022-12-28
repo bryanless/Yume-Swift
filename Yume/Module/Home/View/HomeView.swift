@@ -43,14 +43,19 @@ extension HomeView {
         Text("Now Airing")
           .typography(.headline())
         Spacer()
-        Text("View all")
-          .typography(.subheadline())
+        self.presenter.seeAllLinkBuilder(
+          for: self.presenter.topAllAnimes,
+          navigationTitle: "Now Airing"
+        ) {
+          Text("See All")
+            .typography(.subheadline())
+        }
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(self.presenter.topAllAnimes) { anime in
-            self.presenter.linkBuilder(for: anime) {
+            self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }
@@ -65,14 +70,19 @@ extension HomeView {
         Text("Most Popular")
           .typography(.headline())
         Spacer()
-        Text("View all")
-          .typography(.subheadline())
+        self.presenter.seeAllLinkBuilder(
+          for: self.presenter.popularAnimes,
+          navigationTitle: "Most Popular"
+        ) {
+          Text("See All")
+            .typography(.subheadline())
+        }
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(self.presenter.popularAnimes) { anime in
-            self.presenter.linkBuilder(for: anime) {
+            self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }

@@ -20,6 +20,7 @@ extension Font {
 }
 
 enum TypographyStyle {
+  case largeTitle(color: Color = .black)
   case title(color: Color = .black)
   case title2(color: Color = .black)
   case title3(color: Color = .black)
@@ -33,22 +34,38 @@ enum TypographyStyle {
 
   public var size: CGFloat {
     switch self {
-    case .title: return 28
-    case .title2: return 22
-    case .title3: return 20
-    case .headline: return 17
-    case .body: return 17
-    case .callout: return 16
-    case .subheadline: return 15
-    case .footnote: return 13
-    case .caption: return 12
-    case .caption2: return 11
+    case .largeTitle:
+      return 34
+    case .title:
+      return 28
+    case .title2:
+      return 22
+    case .title3:
+      return 20
+    case .headline:
+      return 17
+    case .body:
+      return 17
+    case .callout:
+      return 16
+    case .subheadline:
+      return 15
+    case .footnote:
+      return 13
+    case .caption:
+      return 12
+    case .caption2:
+      return 11
     }
   }
   public var weight: Font.Weight {
     switch self {
-    case .title, .title2, .title3, .body, .callout, .subheadline, .footnote, .caption, .caption2: return .regular
-    case .headline: return .bold
+    case .largeTitle, .title, .title2, .title3,
+        .body, .callout, .subheadline,
+        .footnote, .caption, .caption2:
+      return .regular
+    case .headline:
+      return .bold
     }
   }
 }
@@ -72,9 +89,9 @@ struct BaseTypography: ViewModifier {
 extension View {
   func typography(_ type: TypographyStyle) -> some View {
     switch type {
-    case .title(let color), .title2(let color), .title3(let color),
-        .headline(let color), .body(let color), .callout(let color),
-        .subheadline(let color), .footnote(let color),
+    case .largeTitle(let color), .title(let color), .title2(let color),
+        .title3(let color), .headline(let color), .body(let color),
+        .callout(let color), .subheadline(let color), .footnote(let color),
         .caption(let color), .caption2(let color):
       return self.modifier(BaseTypography(type: type, color: color))
     }

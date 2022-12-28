@@ -60,6 +60,10 @@
 		931BBFF3295CC94300359359 /* Nunito-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFE4295CC94300359359 /* Nunito-ExtraBoldItalic.ttf */; };
 		931BBFF4295CC94300359359 /* Nunito-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFE5295CC94300359359 /* Nunito-MediumItalic.ttf */; };
 		931BBFF5295CC94300359359 /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFE6295CC94300359359 /* Nunito-SemiBold.ttf */; };
+		931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFFA295CD79C00359359 /* SeeAllInteractor.swift */; };
+		931BBFFD295CD86E00359359 /* SeeAllPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFFC295CD86E00359359 /* SeeAllPresenter.swift */; };
+		931BBFFF295CD8F800359359 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFFE295CD8F800359359 /* SeeAllView.swift */; };
+		931BC001295CD9AA00359359 /* SeeAllRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BC000295CD9AA00359359 /* SeeAllRouter.swift */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -137,6 +141,10 @@
 		931BBFE4295CC94300359359 /* Nunito-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		931BBFE5295CC94300359359 /* Nunito-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-MediumItalic.ttf"; sourceTree = "<group>"; };
 		931BBFE6295CC94300359359 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
+		931BBFFA295CD79C00359359 /* SeeAllInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllInteractor.swift; sourceTree = "<group>"; };
+		931BBFFC295CD86E00359359 /* SeeAllPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllPresenter.swift; sourceTree = "<group>"; };
+		931BBFFE295CD8F800359359 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
+		931BC000295CD9AA00359359 /* SeeAllRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllRouter.swift; sourceTree = "<group>"; };
 		934AF4B52958A82200C413B4 /* Yume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4B82958A82200C413B4 /* YumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeApp.swift; sourceTree = "<group>"; };
 		934AF4BA2958A82200C413B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -276,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				931BBFA2295C398E00359359 /* HomeInteractor.swift */,
+				931BBFFA295CD79C00359359 /* SeeAllInteractor.swift */,
 				931BBFCA295CABB000359359 /* SearchInteractor.swift */,
 				931BBFB7295C4E1D00359359 /* AnimeDetailInteractor.swift */,
 			);
@@ -286,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				931BBF7D295C18CC00359359 /* Home */,
+				931BBFF6295CD63E00359359 /* SeeAll */,
 				931BBFC4295CAB3B00359359 /* Search */,
 				931BBFB9295C4ED100359359 /* AnimeDetail */,
 			);
@@ -470,6 +480,40 @@
 				931BBFDE295CC94300359359 /* Nunito-SemiBoldItalic.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		931BBFF6295CD63E00359359 /* SeeAll */ = {
+			isa = PBXGroup;
+			children = (
+				931BBFF7295CD73D00359359 /* Presenter */,
+				931BBFF9295CD74F00359359 /* View */,
+				931BBFF8295CD74400359359 /* Router */,
+			);
+			path = SeeAll;
+			sourceTree = "<group>";
+		};
+		931BBFF7295CD73D00359359 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				931BBFFC295CD86E00359359 /* SeeAllPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		931BBFF8295CD74400359359 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				931BC000295CD9AA00359359 /* SeeAllRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		931BBFF9295CD74F00359359 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				931BBFFE295CD8F800359359 /* SeeAllView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		934AF4AC2958A82100C413B4 = {
@@ -714,21 +758,25 @@
 			files = (
 				931BBFC9295CAB7300359359 /* SearchPresenter.swift in Sources */,
 				931BBFA1295C395100359359 /* Injection.swift in Sources */,
+				931BC001295CD9AA00359359 /* SeeAllRouter.swift in Sources */,
 				931BBF82295C18FD00359359 /* HomeView.swift in Sources */,
 				931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */,
 				931BBFB2295C477500359359 /* Space.swift in Sources */,
 				931BBF94295C26B900359359 /* AnimeRepository.swift in Sources */,
 				931BBFC3295C7FDF00359359 /* PopularAnimeEntity.swift in Sources */,
+				931BBFFF295CD8F800359359 /* SeeAllView.swift in Sources */,
 				931BBFC1295C58BB00359359 /* FormatterExtension.swift in Sources */,
 				931BBFD1295CADB800359359 /* AnimeCardItem.swift in Sources */,
 				931BBFB6295C47C400359359 /* Icons.swift in Sources */,
 				931BBFAF295C447300359359 /* AnimeItem.swift in Sources */,
 				931BBFA3295C398E00359359 /* HomeInteractor.swift in Sources */,
+				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
 				931BBF8E295C201500359359 /* AnimeRankingResponse.swift in Sources */,
 				931BBF96295C270D00359359 /* LocaleDataSource.swift in Sources */,
 				931BBFA5295C39F400359359 /* HomeRouter.swift in Sources */,
+				931BBFFD295CD86E00359359 /* SeeAllPresenter.swift in Sources */,
 				931BBFA7295C3ADE00359359 /* AnimeRow.swift in Sources */,
 				931BBF8B295C1B4100359359 /* RemoteDateSource.swift in Sources */,
 				931BBFBD295C4F1300359359 /* AnimeDetailPresenter.swift in Sources */,

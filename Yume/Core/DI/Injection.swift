@@ -24,6 +24,11 @@ final class Injection: NSObject {
     return HomeInteractor(repository: repository)
   }
 
+  func provideSeeAll(navigationTitle: String, animes: [AnimeModel]) -> SeeAllUseCase {
+    let repository = provideRepository()
+    return SeeAllInteractor(repository: repository, navigationTitle: navigationTitle,  animes: animes)
+  }
+
   func provideSearch() -> SearchUseCase {
     let repository = provideRepository()
     return SearchInteractor(repository: repository)
