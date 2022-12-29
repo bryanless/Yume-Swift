@@ -32,5 +32,19 @@ class AnimeEntity: Object {
   @Persisted var source: String = ""
   @Persisted var episodeDuration: Int = 0
   @Persisted var studios: List<String> = List<String>()
+  @Persisted var ranking: AnimeRankingEntity? = AnimeRankingEntity()
+  @Persisted var isFavorite: Bool = false
 
+}
+
+class AnimeRankingEntity: EmbeddedObject {
+  @Persisted var rankingAll: Int = 0
+  @Persisted var rankingAiring: Int = 0
+  @Persisted var rankingUpcoming: Int = 0
+  @Persisted var rankingTv: Int = 0
+  @Persisted var rankingOva: Int = 0
+  @Persisted var rankingMovie: Int = 0
+  @Persisted var rankingSpecial: Int = 0
+  @Persisted var rankingPopularity: Int = 0
+  @Persisted var rankingFavorite: Int = 0
 }

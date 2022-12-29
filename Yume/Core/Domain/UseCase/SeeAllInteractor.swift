@@ -23,7 +23,7 @@ class SeeAllInteractor: SeeAllUseCase {
 
   required init(
     repository: AnimeRepositoryProtocol,
-    navigationTitle: String ,
+    navigationTitle: String,
     animes: [AnimeModel]
   ) {
     self.repository = repository

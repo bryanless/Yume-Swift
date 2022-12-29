@@ -12,7 +12,8 @@ import Combine
 protocol LocaleDataSourceProtocol: AnyObject {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeEntity], Error>
-  func addTopAllAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
+  func getPopularAnimes() -> AnyPublisher<[AnimeEntity], Error>
+  func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
 
 }
 
@@ -38,6 +39,8 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
+            .where { $0.ranking.rankingAll != 0 }
+            .sorted(byKeyPath: "ranking.rankingAll")
         }()
         completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
@@ -46,40 +49,24 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
     }.eraseToAnyPublisher()
   }
 
-  func addTopAllAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error> {
-    return Future<Bool, Error> { completion in
-      if let realm = self.realm {
-        do {
-          try realm.write {
-            for anime in animes {
-              realm.add(anime, update: .all)
-            }
-            completion(.success(true))
-          }
-        } catch {
-          completion(.failure(DatabaseError.requestFailed))
-        }
-      } else {
-        completion(.failure(DatabaseError.invalidInstance))
-      }
-    }.eraseToAnyPublisher()
-  }
-
   // MARK: - Get popular anime
-  func getPopularAnimes() -> AnyPublisher<[PopularAnimeEntity], Error> {
-    return Future<[PopularAnimeEntity], Error> { completion in
+  func getPopularAnimes() -> AnyPublisher<[AnimeEntity], Error> {
+    return Future<[AnimeEntity], Error> { completion in
       if let realm = self.realm {
-        let animes: Results<PopularAnimeEntity> = {
-          realm.objects(PopularAnimeEntity.self)
+        let animes: Results<AnimeEntity> = {
+          realm.objects(AnimeEntity.self)
+            .where { $0.ranking.rankingPopularity != 0 }
+            .sorted(byKeyPath: "ranking.rankingPopularity")
         }()
-        completion(.success(animes.toArray(ofType: PopularAnimeEntity.self)))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
     }.eraseToAnyPublisher()
   }
 
-  func addPopularAnimes(from animes: [PopularAnimeEntity]) -> AnyPublisher<Bool, Error> {
+  // MARK: - Add animes
+  func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error> {
     return Future<Bool, Error> { completion in
       if let realm = self.realm {
         do {
