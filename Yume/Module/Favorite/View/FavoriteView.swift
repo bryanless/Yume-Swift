@@ -24,7 +24,6 @@ struct FavoriteView: View {
           if self.presenter.favoriteAnimes.isEmpty {
             Text("No favorite anime")
               .typography(.body(color: YumeColor.onSurfaceVariant))
-              .navigationTitle("Favorites")
               .onAppear {
                 self.presenter.getFavoriteAnimes()
               }
@@ -37,10 +36,11 @@ struct FavoriteView: View {
                   }.buttonStyle(.plain)
                 }
               }.padding(Space.medium)
-            }.navigationTitle("Favorites")
-              .onAppear {
-                self.presenter.getFavoriteAnimes()
-              }
+            }
+            .background(YumeColor.background)
+            .onAppear {
+              self.presenter.getFavoriteAnimes()
+            }
           }
         }
       }

@@ -18,7 +18,7 @@ struct ContentView: View {
   }
 
   var body: some View {
-    VStack {
+    VStack(spacing: 0) {
       TabView(selection: $selection) {
         HomeView(presenter: homePresenter)
           .tabItem {

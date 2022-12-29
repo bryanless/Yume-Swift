@@ -25,6 +25,10 @@ struct AnimeDetailView: View {
             VStack(spacing: Space.large) {
               overview
               stats
+              YumeDivider()
+              synopsis
+              YumeDivider()
+              information
             }.padding(Space.medium)
               .toolbar {
                 Button {
@@ -37,7 +41,7 @@ struct AnimeDetailView: View {
                 }
               }
           }
-          .navigationBarTitleDisplayMode(.inline)
+          .background(YumeColor.background)
           .onAppear {
             self.presenter.refreshAnime()
           }
@@ -94,60 +98,93 @@ extension AnimeDetailView {
       Text("\(self.presenter.anime.mediaType)"
            + " · \(self.presenter.anime.startSeason) \(self.presenter.anime.startSeasonYear)"
            + " · \(self.presenter.anime.status)"
-      ).typography(.caption())
+      ).typography(.caption(color: YumeColor.onSurfaceVariant))
 
       Text(self.presenter.anime.title)
-        .typography(.title3())
+        .typography(.title3(color: YumeColor.onBackground))
         .bold()
         .lineLimit(3)
 
       Text(self.presenter.anime.source)
-        .typography(.caption2())
+        .typography(.caption2(color: YumeColor.onSurfaceVariant))
 
       Spacer()
 
       Text(self.presenter.anime.genre.joined(separator: " · "))
-        .typography(.caption())
+        .typography(.caption(color: YumeColor.onSurfaceVariant))
     }
   }
 
   var stats: some View {
     HStack(spacing: Space.small) {
-      VStack(spacing: Space.tiny) {
-        IconView(
-          icon: Icons.starOutlined,
-          color: .yellow
+      AnimeStatItem(
+        icon: Icons.starOutlined,
+        iconColor: .yellow,
+        label: "Score",
+        value: self.presenter.anime.rating.description
+      )
+      AnimeStatItem(
+        icon: Icons.crownOutlined,
+        iconColor: .orange,
+        label: "Rank",
+        value: "#\(Formatter.formatNumber(self.presenter.anime.rank))"
+      )
+      AnimeStatItem(
+        icon: Icons.trendingUp,
+        iconColor: .green,
+        label: "Popularity",
+        value: "#\(Formatter.formatNumber(self.presenter.anime.popularity))"
+      )
+      AnimeStatItem(
+        icon: Icons.usersOutlined,
+        iconColor: .purple,
+        label: "Members",
+        value: Formatter.formatNumber(self.presenter.anime.userAmount)
+      )
+      AnimeStatItem(
+        icon: Icons.heartOutlined,
+        iconColor: .red,
+        label: "Favorites",
+        value: Formatter.formatNumber(self.presenter.anime.userAmount)
+      )
+    }.frame(height: 70)
+  }
+
+  var synopsis: some View {
+    HStack {
+      VStack(alignment: .leading, spacing: Space.small) {
+        Text("Synopsis")
+          .typography(.headline(color: YumeColor.onBackground))
+        Text(self.presenter.anime.synopsis)
+          .typography(.body(color: YumeColor.onBackground))
+      }
+      Spacer()
+    }
+  }
+
+  var information: some View {
+    HStack {
+      VStack(alignment: .leading, spacing: Space.small) {
+        Text("Information")
+          .typography(.headline(color: YumeColor.onBackground))
+        AnimeInformationItem(
+          label: "Episodes",
+          value: self.presenter.anime.episodeAmount.description
         )
-        Text(self.presenter.anime.rating.description)
-      }.frame(width: 60.0)
-      VStack(spacing: Space.tiny) {
-        IconView(
-          icon: Icons.crownOutlined,
-          color: .orange
+        AnimeInformationItem(
+          label: "Duration",
+          value: self.presenter.anime.episodeDuration.description
         )
-        Text("#\(Formatter.formatNumber(self.presenter.anime.rank))")
-      }.frame(width: 60.0)
-      VStack(spacing: Space.tiny) {
-        IconView(
-          icon: Icons.trendingUp,
-          color: .green
+        AnimeInformationItem(
+          label: "Aired",
+          value: "\(self.presenter.anime.startDate) - \(self.presenter.anime.endDate)"
         )
-        Text("#\(Formatter.formatNumber(self.presenter.anime.popularity))")
-      }.frame(width: 60.0)
-      VStack(spacing: Space.tiny) {
-        IconView(
-          icon: Icons.usersOutlined,
-          color: .purple
+        AnimeInformationItem(
+          label: "Studios",
+          value: self.presenter.anime.studios.joined(separator: ", ")
         )
-        Text(Formatter.formatNumber(self.presenter.anime.userAmount))
-      }.frame(width: 60.0)
-      VStack(spacing: Space.tiny) {
-        IconView(
-          icon: Icons.heartOutlined,
-          color: .red
-        )
-        Text(Formatter.formatNumber(self.presenter.anime.userAmount))
-      }.frame(width: 60.0)
+      }
+      Spacer()
     }
   }
 

@@ -27,7 +27,7 @@ struct SearchView: View {
                 }.buttonStyle(.plain)
               }
             }.padding(Space.medium)
-          }.navigationTitle("Search")
+          }.background(YumeColor.background)
         }.onAppear {
           if self.presenter.topAllAnimes.isEmpty {
             self.presenter.getTopAllAnimes()

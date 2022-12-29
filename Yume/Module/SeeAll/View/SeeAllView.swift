@@ -27,7 +27,7 @@ struct SeeAllView: View {
                 }.buttonStyle(.plain)
               }
             }.padding(Space.medium)
-          }.navigationTitle(self.presenter.navigationTitle)
+          }.background(YumeColor.background)
         }
       }
     }.toolbar(.hidden)
