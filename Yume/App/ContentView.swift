@@ -13,35 +13,38 @@ struct ContentView: View {
   @EnvironmentObject var favoritePresenter: FavoritePresenter
   @State private var selection: Tab = .home
 
-  enum Tab {
-    case home, search, favorite, profile
+  init() {
+    UITabBar.appearance().isHidden = true
   }
 
   var body: some View {
-    TabView {
-      HomeView(presenter: homePresenter)
-        .tabItem {
-          Label("Home", systemImage: "house")
-        }
-        .tag(Tab.home)
-      SearchView(presenter: searchPresenter)
-        .tabItem {
-          Label("Search", systemImage: "magnifyingglass")
-        }
-        .tag(Tab.search)
-      FavoriteView(presenter: favoritePresenter)
-        .tabItem {
-          Label("Favorite", systemImage: "heart")
-        }
-        .tag(Tab.favorite)
-      //        Profile()
-      //            .tabItem {
-      //                Label("Profile", systemImage: Icons.person)
-      //            }
-      //            .tag(Tab.profile)
+    VStack {
+      TabView(selection: $selection) {
+        HomeView(presenter: homePresenter)
+          .tabItem {
+            Label("Home", systemImage: "house")
+          }
+          .tag(Tab.home)
+        SearchView(presenter: searchPresenter)
+          .tabItem {
+            Label("Search", systemImage: "magnifyingglass")
+          }
+          .tag(Tab.search)
+        FavoriteView(presenter: favoritePresenter)
+          .tabItem {
+            Label("Favorite", systemImage: "heart")
+          }
+          .tag(Tab.favorite)
+        //        Profile()
+        //            .tabItem {
+        //                Label("Profile", systemImage: Icons.person)
+        //            }
+        //            .tag(Tab.profile)
+      }
+      TabBar(selection: $selection)
     }
-
   }
+
 }
 
 struct ContentView_Previews: PreviewProvider {

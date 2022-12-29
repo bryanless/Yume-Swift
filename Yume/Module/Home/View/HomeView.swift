@@ -21,8 +21,8 @@ struct HomeView: View {
         NavigationStack {
           ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: Space.large) {
-              nowAiringAnime
               popularAnime
+              topRatedAnime
             }.padding(.vertical, Space.medium)
           }.navigationTitle("Home")
         }.onAppear {
@@ -37,33 +37,6 @@ struct HomeView: View {
 }
 
 extension HomeView {
-  var nowAiringAnime: some View {
-    VStack(spacing: Space.small) {
-      HStack(spacing: Space.small) {
-        Text("Now Airing")
-          .typography(.headline())
-        Spacer()
-        self.presenter.seeAllLinkBuilder(
-          for: self.presenter.topAllAnimes,
-          navigationTitle: "Now Airing"
-        ) {
-          Text("See All")
-            .typography(.subheadline())
-        }
-      }.padding(.horizontal, Space.medium)
-
-      ScrollView(.horizontal, showsIndicators: false) {
-        LazyHStack(spacing: Space.small) {
-          ForEach(self.presenter.topAllAnimes) { anime in
-            self.presenter.animeDetailLinkBuilder(for: anime) {
-              AnimeItem(anime: anime)
-            }.buttonStyle(.plain)
-          }
-        }.padding(.horizontal, Space.medium)
-      }
-    }
-  }
-
   var popularAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
@@ -90,4 +63,32 @@ extension HomeView {
       }
     }
   }
+
+  var topRatedAnime: some View {
+    VStack(spacing: Space.small) {
+      HStack(spacing: Space.small) {
+        Text("Top Rated")
+          .typography(.headline())
+        Spacer()
+        self.presenter.seeAllLinkBuilder(
+          for: self.presenter.topAllAnimes,
+          navigationTitle: "Now Airing"
+        ) {
+          Text("See All")
+            .typography(.subheadline())
+        }
+      }.padding(.horizontal, Space.medium)
+
+      ScrollView(.horizontal, showsIndicators: false) {
+        LazyHStack(spacing: Space.small) {
+          ForEach(self.presenter.topAllAnimes) { anime in
+            self.presenter.animeDetailLinkBuilder(for: anime) {
+              AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
+          }
+        }.padding(.horizontal, Space.medium)
+      }
+    }
+  }
+
 }

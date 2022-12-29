@@ -75,6 +75,8 @@
 		935289DE295DABC8009DF307 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289DD295DABC8009DF307 /* FavoritePresenter.swift */; };
 		935289E0295DAC45009DF307 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289DF295DAC45009DF307 /* FavoriteRouter.swift */; };
 		935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E1295DAC6A009DF307 /* FavoriteView.swift */; };
+		935289E4295DDD79009DF307 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E3295DDD79009DF307 /* TabItem.swift */; };
+		935289E6295DDE30009DF307 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E5295DDE30009DF307 /* TabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,8 @@
 		935289DD295DABC8009DF307 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		935289DF295DAC45009DF307 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		935289E1295DAC6A009DF307 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		935289E3295DDD79009DF307 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		935289E5295DDE30009DF307 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +322,8 @@
 			children = (
 				931BBFD0295CADB800359359 /* AnimeCardItem.swift */,
 				931BC002295CDF1B00359359 /* IconView.swift */,
+				935289E5295DDE30009DF307 /* TabBar.swift */,
+				935289E3295DDD79009DF307 /* TabItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				935289DC295D95B0009DF307 /* FavoriteInteractor.swift in Sources */,
 				931BBF94295C26B900359359 /* AnimeRepository.swift in Sources */,
 				935289E0295DAC45009DF307 /* FavoriteRouter.swift in Sources */,
+				935289E4295DDD79009DF307 /* TabItem.swift in Sources */,
 				931BBFFF295CD8F800359359 /* SeeAllView.swift in Sources */,
 				931BBFC1295C58BB00359359 /* FormatterExtension.swift in Sources */,
 				931BBFD1295CADB800359359 /* AnimeCardItem.swift in Sources */,
@@ -818,6 +825,7 @@
 				931BBFA3295C398E00359359 /* HomeInteractor.swift in Sources */,
 				935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */,
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
+				935289E6295DDE30009DF307 /* TabBar.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
 				931BC003295CDF1B00359359 /* IconView.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,

@@ -17,7 +17,7 @@ protocol LocaleDataSourceProtocol: AnyObject {
   func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
   func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeEntity, Error>
-  
+
 }
 
 final class LocaleDataSource: NSObject {
