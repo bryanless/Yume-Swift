@@ -87,13 +87,44 @@ final class AnimeRankingMapper {
         source: result.source,
         episodeDuration: result.episodeDuration,
         studios: Array(result.studios),
-        ranking: mapAnimeRankingEntityToDomains(input: result.ranking ?? AnimeRankingEntity()),
+        ranking: mapAnimeRankingEntityToDomain(input: result.ranking ?? AnimeRankingEntity()),
         isFavorite: result.isFavorite
       )
     }
   }
 
-  private static func mapAnimeRankingEntityToDomains(
+  static func mapAnimeEntityToDomain(
+    input result: AnimeEntity
+  ) -> AnimeModel {
+    return AnimeModel(
+      id: result.id,
+      title: result.title,
+      mainPicture: result.mainPicture,
+      alternativeTitleSynonyms: Array(result.alternativeTitleSynonyms),
+      alternativeTitleEnglish: result.alternativeTitleEnglish,
+      alternativeTitleJapanese: result.alternativeTitleJapanese,
+      startDate: result.startDate,
+      endDate: result.endDate,
+      synopsis: result.synopsis,
+      rating: result.rating,
+      rank: result.rank,
+      popularity: result.popularity,
+      userAmount: result.userAmount,
+      genre: Array(result.genre),
+      mediaType: result.mediaType,
+      status: result.status,
+      episodeAmount: result.episodeAmount,
+      startSeason: result.startSeason,
+      startSeasonYear: result.startSeasonYear,
+      source: result.source,
+      episodeDuration: result.episodeDuration,
+      studios: Array(result.studios),
+      ranking: mapAnimeRankingEntityToDomain(input: result.ranking ?? AnimeRankingEntity()),
+      isFavorite: result.isFavorite
+    )
+  }
+
+  private static func mapAnimeRankingEntityToDomain(
     input animeRankingEntity: AnimeRankingEntity
   ) -> AnimeRankingModel {
     return AnimeRankingModel(
@@ -139,7 +170,7 @@ final class AnimeRankingMapper {
         source: result.anime.source?.name ?? "Unknown",
         episodeDuration: result.anime.episodeDuration,
         studios: result.anime.studios.map { $0.name },
-        ranking: mapAnimeRankingResponseToDomains(input: result.ranking),
+        ranking: mapAnimeRankingResponseToDomain(input: result.ranking),
         isFavorite: false
 
       )
@@ -147,7 +178,7 @@ final class AnimeRankingMapper {
   }
 
   /// For UI preview only
-  private static func mapAnimeRankingResponseToDomains(input animeRankingResponse: Ranking) -> AnimeRankingModel {
+  private static func mapAnimeRankingResponseToDomain(input animeRankingResponse: Ranking) -> AnimeRankingModel {
     return AnimeRankingModel(
       rankingAll: animeRankingResponse.rank,
       rankingAiring: animeRankingResponse.rank,

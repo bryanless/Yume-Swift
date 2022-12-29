@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 protocol AnimeDetailUseCase {
 
   func getAnime() -> AnimeModel
+  func refreshAnime() -> AnyPublisher<AnimeModel, Error>
+  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error>
 
 }
 
@@ -28,6 +31,14 @@ class AnimeDetailInteractor: AnimeDetailUseCase {
 
   func getAnime() -> AnimeModel {
     return anime
+  }
+
+  func refreshAnime() -> AnyPublisher<AnimeModel, Error> {
+    return repository.getAnime(withId: anime.id)
+  }
+
+  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error> {
+    return repository.updateAnimeFavorite(withId: id, isFavorite: isFavorite)
   }
 
 }

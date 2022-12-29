@@ -35,6 +35,10 @@ class AnimeEntity: Object {
   @Persisted var ranking: AnimeRankingEntity? = AnimeRankingEntity()
   @Persisted var isFavorite: Bool = false
 
+  override static func primaryKey() -> String? {
+    return "id"
+  }
+
 }
 
 class AnimeRankingEntity: EmbeddedObject {

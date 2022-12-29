@@ -24,8 +24,21 @@ struct AnimeDetailView: View {
             overview
             stats
           }.padding(Space.medium)
+            .toolbar {
+              Button {
+                self.presenter.updateAnimeFavorite()
+              } label: {
+                IconView(
+                  icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
+                  color: .red
+                )
+              }
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+          self.presenter.refreshAnime()
+        }
       }
     }
   }

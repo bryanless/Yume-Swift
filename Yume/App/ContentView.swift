@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var homePresenter: HomePresenter
   @EnvironmentObject var searchPresenter: SearchPresenter
+  @EnvironmentObject var favoritePresenter: FavoritePresenter
   @State private var selection: Tab = .home
 
   enum Tab {
@@ -28,11 +29,11 @@ struct ContentView: View {
           Label("Search", systemImage: "magnifyingglass")
         }
         .tag(Tab.search)
-      //        Favorite()
-      //            .tabItem {
-      //                Label("Favorite", systemImage: Icons.heart)
-      //            }
-      //            .tag(Tab.favorite)
+      FavoriteView(presenter: favoritePresenter)
+        .tabItem {
+          Label("Favorite", systemImage: "heart")
+        }
+        .tag(Tab.favorite)
       //        Profile()
       //            .tabItem {
       //                Label("Profile", systemImage: Icons.person)
@@ -46,13 +47,16 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
   static let homeUseCase = Injection.init().provideHome()
   static let searchUseCase = Injection.init().provideSearch()
+  static let favoriteUseCase = Injection.init().provideFavorite()
 
   static let homePresenter = HomePresenter(homeUseCase: homeUseCase)
   static let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
+  static let favoritePresenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
 
   static var previews: some View {
     ContentView()
       .environmentObject(homePresenter)
       .environmentObject(searchPresenter)
+      .environmentObject(favoritePresenter)
   }
 }

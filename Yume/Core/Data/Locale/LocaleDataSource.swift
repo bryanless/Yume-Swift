@@ -13,8 +13,11 @@ protocol LocaleDataSourceProtocol: AnyObject {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getPopularAnimes() -> AnyPublisher<[AnimeEntity], Error>
+  func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
+  func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
-
+  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeEntity, Error>
+  
 }
 
 final class LocaleDataSource: NSObject {
@@ -65,6 +68,22 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
     }.eraseToAnyPublisher()
   }
 
+  // MARK: - Get favorite anime
+  func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error> {
+    return Future<[AnimeEntity], Error> { completion in
+      if let realm = self.realm {
+        let animes: Results<AnimeEntity> = {
+          realm.objects(AnimeEntity.self)
+            .where { $0.isFavorite == true }
+            .sorted(byKeyPath: "title")
+        }()
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
   // MARK: - Add animes
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error> {
     return Future<Bool, Error> { completion in
@@ -75,6 +94,43 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
               realm.add(anime, update: .all)
             }
             completion(.success(true))
+          }
+        } catch {
+          completion(.failure(DatabaseError.requestFailed))
+        }
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  // MARK: - Get an anime
+  func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error> {
+    return Future<AnimeEntity, Error> { completion in
+      if let realm = self.realm {
+        if let anime = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
+          completion(.success(anime))
+        } else {
+          completion(.failure(DatabaseError.requestFailed))
+        }
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  // MARK: - Update favorite
+  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeEntity, Error> {
+    return Future<AnimeEntity, Error> { completion in
+      if let realm = self.realm {
+        do {
+          try realm.write {
+            if let anime = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
+              anime.isFavorite = isFavorite
+              completion(.success(anime))
+            } else {
+              completion(.failure(DatabaseError.requestFailed))
+            }
           }
         } catch {
           completion(.failure(DatabaseError.requestFailed))

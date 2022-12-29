@@ -72,6 +72,9 @@
 		934AF4D42958A82200C413B4 /* YumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D32958A82200C413B4 /* YumeUITests.swift */; };
 		934AF4D62958A82200C413B4 /* YumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */; };
 		935289DC295D95B0009DF307 /* FavoriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289DB295D95B0009DF307 /* FavoriteInteractor.swift */; };
+		935289DE295DABC8009DF307 /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289DD295DABC8009DF307 /* FavoritePresenter.swift */; };
+		935289E0295DAC45009DF307 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289DF295DAC45009DF307 /* FavoriteRouter.swift */; };
+		935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E1295DAC6A009DF307 /* FavoriteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +160,9 @@
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		935289DB295D95B0009DF307 /* FavoriteInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteInteractor.swift; sourceTree = "<group>"; };
+		935289DD295DABC8009DF307 /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
+		935289DF295DAC45009DF307 /* FavoriteRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
+		935289E1295DAC6A009DF307 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,6 +599,7 @@
 		935289D8295D9598009DF307 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				935289DF295DAC45009DF307 /* FavoriteRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -600,6 +607,7 @@
 		935289D9295D959D009DF307 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				935289E1295DAC6A009DF307 /* FavoriteView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -607,6 +615,7 @@
 		935289DA295D95A0009DF307 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				935289DD295DABC8009DF307 /* FavoritePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -793,18 +802,21 @@
 			files = (
 				931BBFC9295CAB7300359359 /* SearchPresenter.swift in Sources */,
 				931BBFA1295C395100359359 /* Injection.swift in Sources */,
+				935289DE295DABC8009DF307 /* FavoritePresenter.swift in Sources */,
 				931BC001295CD9AA00359359 /* SeeAllRouter.swift in Sources */,
 				931BBF82295C18FD00359359 /* HomeView.swift in Sources */,
 				931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */,
 				931BBFB2295C477500359359 /* Space.swift in Sources */,
 				935289DC295D95B0009DF307 /* FavoriteInteractor.swift in Sources */,
 				931BBF94295C26B900359359 /* AnimeRepository.swift in Sources */,
+				935289E0295DAC45009DF307 /* FavoriteRouter.swift in Sources */,
 				931BBFFF295CD8F800359359 /* SeeAllView.swift in Sources */,
 				931BBFC1295C58BB00359359 /* FormatterExtension.swift in Sources */,
 				931BBFD1295CADB800359359 /* AnimeCardItem.swift in Sources */,
 				931BBFB6295C47C400359359 /* Icons.swift in Sources */,
 				931BBFAF295C447300359359 /* AnimeItem.swift in Sources */,
 				931BBFA3295C398E00359359 /* HomeInteractor.swift in Sources */,
+				935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */,
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
 				931BC003295CDF1B00359359 /* IconView.swift in Sources */,
