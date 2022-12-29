@@ -78,6 +78,7 @@
 		935289E4295DDD79009DF307 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E3295DDD79009DF307 /* TabItem.swift */; };
 		935289E6295DDE30009DF307 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E5295DDE30009DF307 /* TabBar.swift */; };
 		935289E8295DF25B009DF307 /* ObservableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E7295DF25B009DF307 /* ObservableScrollView.swift */; };
+		935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E9295E0B1D009DF307 /* NavigationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,7 @@
 		935289E3295DDD79009DF307 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		935289E5295DDE30009DF307 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		935289E7295DF25B009DF307 /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
+		935289E9295E0B1D009DF307 /* NavigationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +375,7 @@
 				931BBF91295C24B900359359 /* CustomErrorExtension.swift */,
 				931BBFC0295C58BB00359359 /* FormatterExtension.swift */,
 				931BBFD5295CC81400359359 /* FontExtension.swift */,
+				935289E9295E0B1D009DF307 /* NavigationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				931BBF82295C18FD00359359 /* HomeView.swift in Sources */,
 				931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */,
 				931BBFB2295C477500359359 /* Space.swift in Sources */,
+				935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */,
 				935289DC295D95B0009DF307 /* FavoriteInteractor.swift in Sources */,
 				931BBF94295C26B900359359 /* AnimeRepository.swift in Sources */,
 				935289E0295DAC45009DF307 /* FavoriteRouter.swift in Sources */,

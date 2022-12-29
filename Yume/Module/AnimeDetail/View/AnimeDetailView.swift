@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct AnimeDetailView: View {
   @ObservedObject var presenter: AnimeDetailPresenter
+  @State var scrollOffset = CGFloat.zero
 
   var body: some View {
     ZStack {
@@ -19,32 +20,56 @@ struct AnimeDetailView: View {
           Text("Loading")
         }
       } else {
-        ScrollView(.vertical, showsIndicators: false) {
-          VStack(spacing: Space.large) {
-            overview
-            stats
-          }.padding(Space.medium)
-            .toolbar {
-              Button {
-                self.presenter.updateAnimeFavorite()
-              } label: {
-                IconView(
-                  icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
-                  color: .red
-                )
+        ZStack(alignment: .top) {
+          ObservableScrollView(scrollOffset: $scrollOffset) { _ in
+            VStack(spacing: Space.large) {
+              overview
+              stats
+            }.padding(Space.medium)
+              .toolbar {
+                Button {
+                  self.presenter.updateAnimeFavorite()
+                } label: {
+                  IconView(
+                    icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
+                    color: .red
+                  )
+                }
               }
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-          self.presenter.refreshAnime()
+          }
+          .navigationBarTitleDisplayMode(.inline)
+          .onAppear {
+            self.presenter.refreshAnime()
+          }
+          appBar(scrollOffset: scrollOffset)
         }
       }
-    }
+    }.toolbar(.hidden)
   }
 }
 
 extension AnimeDetailView {
+  func appBar(scrollOffset: CGFloat) -> some View {
+    return GeometryReader { geo in
+      ZStack {
+          HStack {
+            Text("Detail")
+              .typography(.title3(weight: .bold, color: .black))
+          }
+          .padding(
+            EdgeInsets(
+              top: Space.none,
+              leading: Space.medium,
+              bottom: Space.small,
+              trailing: Space.medium)
+          )
+          .frame(width: geo.size.width)
+        }
+      .background(Material.thinMaterial)
+      .opacity(scrollOffset / 10)
+    }
+  }
+
   var overview: some View {
     HStack(alignment: .top, spacing: Space.small) {
       mainPicture
