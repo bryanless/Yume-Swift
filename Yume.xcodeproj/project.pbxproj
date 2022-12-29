@@ -79,6 +79,7 @@
 		935289E6295DDE30009DF307 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E5295DDE30009DF307 /* TabBar.swift */; };
 		935289E8295DF25B009DF307 /* ObservableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E7295DF25B009DF307 /* ObservableScrollView.swift */; };
 		935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E9295E0B1D009DF307 /* NavigationExtension.swift */; };
+		935289EC295E0C67009DF307 /* YumeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289EB295E0C67009DF307 /* YumeColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		935289E5295DDE30009DF307 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		935289E7295DF25B009DF307 /* ObservableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableScrollView.swift; sourceTree = "<group>"; };
 		935289E9295E0B1D009DF307 /* NavigationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
+		935289EB295E0C67009DF307 /* YumeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +421,7 @@
 				931BBFB5295C47C400359359 /* Icons.swift */,
 				931BBFB3295C479600359359 /* Shape.swift */,
 				931BBFB1295C477500359359 /* Space.swift */,
+				935289EB295E0C67009DF307 /* YumeColor.swift */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				931BBFBD295C4F1300359359 /* AnimeDetailPresenter.swift in Sources */,
 				931BBFCD295CAC6500359359 /* SearchRouter.swift in Sources */,
 				931BBFB8295C4E1D00359359 /* AnimeDetailInteractor.swift in Sources */,
+				935289EC295E0C67009DF307 /* YumeColor.swift in Sources */,
 				931BBF9D295C297500359359 /* AnimeRankingMapper.swift in Sources */,
 				931BBF92295C24B900359359 /* CustomErrorExtension.swift in Sources */,
 				931BBF9F295C302800359359 /* AnimeResponse.swift in Sources */,

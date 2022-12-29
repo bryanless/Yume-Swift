@@ -19,7 +19,7 @@ struct AnimeCardItem: View {
     }.frame(height: 150)
       .overlay(
         RoundedRectangle(cornerRadius: 8)
-          .stroke(.black, lineWidth: 1)
+          .stroke(YumeColor.outline, lineWidth: 1)
       )
   }
 
@@ -57,10 +57,10 @@ extension AnimeCardItem {
       Text("\(anime.mediaType)"
            + " · \(anime.startSeason) \(anime.startSeasonYear)"
            + " · \(anime.status)"
-      ).typography(.caption())
+      ).typography(.caption(color: YumeColor.onSurfaceVariant))
 
       Text(anime.title)
-        .typography(.body())
+        .typography(.body(color: YumeColor.onSurface))
         .lineLimit(2)
     }
   }
@@ -71,7 +71,7 @@ extension AnimeCardItem {
       Text(Array(anime.genre.prefix(3))
         .joined(separator: " · "))
       .lineLimit(1)
-    }.typography(.caption())
+    }.typography(.caption(color: YumeColor.onSurfaceVariant))
   }
 
   var stats: some View {
@@ -83,6 +83,7 @@ extension AnimeCardItem {
           size: IconSize.small
         )
         Text(anime.rating.description)
+          .typography(.caption(color: YumeColor.onSurfaceVariant))
       }
       HStack(spacing: Space.tiny) {
         IconView(
@@ -91,6 +92,7 @@ extension AnimeCardItem {
           size: IconSize.small
         )
         Text("#\(Formatter.formatNumber(anime.rank))")
+          .typography(.caption(color: YumeColor.onSurfaceVariant))
       }
       HStack(spacing: Space.tiny) {
         IconView(
@@ -99,6 +101,7 @@ extension AnimeCardItem {
           size: IconSize.small
         )
         Text("#\(Formatter.formatNumber(anime.popularity))")
+          .typography(.caption(color: YumeColor.onSurfaceVariant))
       }
     }
   }

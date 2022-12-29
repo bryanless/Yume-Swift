@@ -23,7 +23,7 @@ struct FavoriteView: View {
         NavigationStack {
           if self.presenter.favoriteAnimes.isEmpty {
             Text("No favorite anime")
-              .typography(.body(color: .secondary))
+              .typography(.body(color: YumeColor.onSurfaceVariant))
               .navigationTitle("Favorites")
               .onAppear {
                 self.presenter.getFavoriteAnimes()

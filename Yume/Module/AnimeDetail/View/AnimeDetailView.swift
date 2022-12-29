@@ -53,8 +53,9 @@ extension AnimeDetailView {
     return GeometryReader { geo in
       ZStack {
           HStack {
-            Text("Detail")
+            Text(self.presenter.anime.title)
               .typography(.title3(weight: .bold, color: .black))
+              .lineLimit(1)
           }
           .padding(
             EdgeInsets(

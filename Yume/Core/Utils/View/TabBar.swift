@@ -14,46 +14,39 @@ struct TabBar: View {
     HStack(alignment: .center) {
       TabItem(
         icon: selection == .home ? Icons.house : Icons.houseOutlined,
-        label: "Home"
-      )
-      .onTapGesture {
-        withAnimation(.easeIn(duration: 0.1)) {
-          selection = .home
-        }
+        label: "Home",
+        isActive: selection == .home
+      ) {
+        selection = .home
       }
 
       TabItem(
         icon: Icons.search,
-        label: "Search"
-      )
-      .onTapGesture {
-        withAnimation(.easeIn(duration: 0.1)) {
-          selection = .search
-        }
+        label: "Search",
+        isActive: selection == .search
+      ) {
+        selection = .search
       }
 
       TabItem(
         icon: selection == .favorite ? Icons.heart : Icons.heartOutlined,
-        label: "Favorite"
-      )
-      .onTapGesture {
-        withAnimation(.easeIn(duration: 0.1)) {
-          selection = .favorite
-        }
+        label: "Favorite",
+        isActive: selection == .favorite
+      ) {
+        selection = .favorite
       }
 
       TabItem(
         icon: selection == .profile ? Icons.user : Icons.userOutlined,
-        label: "Profile"
-      )
-      .onTapGesture {
-        withAnimation(.easeIn(duration: 0.1)) {
-          selection = .profile
-        }
+        label: "Profile",
+        isActive: selection == .profile
+      ) {
+        selection = .profile
       }
     }
     .frame(height: 56.0)
     .padding(.horizontal, Space.medium)
+    .background(YumeColor.surface)
   }
 }
 

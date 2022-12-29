@@ -17,7 +17,7 @@ struct HomeView: View {
         VStack {
           ProgressView()
           Text("Loading")
-        }
+        }.background(YumeColor.background)
       } else {
         NavigationStack {
           ZStack(alignment: .top) {
@@ -30,6 +30,7 @@ struct HomeView: View {
             }
             appBar(scrollOffset: scrollOffset)
           }
+          .background(YumeColor.background)
         }.onAppear {
           if self.presenter.topAllAnimes.isEmpty
               || self.presenter.popularAnimes.isEmpty {
@@ -47,7 +48,7 @@ extension HomeView {
       ZStack {
           HStack {
             Text("Home")
-              .typography(.title3(weight: .bold, color: .black))
+              .typography(.title3(color: .black))
           }
           .padding(
             EdgeInsets(
@@ -66,7 +67,7 @@ extension HomeView {
   var header: some View {
     HStack {
       Text("Home")
-        .typography(.largeTitle(weight: .bold, color: .black))
+        .typography(.largeTitle(color: YumeColor.onBackground))
       Spacer()
     }.padding(.horizontal, Space.medium)
   }
@@ -75,14 +76,14 @@ extension HomeView {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
         Text("Most Popular")
-          .typography(.headline())
+          .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         self.presenter.seeAllLinkBuilder(
           for: self.presenter.popularAnimes,
           navigationTitle: "Most Popular"
         ) {
           Text("See All")
-            .typography(.subheadline())
+            .typography(.subheadline(color: YumeColor.primary))
         }
       }.padding(.horizontal, Space.medium)
 
@@ -102,14 +103,14 @@ extension HomeView {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
         Text("Top Rated")
-          .typography(.headline())
+          .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         self.presenter.seeAllLinkBuilder(
           for: self.presenter.topAllAnimes,
           navigationTitle: "Now Airing"
         ) {
           Text("See All")
-            .typography(.subheadline())
+            .typography(.subheadline(color: YumeColor.primary))
         }
       }.padding(.horizontal, Space.medium)
 

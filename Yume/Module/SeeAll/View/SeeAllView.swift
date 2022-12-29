@@ -30,6 +30,6 @@ struct SeeAllView: View {
           }.navigationTitle(self.presenter.navigationTitle)
         }
       }
-    }
+    }.toolbar(.hidden)
   }
 }
