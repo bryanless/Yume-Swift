@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
   @ObservedObject var presenter: HomePresenter
+  @State var scrollOffset = CGFloat.zero
 
   var body: some View {
     ZStack {
@@ -19,12 +20,16 @@ struct HomeView: View {
         }
       } else {
         NavigationStack {
-          ScrollView(.vertical, showsIndicators: false) {
-            LazyVStack(spacing: Space.large) {
-              popularAnime
-              topRatedAnime
-            }.padding(.vertical, Space.medium)
-          }.navigationTitle("Home")
+          ZStack(alignment: .top) {
+            ObservableScrollView(scrollOffset: $scrollOffset) { _ in
+              LazyVStack(spacing: Space.large) {
+                header
+                popularAnime
+                topRatedAnime
+              }.padding(.vertical, Space.medium)
+            }
+            appBar(scrollOffset: scrollOffset)
+          }
         }.onAppear {
           if self.presenter.topAllAnimes.isEmpty
               || self.presenter.popularAnimes.isEmpty {
@@ -37,6 +42,35 @@ struct HomeView: View {
 }
 
 extension HomeView {
+  func appBar(scrollOffset: CGFloat) -> some View {
+    return GeometryReader { geo in
+      ZStack {
+          HStack {
+            Text("Home")
+              .typography(.title3(weight: .bold, color: .black))
+          }
+          .padding(
+            EdgeInsets(
+              top: Space.none,
+              leading: Space.medium,
+              bottom: Space.small,
+              trailing: Space.medium)
+          )
+          .frame(width: geo.size.width)
+        }
+      .background(Material.thinMaterial)
+      .opacity(scrollOffset / 10)
+    }
+  }
+
+  var header: some View {
+    HStack {
+      Text("Home")
+        .typography(.largeTitle(weight: .bold, color: .black))
+      Spacer()
+    }.padding(.horizontal, Space.medium)
+  }
+
   var popularAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {

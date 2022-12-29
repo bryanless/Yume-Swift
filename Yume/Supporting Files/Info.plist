@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Nunito-Regular.ttf</string>
+		<string>Nunito-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

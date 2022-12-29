@@ -9,7 +9,7 @@ import SwiftUI
 
 // Credit: https://medium.com/@farhanadji/how-to-improve-text-font-style-consistency-in-swiftui-11d2b1085289
 extension Font {
-  static func nunitoFont(size: CGFloat, weight: Font.Weight =  .regular) -> Font {
+  static func nunitoFont(size: CGFloat, weight: Font.Weight = .regular) -> Font {
     var fontName = "Nunito-Regular"
     if weight == .bold {
       fontName = "Nunito-SemiBold"
@@ -20,19 +20,19 @@ extension Font {
 }
 
 enum TypographyStyle {
-  case largeTitle(color: Color = .black)
-  case title(color: Color = .black)
-  case title2(color: Color = .black)
-  case title3(color: Color = .black)
-  case headline(color: Color = .black)
-  case body(color: Color = .black)
-  case callout(color: Color = .black)
-  case subheadline(color: Color = .black)
-  case footnote(color: Color = .black)
-  case caption(color: Color = .black)
-  case caption2(color: Color = .black)
+  case largeTitle(weight: Font.Weight = .regular, color: Color = .black)
+  case title(weight: Font.Weight = .regular, color: Color = .black)
+  case title2(weight: Font.Weight = .regular, color: Color = .black)
+  case title3(weight: Font.Weight = .regular, color: Color = .black)
+  case headline(weight: Font.Weight = .bold, color: Color = .black)
+  case body(weight: Font.Weight = .regular, color: Color = .black)
+  case callout(weight: Font.Weight = .regular, color: Color = .black)
+  case subheadline(weight: Font.Weight = .regular, color: Color = .black)
+  case footnote(weight: Font.Weight = .regular, color: Color = .black)
+  case caption(weight: Font.Weight = .regular, color: Color = .black)
+  case caption2(weight: Font.Weight = .regular, color: Color = .black)
 
-  public var size: CGFloat {
+  var size: CGFloat {
     switch self {
     case .largeTitle:
       return 34
@@ -58,7 +58,8 @@ enum TypographyStyle {
       return 11
     }
   }
-  public var weight: Font.Weight {
+
+  var weight: Font.Weight {
     switch self {
     case .largeTitle, .title, .title2, .title3,
         .body, .callout, .subheadline,
@@ -72,16 +73,18 @@ enum TypographyStyle {
 
 struct BaseTypography: ViewModifier {
   let type: TypographyStyle
+  let weight: Font.Weight
   let color: Color
 
   func body(content: Content) -> some View {
     content
-      .font(.nunitoFont(size: type.size, weight: type.weight))
+      .font(.nunitoFont(size: type.size, weight: weight))
       .foregroundColor(color)
   }
 
-  init(type: TypographyStyle, color: Color = .black) {
+  init(type: TypographyStyle, weight: Font.Weight, color: Color = .black) {
     self.type = type
+    self.weight = weight
     self.color = color
   }
 }
@@ -89,11 +92,18 @@ struct BaseTypography: ViewModifier {
 extension View {
   func typography(_ type: TypographyStyle) -> some View {
     switch type {
-    case .largeTitle(let color), .title(let color), .title2(let color),
-        .title3(let color), .headline(let color), .body(let color),
-        .callout(let color), .subheadline(let color), .footnote(let color),
-        .caption(let color), .caption2(let color):
-      return self.modifier(BaseTypography(type: type, color: color))
+    case .largeTitle(let weight, let color),
+        .title(let weight, let color),
+        .title2(let weight, let color),
+        .title3(let weight, let color),
+        .headline(let weight, let color),
+        .body(let weight, let color),
+        .callout(let weight, let color),
+        .subheadline(let weight, let color),
+        .footnote(let weight, let color),
+        .caption(let weight, let color),
+        .caption2(let weight, let color):
+      return self.modifier(BaseTypography(type: type, weight: weight, color: color))
     }
   }
 }
