@@ -7,7 +7,40 @@
 
 final class AnimeListMapper {
 
+  static func mapAnimeListResponsesToEntities(
+    input animeListResponses: [AnimeListResponse]
+  ) -> [AnimeEntity] {
+    return animeListResponses.map { result in
+      let newAnime = AnimeEntity()
+      newAnime.id = result.anime.id
+      newAnime.title = result.anime.title
+      newAnime.mainPicture = result.anime.mainPicture?.medium ?? "Unknown"
+      newAnime.alternativeTitleSynonyms.append(objectsIn: result.anime.alternativeTitles?.synonyms ?? [])
+      newAnime.alternativeTitleEnglish = result.anime.alternativeTitles?.english ?? "Unknown"
+      newAnime.alternativeTitleJapanese = result.anime.alternativeTitles?.japanese ?? "Unknown"
+      newAnime.startDate = result.anime.startDate ?? "Unknown"
+      newAnime.endDate = result.anime.endDate ?? "Unknown"
+      newAnime.synopsis = result.anime.synopsis ?? "Unknown"
+      newAnime.rating = result.anime.rating ?? 0
+      newAnime.rank = result.anime.rank ?? 0
+      newAnime.popularity = result.anime.popularity ?? 0
+      newAnime.userAmount = result.anime.userAmount
+      newAnime.favoriteAmount = result.anime.favoriteAmount
+      newAnime.genre.append(objectsIn: result.anime.genres.map { $0.name })
+      newAnime.mediaType = result.anime.mediaType.toName().rawValue
+      newAnime.status = result.anime.status.name
+      newAnime.episodeAmount = result.anime.episodeAmount
+      newAnime.startSeason = result.anime.startSeason?.season.name ?? "Unknown"
+      newAnime.startSeasonYear = result.anime.startSeason?.year.description ?? ""
+      newAnime.source = result.anime.source?.name ?? "Unknown"
+      newAnime.episodeDuration = result.anime.episodeDuration ?? 0
+      newAnime.studios.append(objectsIn: result.anime.studios.map { $0.name })
+      return newAnime
+    }
+  }
+
   // MARK: - Response to Domain Mapper
+  /// For UI preview only
   static func mapAnimeListResponsesToDomains(
     input animeListsRepsonses: [AnimeListResponse]
   ) -> [AnimeModel] {

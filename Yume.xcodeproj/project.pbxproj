@@ -89,6 +89,7 @@
 		936C773A295EF716009C5BC6 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7739295EF716009C5BC6 /* ProgressIndicator.swift */; };
 		936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773B295EFA56009C5BC6 /* NothingFound.swift */; };
 		936C773E295F2599009C5BC6 /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773D295F2599009C5BC6 /* AppBar.swift */; };
+		936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +192,7 @@
 		936C7739295EF716009C5BC6 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		936C773B295EFA56009C5BC6 /* NothingFound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFound.swift; sourceTree = "<group>"; };
 		936C773D295F2599009C5BC6 /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
+		936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +410,7 @@
 		931BBF86295C19A800359359 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */,
 				936C7737295EE736009C5BC6 /* AnimeListMapper.swift */,
 				931BBF9C295C297500359359 /* AnimeRankingMapper.swift */,
 			);
@@ -866,6 +869,7 @@
 				935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */,
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
 				935289E6295DDE30009DF307 /* TabBar.swift in Sources */,
+				936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
 				936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */,
 				931BC003295CDF1B00359359 /* IconView.swift in Sources */,

@@ -51,12 +51,12 @@ extension AnimeRepository: AnimeRepositoryProtocol {
             .flatMap { self.locale.addAnimes(from: $0) }
             .filter { $0 }
             .flatMap { _ in self.locale.getTopAllAnimes()
-                .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+                .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             }
             .eraseToAnyPublisher()
         } else {
           return self.locale.getTopAllAnimes()
-            .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()
@@ -71,12 +71,12 @@ extension AnimeRepository: AnimeRepositoryProtocol {
             .flatMap { self.locale.addAnimes(from: $0) }
             .filter { $0 }
             .flatMap { _ in self.locale.getTopAiringAnimes()
-                .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+                .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             }
             .eraseToAnyPublisher()
         } else {
           return self.locale.getTopAiringAnimes()
-            .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()
@@ -91,12 +91,12 @@ extension AnimeRepository: AnimeRepositoryProtocol {
             .flatMap { self.locale.addAnimes(from: $0) }
             .filter { $0 }
             .flatMap { _ in self.locale.getTopUpcomingAnimes()
-                .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+                .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             }
             .eraseToAnyPublisher()
         } else {
           return self.locale.getTopUpcomingAnimes()
-            .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()
@@ -111,12 +111,12 @@ extension AnimeRepository: AnimeRepositoryProtocol {
             .flatMap { self.locale.addAnimes(from: $0) }
             .filter { $0 }
             .flatMap { _ in self.locale.getPopularAnimes()
-                .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+                .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             }
             .eraseToAnyPublisher()
         } else {
           return self.locale.getPopularAnimes()
-            .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()
@@ -131,12 +131,12 @@ extension AnimeRepository: AnimeRepositoryProtocol {
             .flatMap { self.locale.addAnimes(from: $0) }
             .filter { $0 }
             .flatMap { _ in self.locale.getTopFavoriteAnimes()
-                .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+                .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             }
             .eraseToAnyPublisher()
         } else {
           return self.locale.getTopFavoriteAnimes()
-            .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+            .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
             .eraseToAnyPublisher()
         }
       }.eraseToAnyPublisher()
@@ -144,25 +144,31 @@ extension AnimeRepository: AnimeRepositoryProtocol {
 
   func getFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error> {
     return self.locale.getFavoriteAnimes()
-      .map { AnimeRankingMapper.mapAnimeEntitiesToDomains(input: $0) }
+      .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
       .eraseToAnyPublisher()
   }
 
   func getAnime(withId id: Int) -> AnyPublisher<AnimeModel, Error> {
     return self.locale.getAnime(withId: id)
-      .map { AnimeRankingMapper.mapAnimeEntityToDomain(input: $0) }
+      .map { AnimeMapper.mapAnimeEntityToDomain(input: $0) }
       .eraseToAnyPublisher()
   }
 
   func searchAnime(name: String) -> AnyPublisher<[AnimeModel], Error> {
     return self.remote.searchAnime(name: name)
-      .map { AnimeListMapper.mapAnimeListResponsesToDomains(input: $0) }
+      .map { AnimeListMapper.mapAnimeListResponsesToEntities(input: $0) }
+      .flatMap { self.locale.addAnimes(from: $0) }
+      .filter { $0 }
+      .flatMap { _ in self.remote.searchAnime(name: name)
+          .map { AnimeListMapper.mapAnimeListResponsesToEntities(input: $0) }
+          .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
+      }
       .eraseToAnyPublisher()
   }
 
   func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error> {
     return self.locale.updateAnimeFavorite(withId: id, isFavorite: isFavorite)
-      .map { AnimeRankingMapper.mapAnimeEntityToDomain(input: $0) }
+      .map { AnimeMapper.mapAnimeEntityToDomain(input: $0) }
       .eraseToAnyPublisher()
   }
 
