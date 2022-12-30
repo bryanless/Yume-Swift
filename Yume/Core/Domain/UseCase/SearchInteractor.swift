@@ -11,7 +11,7 @@ import Combine
 protocol SearchUseCase {
 
   func searchAnime(name: String) -> AnyPublisher<[AnimeModel], Error>
-  func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error>
+  func getTopFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error>
 
 }
 
@@ -27,8 +27,8 @@ class SearchInteractor: SearchUseCase {
     return repository.searchAnime(name: name)
   }
 
-  func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error> {
-    return repository.getTopAllAnimes()
+  func getTopFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getTopFavoriteAnimes()
   }
 
 }

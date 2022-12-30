@@ -16,7 +16,7 @@ class SearchPresenter: ObservableObject {
 
   @Published var searchText: String = ""
   @Published var searchAnimeResults: [AnimeModel] = []
-  @Published var topAllAnimes: [AnimeModel] = []
+  @Published var topFavoriteAnimes: [AnimeModel] = []
   @Published var errorMessage: String = ""
   @Published var viewState: SearchViewState = .unknown
 
@@ -61,9 +61,8 @@ class SearchPresenter: ObservableObject {
       .store(in: &cancellables)
   }
 
-  func getTopAllAnimes() {
-    viewState = .loading
-    searchUseCase.getTopAllAnimes()
+  func getTopFavoriteAnimes() {
+    searchUseCase.getTopFavoriteAnimes()
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {
@@ -74,7 +73,7 @@ class SearchPresenter: ObservableObject {
           self.viewState = .none
         }
       }, receiveValue: { animes in
-        self.topAllAnimes = animes
+        self.topFavoriteAnimes = animes
       })
       .store(in: &cancellables)
   }

@@ -16,7 +16,7 @@ struct SearchView: View {
       if presenter.viewState == .unknown {
         ProgressIndicator()
           .onAppear {
-            self.presenter.getTopAllAnimes()
+            self.presenter.getTopFavoriteAnimes()
           }
       } else {
         NavigationStack {
@@ -31,7 +31,7 @@ struct SearchView: View {
                 LazyVStack(spacing: Space.small) {
                   ForEach(
                     self.presenter.searchAnimeResults.isEmpty
-                    ? self.presenter.topAllAnimes : self.presenter.searchAnimeResults
+                    ? self.presenter.topFavoriteAnimes : self.presenter.searchAnimeResults
                   ) { anime in
                     self.presenter.linkBuilder(for: anime) {
                       AnimeCardItem(anime: anime)
@@ -49,8 +49,8 @@ struct SearchView: View {
           }
         }
         .background(YumeColor.background).onAppear {
-          if self.presenter.topAllAnimes.isEmpty {
-            self.presenter.getTopAllAnimes()
+          if self.presenter.topFavoriteAnimes.isEmpty {
+            self.presenter.getTopFavoriteAnimes()
           }
         }
       }
