@@ -178,7 +178,7 @@ extension AnimeDetailView {
         AnimeInformationItem(
           label: "Duration",
           value: self.presenter.anime.episodeDuration == 0
-          ? "Unknown" : Formatter.secondsToHoursMinutesSeconds(self.presenter.anime.episodeDuration)
+          ? "Unknown" : Formatter.secondsToHoursMinutes(self.presenter.anime.episodeDuration)
         )
         AnimeInformationItem(
           label: "Aired",

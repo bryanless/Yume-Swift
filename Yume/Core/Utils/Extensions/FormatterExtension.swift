@@ -85,8 +85,8 @@ struct Formatter {
   }
 
   // MARK: - Number
-  static func secondsToHoursMinutesSeconds(_ seconds: Int) -> String {
-    let (hour, min, sec) = (seconds / 3600, (seconds % 3600) / 60, (seconds % 60))
+  static func secondsToHoursMinutes(_ seconds: Int) -> String {
+    let (hour, min, _) = (seconds / 3600, (seconds % 3600) / 60, (seconds % 60))
 
     var text = ""
 
@@ -96,10 +96,6 @@ struct Formatter {
 
     if min > 0 {
       text += "\(min) minutes "
-    }
-
-    if sec > 0 {
-      text += "\(sec) seconds"
     }
 
     return text

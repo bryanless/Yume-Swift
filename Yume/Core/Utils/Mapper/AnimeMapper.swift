@@ -35,7 +35,6 @@ final class AnimeMapper {
         source: result.source,
         episodeDuration: result.episodeDuration,
         studios: Array(result.studios),
-        ranking: mapAnimeRankingEntityToDomain(input: result.ranking ?? AnimeRankingEntity()),
         isFavorite: result.isFavorite
       )
     }
@@ -68,24 +67,7 @@ final class AnimeMapper {
       source: result.source,
       episodeDuration: result.episodeDuration,
       studios: Array(result.studios),
-      ranking: mapAnimeRankingEntityToDomain(input: result.ranking ?? AnimeRankingEntity()),
       isFavorite: result.isFavorite
-    )
-  }
-
-  private static func mapAnimeRankingEntityToDomain(
-    input animeRankingEntity: AnimeRankingEntity
-  ) -> AnimeRankingModel {
-    return AnimeRankingModel(
-      rankingAll: animeRankingEntity.rankingAll,
-      rankingAiring: animeRankingEntity.rankingAiring,
-      rankingUpcoming: animeRankingEntity.rankingUpcoming,
-      rankingTv: animeRankingEntity.rankingTv,
-      rankingOva: animeRankingEntity.rankingOva,
-      rankingMovie: animeRankingEntity.rankingMovie,
-      rankingSpecial: animeRankingEntity.rankingSpecial,
-      rankingPopularity: animeRankingEntity.rankingPopularity,
-      rankingFavorite: animeRankingEntity.rankingFavorite
     )
   }
 

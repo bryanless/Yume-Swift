@@ -37,26 +37,6 @@ final class AnimeRankingMapper {
       newAnime.source = result.anime.source?.name ?? "Unknown"
       newAnime.episodeDuration = result.anime.episodeDuration ?? 0
       newAnime.studios.append(objectsIn: result.anime.studios.map { $0.name })
-      switch rankingType {
-      case .all:
-        newAnime.ranking?.rankingAll = result.ranking.rank
-      case .airing:
-        newAnime.ranking?.rankingAiring = result.ranking.rank
-      case .upcoming:
-        newAnime.ranking?.rankingUpcoming = result.ranking.rank
-      case .tv:
-        newAnime.ranking?.rankingTv = result.ranking.rank
-      case .ova:
-        newAnime.ranking?.rankingOva = result.ranking.rank
-      case .movie:
-        newAnime.ranking?.rankingMovie = result.ranking.rank
-      case .special:
-        newAnime.ranking?.rankingSpecial = result.ranking.rank
-      case .byPopularity:
-        newAnime.ranking?.rankingPopularity = result.ranking.rank
-      case .favorite:
-        newAnime.ranking?.rankingFavorite = result.ranking.rank
-      }
       return newAnime
     }
   }
@@ -92,26 +72,10 @@ final class AnimeRankingMapper {
         source: result.anime.source?.name ?? "Unknown",
         episodeDuration: result.anime.episodeDuration ?? 0,
         studios: result.anime.studios.map { $0.name },
-        ranking: mapAnimeRankingResponseToDomain(input: result.ranking),
         isFavorite: false
 
       )
     }
-  }
-
-  /// For UI preview only
-  private static func mapAnimeRankingResponseToDomain(input animeRankingResponse: Ranking) -> AnimeRankingModel {
-    return AnimeRankingModel(
-      rankingAll: animeRankingResponse.rank,
-      rankingAiring: animeRankingResponse.rank,
-      rankingUpcoming: animeRankingResponse.rank,
-      rankingTv: animeRankingResponse.rank,
-      rankingOva: animeRankingResponse.rank,
-      rankingMovie: animeRankingResponse.rank,
-      rankingSpecial: animeRankingResponse.rank,
-      rankingPopularity: animeRankingResponse.rank,
-      rankingFavorite: animeRankingResponse.rank
-    )
   }
 
 }

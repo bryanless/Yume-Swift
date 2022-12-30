@@ -32,18 +32,6 @@ struct AnimeModel: Equatable, Identifiable {
   let source: String
   let episodeDuration: Int
   let studios: [String]
-  var ranking: AnimeRankingModel = AnimeRankingModel()
   var isFavorite: Bool
 
-}
-struct AnimeRankingModel: Equatable {
-  var rankingAll: Int = 0
-  var rankingAiring: Int = 0
-  var rankingUpcoming: Int = 0
-  var rankingTv: Int = 0
-  var rankingOva: Int = 0
-  var rankingMovie: Int = 0
-  var rankingSpecial: Int = 0
-  var rankingPopularity: Int = 0
-  var rankingFavorite: Int = 0
 }
