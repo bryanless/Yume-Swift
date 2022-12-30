@@ -53,7 +53,7 @@ class FavoritePresenter: ObservableObject {
     case unknown
     /// Loading state
     case loading
-    /// Completed state
+    /// Nothing state
     case none
   }
 

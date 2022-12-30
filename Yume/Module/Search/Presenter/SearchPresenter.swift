@@ -35,6 +35,7 @@ class SearchPresenter: ObservableObject {
         if isValid {
           self?.searchAnime()
         } else {
+          self?.viewState = .none
           self?.searchAnimeResults = []
         }
       })
@@ -52,7 +53,7 @@ class SearchPresenter: ObservableObject {
           self.errorMessage = String(describing: completion)
           print(self.errorMessage)
         case .finished:
-          self.viewState = .none
+          self.viewState = .completed
         }
       }, receiveValue: { animes in
         self.searchAnimeResults = animes
@@ -91,8 +92,10 @@ class SearchPresenter: ObservableObject {
     case unknown
     /// Loading state
     case loading
-    /// Completed state
+    /// Nothing state
     case none
+    /// Completed state
+    case completed
   }
 
 }

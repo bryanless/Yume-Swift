@@ -14,23 +14,18 @@ struct SearchView: View {
   var body: some View {
     ZStack {
       if presenter.viewState == .unknown {
-        VStack {
-          ProgressView()
-          Text("Loading")
-        }
-        .onAppear {
-          self.presenter.getTopAllAnimes()
-        }
+        ProgressIndicator()
+          .onAppear {
+            self.presenter.getTopAllAnimes()
+          }
       } else {
         NavigationStack {
           ZStack(alignment: .top) {
             if presenter.viewState == .loading {
-              GeometryReader { geo in
-                VStack {
-                  ProgressView()
-                  Text("Loading")
-                }.frame(width: geo.size.width, height: geo.size.height)
-              }
+              ProgressIndicator(label: "Searching anime")
+            } else if presenter.viewState == .completed && presenter.searchAnimeResults.isEmpty {
+              NothingFound(label: "No anime found")
+                .background(YumeColor.background)
             } else {
               ObservableScrollView(scrollOffset: $scrollOffset) { _ in
                 LazyVStack(spacing: Space.small) {
@@ -52,9 +47,8 @@ struct SearchView: View {
               searchText: self.$presenter.searchText
             )
           }
-          .background(YumeColor.background)
-
-        }.onAppear {
+        }
+        .background(YumeColor.background).onAppear {
           if self.presenter.topAllAnimes.isEmpty {
             self.presenter.getTopAllAnimes()
           }

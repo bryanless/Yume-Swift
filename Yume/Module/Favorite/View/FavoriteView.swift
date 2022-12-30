@@ -13,17 +13,15 @@ struct FavoriteView: View {
   var body: some View {
     ZStack {
       if presenter.viewState == .unknown {
-        VStack {
-          ProgressView()
-          Text("Loading")
-        }.onAppear {
-          self.presenter.getFavoriteAnimes()
-        }
+        ProgressIndicator()
+          .onAppear {
+            self.presenter.getFavoriteAnimes()
+          }
       } else {
         NavigationStack {
           if self.presenter.favoriteAnimes.isEmpty {
-            Text("No favorite anime")
-              .typography(.body(color: YumeColor.onSurfaceVariant))
+            NothingFound(label: "No favorite anime")
+              .background(YumeColor.background)
               .onAppear {
                 self.presenter.getFavoriteAnimes()
               }

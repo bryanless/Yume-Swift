@@ -15,10 +15,7 @@ struct AnimeDetailView: View {
   var body: some View {
     ZStack {
       if presenter.loadingState {
-        VStack {
-          ProgressView()
-          Text("Loading")
-        }
+        ProgressIndicator()
       } else {
         ZStack(alignment: .top) {
           ObservableScrollView(scrollOffset: $scrollOffset) { _ in

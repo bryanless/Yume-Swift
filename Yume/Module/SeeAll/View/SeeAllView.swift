@@ -13,10 +13,7 @@ struct SeeAllView: View {
   var body: some View {
     ZStack {
       if presenter.loadingState {
-        VStack {
-          ProgressView()
-          Text("Loading")
-        }
+        ProgressIndicator()
       } else {
         NavigationStack {
           ScrollView(.vertical, showsIndicators: false) {

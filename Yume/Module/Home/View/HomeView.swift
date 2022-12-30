@@ -14,10 +14,8 @@ struct HomeView: View {
   var body: some View {
     ZStack {
       if presenter.loadingState {
-        VStack {
-          ProgressView()
-          Text("Loading")
-        }.background(YumeColor.background)
+        ProgressIndicator()
+          .background(YumeColor.background)
       } else {
         NavigationStack {
           ZStack(alignment: .top) {

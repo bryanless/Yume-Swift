@@ -86,6 +86,8 @@
 		936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7733295ED579009C5BC6 /* SearchBar.swift */; };
 		936C7736295EE4F6009C5BC6 /* AnimeListsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */; };
 		936C7738295EE736009C5BC6 /* AnimeListMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7737295EE736009C5BC6 /* AnimeListMapper.swift */; };
+		936C773A295EF716009C5BC6 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7739295EF716009C5BC6 /* ProgressIndicator.swift */; };
+		936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773B295EFA56009C5BC6 /* NothingFound.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +187,8 @@
 		936C7733295ED579009C5BC6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListsResponse.swift; sourceTree = "<group>"; };
 		936C7737295EE736009C5BC6 /* AnimeListMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListMapper.swift; sourceTree = "<group>"; };
+		936C7739295EF716009C5BC6 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
+		936C773B295EFA56009C5BC6 /* NothingFound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFound.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,11 +344,13 @@
 			children = (
 				931BBFD0295CADB800359359 /* AnimeCardItem.swift */,
 				931BC002295CDF1B00359359 /* IconView.swift */,
+				936C773B295EFA56009C5BC6 /* NothingFound.swift */,
+				935289E7295DF25B009DF307 /* ObservableScrollView.swift */,
+				936C7739295EF716009C5BC6 /* ProgressIndicator.swift */,
+				936C7733295ED579009C5BC6 /* SearchBar.swift */,
 				935289E5295DDE30009DF307 /* TabBar.swift */,
 				935289E3295DDD79009DF307 /* TabItem.swift */,
-				935289E7295DF25B009DF307 /* ObservableScrollView.swift */,
 				935289EF295E1FB0009DF307 /* YumeDivider.swift */,
-				936C7733295ED579009C5BC6 /* SearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -858,6 +864,7 @@
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
 				935289E6295DDE30009DF307 /* TabBar.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,
+				936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */,
 				931BC003295CDF1B00359359 /* IconView.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
 				935289E8295DF25B009DF307 /* ObservableScrollView.swift in Sources */,
@@ -879,6 +886,7 @@
 				935289F2295E2113009DF307 /* AnimeInformationItem.swift in Sources */,
 				931BBF9B295C28F700359359 /* AnimeModel.swift in Sources */,
 				931BBFCB295CABB000359359 /* SearchInteractor.swift in Sources */,
+				936C773A295EF716009C5BC6 /* ProgressIndicator.swift in Sources */,
 				931BBFB4295C479600359359 /* Shape.swift in Sources */,
 				931BBFAB295C3C7500359359 /* PreviewData copy.swift in Sources */,
 				931BBFCF295CAC9E00359359 /* SearchView.swift in Sources */,
