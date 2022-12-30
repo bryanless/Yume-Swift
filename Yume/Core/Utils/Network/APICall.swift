@@ -40,7 +40,16 @@ enum Endpoints {
 
 }
 
-struct AnimeRankingParameters: Encodable {
+struct AnimeListParameters {
+  static func getAnimeListParameters(query: String) -> [String: String] {
+    return [
+      "q": query,
+      "fields": API.defaultFields
+    ]
+  }
+}
+
+struct AnimeRankingParameters {
   static func getAnimeRankingParameters(_ rankingType: RankingType) -> [String: String] {
     return [
       "ranking_type": rankingType.name,

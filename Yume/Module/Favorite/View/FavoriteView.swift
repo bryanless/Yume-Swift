@@ -12,7 +12,7 @@ struct FavoriteView: View {
 
   var body: some View {
     ZStack {
-      if presenter.uiState == .unknown {
+      if presenter.viewState == .unknown {
         VStack {
           ProgressView()
           Text("Loading")

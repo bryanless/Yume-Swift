@@ -16,14 +16,14 @@ class FavoritePresenter: ObservableObject {
 
   @Published var favoriteAnimes: [AnimeModel] = []
   @Published var errorMessage: String = ""
-  @Published var uiState: FavoriteUiState = .unknown
+  @Published var viewState: FavoriteViewState = .unknown
 
   init(favoriteUseCase: FavoriteUseCase) {
     self.favoriteUseCase = favoriteUseCase
   }
 
   func getFavoriteAnimes() {
-    uiState = .loading
+    viewState = .loading
     favoriteUseCase.getFavoriteAnimes()
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
@@ -32,7 +32,7 @@ class FavoritePresenter: ObservableObject {
           self.errorMessage = String(describing: completion)
           print(self.errorMessage)
         case .finished:
-          self.uiState = .none
+          self.viewState = .none
         }
       }, receiveValue: { animes in
         self.favoriteAnimes = animes
@@ -48,7 +48,7 @@ class FavoritePresenter: ObservableObject {
     destination: router.makeAnimeDetailView(for: anime)) { content() }
   }
 
-  enum FavoriteUiState {
+  enum FavoriteViewState {
     /// Init state
     case unknown
     /// Loading state

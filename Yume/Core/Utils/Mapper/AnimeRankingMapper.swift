@@ -7,7 +7,7 @@
 
 final class AnimeRankingMapper {
 
-  // MARK: - Top all anime series
+  // MARK: - Response to Entities Mapper
   static func mapAnimeRankingResponsesToEntities(
     input animeRankingResponses: [AnimeRankingResponse],
     type rankingType: AnimeRankingParameters.RankingType
@@ -31,10 +31,10 @@ final class AnimeRankingMapper {
       newAnime.mediaType = result.anime.mediaType.toName().rawValue
       newAnime.status = result.anime.status.name
       newAnime.episodeAmount = result.anime.episodeAmount
-      newAnime.startSeason = result.anime.startSeason.season.name
-      newAnime.startSeasonYear = result.anime.startSeason.year.description
+      newAnime.startSeason = result.anime.startSeason?.season.name ?? Season.spring.name
+      newAnime.startSeasonYear = result.anime.startSeason?.year.description ?? ""
       newAnime.source = result.anime.source?.name ?? "Unknown"
-      newAnime.episodeDuration = result.anime.episodeDuration
+      newAnime.episodeDuration = result.anime.episodeDuration ?? 0
       newAnime.studios.append(objectsIn: result.anime.studios.map { $0.name })
       switch rankingType {
       case .all:
@@ -165,10 +165,10 @@ final class AnimeRankingMapper {
         mediaType: result.anime.mediaType.toName().rawValue,
         status: result.anime.status.name,
         episodeAmount: result.anime.episodeAmount,
-        startSeason: result.anime.startSeason.season.name,
-        startSeasonYear: result.anime.startSeason.year.description,
+        startSeason: result.anime.startSeason?.season.name ?? Season.spring.name,
+        startSeasonYear: result.anime.startSeason?.year.description ?? "",
         source: result.anime.source?.name ?? "Unknown",
-        episodeDuration: result.anime.episodeDuration,
+        episodeDuration: result.anime.episodeDuration ?? 0,
         studios: result.anime.studios.map { $0.name },
         ranking: mapAnimeRankingResponseToDomain(input: result.ranking),
         isFavorite: false

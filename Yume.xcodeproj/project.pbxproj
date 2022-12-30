@@ -84,6 +84,8 @@
 		935289F0295E1FB0009DF307 /* YumeDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289EF295E1FB0009DF307 /* YumeDivider.swift */; };
 		935289F2295E2113009DF307 /* AnimeInformationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289F1295E2113009DF307 /* AnimeInformationItem.swift */; };
 		936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7733295ED579009C5BC6 /* SearchBar.swift */; };
+		936C7736295EE4F6009C5BC6 /* AnimeListsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */; };
+		936C7738295EE736009C5BC6 /* AnimeListMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7737295EE736009C5BC6 /* AnimeListMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +183,8 @@
 		935289EF295E1FB0009DF307 /* YumeDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeDivider.swift; sourceTree = "<group>"; };
 		935289F1295E2113009DF307 /* AnimeInformationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeInformationItem.swift; sourceTree = "<group>"; };
 		936C7733295ED579009C5BC6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListsResponse.swift; sourceTree = "<group>"; };
+		936C7737295EE736009C5BC6 /* AnimeListMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +399,7 @@
 		931BBF86295C19A800359359 /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
+				936C7737295EE736009C5BC6 /* AnimeListMapper.swift */,
 				931BBF9C295C297500359359 /* AnimeRankingMapper.swift */,
 			);
 			path = Mapper;
@@ -412,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				931BBF9E295C302800359359 /* AnimeResponse.swift */,
+				936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */,
 				931BBF8D295C201500359359 /* AnimeRankingResponse.swift */,
 			);
 			path = Response;
@@ -834,6 +840,7 @@
 				931BBF82295C18FD00359359 /* HomeView.swift in Sources */,
 				931BBFBF295C4FB400359359 /* AnimeDetailView.swift in Sources */,
 				935289F0295E1FB0009DF307 /* YumeDivider.swift in Sources */,
+				936C7736295EE4F6009C5BC6 /* AnimeListsResponse.swift in Sources */,
 				931BBFB2295C477500359359 /* Space.swift in Sources */,
 				935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */,
 				935289DC295D95B0009DF307 /* FavoriteInteractor.swift in Sources */,
@@ -861,6 +868,7 @@
 				931BBFA7295C3ADE00359359 /* AnimeRow.swift in Sources */,
 				936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */,
 				931BBF8B295C1B4100359359 /* RemoteDateSource.swift in Sources */,
+				936C7738295EE736009C5BC6 /* AnimeListMapper.swift in Sources */,
 				931BBFBD295C4F1300359359 /* AnimeDetailPresenter.swift in Sources */,
 				931BBFCD295CAC6500359359 /* SearchRouter.swift in Sources */,
 				931BBFB8295C4E1D00359359 /* AnimeDetailInteractor.swift in Sources */,

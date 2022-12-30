@@ -21,9 +21,9 @@ struct AnimeResponse: Codable {
   let mediaType: MediaType
   let status: Status
   let episodeAmount: Int
-  let startSeason: StartSeason
+  let startSeason: StartSeason?
   let source: Source?
-  let episodeDuration: Int
+  let episodeDuration: Int?
   let studios: [Studio]
 
   enum CodingKeys: String, CodingKey {
@@ -65,9 +65,9 @@ struct AnimeResponse: Codable {
     self.mediaType = try container.decode(MediaType.self, forKey: .mediaType)
     self.status = try container.decode(Status.self, forKey: .status)
     self.episodeAmount = try container.decode(Int.self, forKey: .episodeAmount)
-    self.startSeason = try container.decode(StartSeason.self, forKey: .startSeason)
+    self.startSeason = try? container.decode(StartSeason.self, forKey: .startSeason)
     self.source = try? container.decodeIfPresent(Source.self, forKey: .source)
-    self.episodeDuration = try container.decode(Int.self, forKey: .episodeDuration)
+    self.episodeDuration = try? container.decode(Int.self, forKey: .episodeDuration)
     self.studios = try container.decode([Studio].self, forKey: .studios)
   }
 }

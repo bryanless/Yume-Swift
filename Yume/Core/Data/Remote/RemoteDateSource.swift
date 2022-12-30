@@ -12,6 +12,8 @@ import Combine
 protocol RemoteDataSourceProtocol: AnyObject {
 
   func getTopAllAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
+  func getPopularAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
+  func searchAnime(name query: String) -> AnyPublisher<[AnimeListResponse], Error>
 
 }
 
@@ -56,6 +58,27 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
+          switch response.result {
+          case .success(let value):
+            completion(.success(value.animes))
+          case .failure:
+            completion(.failure(URLError.invalidResponse))
+          }
+        }
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  func searchAnime(name query: String) -> AnyPublisher<[AnimeListResponse], Error> {
+    return Future<[AnimeListResponse], Error> { completion in
+      if let url = URL(string: Endpoints.Gets.search.url) {
+        AF.request(
+          url,
+          parameters: AnimeListParameters.getAnimeListParameters(query: query),
+          headers: API.headers
+        )
+        .validate()
+        .responseDecodable(of: AnimeListsResponse.self) { response in
           switch response.result {
           case .success(let value):
             completion(.success(value.animes))
