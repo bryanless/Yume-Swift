@@ -15,6 +15,8 @@ class HomePresenter: ObservableObject {
   private let homeUseCase: HomeUseCase
 
   @Published var topAllAnimes: [AnimeModel] = []
+  @Published var topAiringAnimes: [AnimeModel] = []
+  @Published var topUpcomingAnimes: [AnimeModel] = []
   @Published var popularAnimes: [AnimeModel] = []
   @Published var errorMessage: String = ""
   @Published var loadingState: Bool = false
@@ -43,6 +45,40 @@ class HomePresenter: ObservableObject {
       })
       .store(in: &cancellables)
 
+    // MARK: - Get top airing anime
+    let topAiringAnimePublisher = homeUseCase.getTopAiringAnimes()
+      .receive(on: RunLoop.main)
+
+    topAiringAnimePublisher.sink(receiveCompletion: { completion in
+        switch completion {
+        case .failure:
+          self.errorMessage = String(describing: completion)
+          print(self.errorMessage)
+        case .finished:
+          ()
+        }
+      }, receiveValue: { animes in
+        self.topAiringAnimes = animes
+      })
+      .store(in: &cancellables)
+
+    // MARK: - Get top upcoming anime
+    let topUpcomingAnimePublisher = homeUseCase.getTopUpcomingAnimes()
+      .receive(on: RunLoop.main)
+
+    topUpcomingAnimePublisher.sink(receiveCompletion: { completion in
+        switch completion {
+        case .failure:
+          self.errorMessage = String(describing: completion)
+          print(self.errorMessage)
+        case .finished:
+          ()
+        }
+      }, receiveValue: { animes in
+        self.topUpcomingAnimes = animes
+      })
+      .store(in: &cancellables)
+
     // MARK: - Get popular anime
     let popularAnimePublisher = homeUseCase.getPopularAnimes()
       .receive(on: RunLoop.main)
@@ -60,11 +96,13 @@ class HomePresenter: ObservableObject {
       })
       .store(in: &cancellables)
 
-    let loadingPublishers = Publishers.CombineLatest(
+    let loadingPublishers = Publishers.CombineLatest4(
       topAllAnimePublisher,
+      topAiringAnimePublisher,
+      topUpcomingAnimePublisher,
       popularAnimePublisher
-    ).map { topAllAnimes, popularAnimes in
-      topAllAnimes.isEmpty || popularAnimes.isEmpty
+    ).map { topAllAnimes, topAiringAnimes, topUpcomingAnimes, popularAnimes in
+      topAllAnimes.isEmpty || topAiringAnimes.isEmpty || topUpcomingAnimes.isEmpty || popularAnimes.isEmpty
     }
 
     loadingPublishers.sink(receiveCompletion: { completion in
@@ -79,42 +117,6 @@ class HomePresenter: ObservableObject {
       self.loadingState = isLoading
     }).store(in: &cancellables)
   }
-
-//  func getTopAllAnimes() {
-//    loadingState = true
-//    homeUseCase.getTopAllAnimes()
-//      .receive(on: RunLoop.main)
-//      .sink(receiveCompletion: { completion in
-//        switch completion {
-//        case .failure:
-//          self.errorMessage = String(describing: completion)
-//          print(self.errorMessage)
-//        case .finished:
-//          self.loadingState = false
-//        }
-//      }, receiveValue: { animes in
-//        self.topAllAnimes = animes
-//      })
-//      .store(in: &cancellables)
-//  }
-//
-//  func getPopularAnimes() {
-//    loadingState = true
-//    homeUseCase.getPopularAnimes()
-//      .receive(on: RunLoop.main)
-//      .sink(receiveCompletion: { completion in
-//        switch completion {
-//        case .failure:
-//          self.errorMessage = String(describing: completion)
-//          print(self.errorMessage)
-//        case .finished:
-//          self.loadingState = false
-//        }
-//      }, receiveValue: { animes in
-//        self.topAllAnimes = animes
-//      })
-//      .store(in: &cancellables)
-//  }
 
   func seeAllLinkBuilder<Content: View>(
     for animes: [AnimeModel],
