@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavoriteView: View {
   @ObservedObject var presenter: FavoritePresenter
+  @State var scrollOffset = CGFloat.zero
 
   var body: some View {
     ZStack {
@@ -26,7 +27,7 @@ struct FavoriteView: View {
                 self.presenter.getFavoriteAnimes()
               }
           } else {
-            ScrollView(.vertical, showsIndicators: false) {
+            ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
               LazyVStack(spacing: Space.small) {
                 ForEach(self.presenter.favoriteAnimes) { anime in
                   self.presenter.linkBuilder(for: anime) {

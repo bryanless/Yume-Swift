@@ -22,16 +22,21 @@ struct ObservableScrollView<Content>: View where Content: View {
   @Namespace var scrollSpace
 
   @Binding var scrollOffset: CGFloat
+  let showsIndicators: Bool
   let content: (ScrollViewProxy) -> Content
 
-  init(scrollOffset: Binding<CGFloat>,
-       @ViewBuilder content: @escaping (ScrollViewProxy) -> Content) {
+  init(
+    scrollOffset: Binding<CGFloat>,
+    showsIndicators: Bool = true,
+    @ViewBuilder content: @escaping (ScrollViewProxy) -> Content
+  ) {
     _scrollOffset = scrollOffset
+    self.showsIndicators = showsIndicators
     self.content = content
   }
 
   var body: some View {
-    ScrollView {
+    ScrollView(showsIndicators: showsIndicators) {
       ScrollViewReader { proxy in
         content(proxy)
           .background(GeometryReader { geo in

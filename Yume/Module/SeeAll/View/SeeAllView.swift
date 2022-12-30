@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SeeAllView: View {
   @ObservedObject var presenter: SeeAllPresenter
+  @State var scrollOffset = CGFloat.zero
 
   var body: some View {
     ZStack {
@@ -16,7 +17,7 @@ struct SeeAllView: View {
         ProgressIndicator()
       } else {
         NavigationStack {
-          ScrollView(.vertical, showsIndicators: false) {
+          ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
             LazyVStack(spacing: Space.small) {
               ForEach(self.presenter.animes) { anime in
                 self.presenter.linkBuilder(for: anime) {

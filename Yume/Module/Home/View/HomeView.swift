@@ -19,7 +19,7 @@ struct HomeView: View {
       } else {
         NavigationStack {
           ZStack(alignment: .top) {
-            ObservableScrollView(scrollOffset: $scrollOffset) { _ in
+            ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
               LazyVStack(spacing: Space.large) {
                 header
                 popularAnime

@@ -18,7 +18,7 @@ struct AnimeDetailView: View {
         ProgressIndicator()
       } else {
         ZStack(alignment: .top) {
-          ObservableScrollView(scrollOffset: $scrollOffset) { _ in
+          ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
             VStack(spacing: Space.large) {
               overview
               stats
