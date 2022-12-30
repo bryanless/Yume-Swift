@@ -97,7 +97,8 @@ extension AnimeDetailView {
            + " · \(self.presenter.anime.status)"
       ).typography(.caption(color: YumeColor.onSurfaceVariant))
 
-      Text(self.presenter.anime.title)
+      Text(self.presenter.anime.alternativeTitleEnglish.isEmpty
+           ? self.presenter.anime.title : self.presenter.anime.alternativeTitleEnglish)
         .typography(.title3(color: YumeColor.onBackground))
         .bold()
         .lineLimit(3)
@@ -166,11 +167,13 @@ extension AnimeDetailView {
           .typography(.headline(color: YumeColor.onBackground))
         AnimeInformationItem(
           label: "Episodes",
-          value: self.presenter.anime.episodeAmount.description
+          value: self.presenter.anime.episodeAmount == 0
+          ? "Unknown" : self.presenter.anime.episodeAmount.description
         )
         AnimeInformationItem(
           label: "Duration",
-          value: self.presenter.anime.episodeDuration.description
+          value: self.presenter.anime.episodeDuration == 0
+          ? "Unknown" : Formatter.secondsToHoursMinutesSeconds(self.presenter.anime.episodeDuration)
         )
         AnimeInformationItem(
           label: "Aired",

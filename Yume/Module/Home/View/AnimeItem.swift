@@ -33,7 +33,8 @@ extension AnimeItem {
   }
 
   var content: some View {
-    Text(anime.title)
+    Text(anime.alternativeTitleEnglish.isEmpty
+         ? anime.title : anime.alternativeTitleEnglish)
       .typography(.caption(color: YumeColor.onBackground))
       .lineLimit(2, reservesSpace: true)
       .padding(

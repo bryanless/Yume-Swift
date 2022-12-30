@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Formatter {
+  // MARK: - Date
   static func toShortDate(_ dateString: String) -> String {
     let dateFormatterApi = DateFormatter()
     let dateFormatterResult = DateFormatter()
@@ -16,12 +17,12 @@ struct Formatter {
     dateFormatterResult.dateFormat = "MMM dd, yyyy"
 
     guard let date = dateFormatterApi.date(from: dateString) else {
-      return dateString
+      return self.toFullYearMonthDate(dateString)
     }
 
-    let released = dateFormatterResult.string(from: date)
+    let result = dateFormatterResult.string(from: date)
 
-    return released
+    return result
   }
 
   static func toFullDate(_ dateString: String) -> String {
@@ -32,12 +33,29 @@ struct Formatter {
     dateFormatterResult.dateFormat = "MMMM dd, yyyy"
 
     guard let date = dateFormatterApi.date(from: dateString) else {
+      return self.toFullYearMonthDate(dateString)
+    }
+
+    let result = dateFormatterResult.string(from: date)
+
+    return result
+  }
+
+  static func toFullYearMonthDate(_ dateString: String) -> String {
+    let dateFormatterApi = DateFormatter()
+    let dateFormatterResult = DateFormatter()
+
+    dateFormatterApi.dateFormat = "yyyy-MM"
+    dateFormatterResult.dateFormat = "MMMM yyyy"
+
+    guard let date = dateFormatterApi.date(from: dateString) else {
       return dateString
     }
 
-    let released = dateFormatterResult.string(from: date)
+    let result = dateFormatterResult.string(from: date)
 
-    return released
+    return result
+
   }
 
   static func toApiDate(_ dateString: String) -> String {
@@ -56,8 +74,35 @@ struct Formatter {
     return released
   }
 
+  // MARK: - Color
   static func rgbToColor(red: Double, green: Double, blue: Double) -> Color {
     return Color(red: red / 255, green: green / 255, blue: blue / 255)
+  }
+
+  // MARK: - String
+  static func snakeCaseToTitleCase(_ text: String) -> String {
+    return text.replacingOccurrences(of: "_", with: " ").capitalized
+  }
+
+  // MARK: - Number
+  static func secondsToHoursMinutesSeconds(_ seconds: Int) -> String {
+    let (hour, min, sec) = (seconds / 3600, (seconds % 3600) / 60, (seconds % 60))
+
+    var text = ""
+
+    if hour > 0 {
+      text += "\(hour) hours "
+    }
+
+    if min > 0 {
+      text += "\(min) minutes "
+    }
+
+    if sec > 0 {
+      text += "\(sec) seconds"
+    }
+
+    return text
   }
 
   // Formatting numbers https://stackoverflow.com/a/48371527

@@ -155,7 +155,7 @@ enum Source: String, Codable {
   case music = "music"
 
   var name: String {
-    return rawValue.capitalized
+    return Formatter.snakeCaseToTitleCase(rawValue)
   }
 }
 
@@ -188,6 +188,6 @@ enum Status: String, Codable {
   case notYetAired = "not_yet_aired"
 
   var name: String {
-    return rawValue.capitalized
+    return Formatter.snakeCaseToTitleCase(rawValue)
   }
 }

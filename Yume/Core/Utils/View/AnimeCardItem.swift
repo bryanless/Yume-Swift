@@ -59,7 +59,8 @@ extension AnimeCardItem {
            + " · \(anime.status)"
       ).typography(.caption(color: YumeColor.onSurfaceVariant))
 
-      Text(anime.title)
+      Text(anime.alternativeTitleEnglish.isEmpty
+           ? anime.title : anime.alternativeTitleEnglish)
         .typography(.body(color: YumeColor.onSurface))
         .lineLimit(2)
     }
