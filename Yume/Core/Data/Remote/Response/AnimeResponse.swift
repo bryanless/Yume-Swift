@@ -16,7 +16,7 @@ struct AnimeResponse: Codable {
   let startDate, endDate, synopsis: String?
   let rating: Double?
   let rank, popularity: Int?
-  let userAmount: Int
+  let userAmount, favoriteAmount: Int
   let genres: [Genre]
   let mediaType: MediaType
   let status: Status
@@ -36,6 +36,7 @@ struct AnimeResponse: Codable {
     case rating = "mean"
     case rank, popularity
     case userAmount = "num_list_users"
+    case favoriteAmount = "num_favorites"
     case genres
     case mediaType = "media_type"
     case status
@@ -61,6 +62,7 @@ struct AnimeResponse: Codable {
     self.rank = try? container.decodeIfPresent(Int.self, forKey: .rank)
     self.popularity = try? container.decodeIfPresent(Int.self, forKey: .popularity)
     self.userAmount = try container.decode(Int.self, forKey: .userAmount)
+    self.favoriteAmount = try container.decode(Int.self, forKey: .favoriteAmount)
     self.genres = try container.decode([Genre].self, forKey: .genres)
     self.mediaType = try container.decode(MediaType.self, forKey: .mediaType)
     self.status = try container.decode(Status.self, forKey: .status)

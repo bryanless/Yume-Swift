@@ -27,6 +27,7 @@ final class AnimeListMapper {
         rank: result.anime.rank ?? 0,
         popularity: result.anime.popularity ?? 0,
         userAmount: result.anime.userAmount,
+        favoriteAmount: result.anime.favoriteAmount,
         genre: result.anime.genres.map { $0.name },
         mediaType: result.anime.mediaType.toName().rawValue,
         status: result.anime.status.name,

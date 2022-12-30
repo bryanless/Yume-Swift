@@ -12,7 +12,7 @@ struct API {
 
   static let baseUrl = "https://api.myanimelist.net/v2/"
   static let defaultFields = "alternative_titles,start_date,end_date,synopsis,mean,"
-  + "rank,popularity,num_list_users,genres,media_type,"
+  + "rank,popularity,num_list_users,num_favorites,genres,media_type,"
   + "status,num_episodes,start_season,source,average_episode_duration,studios"
   static let headers: HTTPHeaders = ["X-MAL-CLIENT-ID": "23edfd1bf4b15809b72c7268fc63bd74"]
 

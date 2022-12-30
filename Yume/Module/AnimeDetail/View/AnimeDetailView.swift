@@ -142,7 +142,7 @@ extension AnimeDetailView {
         icon: Icons.heartOutlined,
         iconColor: .red,
         label: "Favorites",
-        value: Formatter.formatNumber(self.presenter.anime.userAmount)
+        value: Formatter.formatNumber(self.presenter.anime.favoriteAmount)
       )
     }.frame(height: 70)
   }

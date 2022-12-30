@@ -27,6 +27,7 @@ final class AnimeRankingMapper {
       newAnime.rank = result.anime.rank ?? 0
       newAnime.popularity = result.anime.popularity ?? 0
       newAnime.userAmount = result.anime.userAmount
+      newAnime.favoriteAmount = result.anime.favoriteAmount
       newAnime.genre.append(objectsIn: result.anime.genres.map { $0.name })
       newAnime.mediaType = result.anime.mediaType.toName().rawValue
       newAnime.status = result.anime.status.name
@@ -78,6 +79,7 @@ final class AnimeRankingMapper {
         rank: result.rank,
         popularity: result.popularity,
         userAmount: result.userAmount,
+        favoriteAmount: result.favoriteAmount,
         genre: Array(result.genre),
         mediaType: result.mediaType,
         status: result.status,
@@ -110,6 +112,7 @@ final class AnimeRankingMapper {
       rank: result.rank,
       popularity: result.popularity,
       userAmount: result.userAmount,
+      favoriteAmount: result.favoriteAmount,
       genre: Array(result.genre),
       mediaType: result.mediaType,
       status: result.status,
@@ -161,6 +164,7 @@ final class AnimeRankingMapper {
         rank: result.anime.rank ?? 0,
         popularity: result.anime.popularity ?? 0,
         userAmount: result.anime.userAmount,
+        favoriteAmount: result.anime.favoriteAmount,
         genre: result.anime.genres.map { $0.name },
         mediaType: result.anime.mediaType.toName().rawValue,
         status: result.anime.status.name,
