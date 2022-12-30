@@ -83,6 +83,7 @@
 		935289EE295E1DCD009DF307 /* AnimeStatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289ED295E1DCD009DF307 /* AnimeStatItem.swift */; };
 		935289F0295E1FB0009DF307 /* YumeDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289EF295E1FB0009DF307 /* YumeDivider.swift */; };
 		935289F2295E2113009DF307 /* AnimeInformationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289F1295E2113009DF307 /* AnimeInformationItem.swift */; };
+		936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7733295ED579009C5BC6 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -179,6 +180,7 @@
 		935289ED295E1DCD009DF307 /* AnimeStatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeStatItem.swift; sourceTree = "<group>"; };
 		935289EF295E1FB0009DF307 /* YumeDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeDivider.swift; sourceTree = "<group>"; };
 		935289F1295E2113009DF307 /* AnimeInformationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeInformationItem.swift; sourceTree = "<group>"; };
+		936C7733295ED579009C5BC6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +340,7 @@
 				935289E3295DDD79009DF307 /* TabItem.swift */,
 				935289E7295DF25B009DF307 /* ObservableScrollView.swift */,
 				935289EF295E1FB0009DF307 /* YumeDivider.swift */,
+				936C7733295ED579009C5BC6 /* SearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				931BBFA5295C39F400359359 /* HomeRouter.swift in Sources */,
 				931BBFFD295CD86E00359359 /* SeeAllPresenter.swift in Sources */,
 				931BBFA7295C3ADE00359359 /* AnimeRow.swift in Sources */,
+				936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */,
 				931BBF8B295C1B4100359359 /* RemoteDateSource.swift in Sources */,
 				931BBFBD295C4F1300359359 /* AnimeDetailPresenter.swift in Sources */,
 				931BBFCD295CAC6500359359 /* SearchRouter.swift in Sources */,

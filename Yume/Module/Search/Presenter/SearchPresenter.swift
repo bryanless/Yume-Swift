@@ -14,6 +14,7 @@ class SearchPresenter: ObservableObject {
   private let router = SearchRouter()
   private let searchUseCase: SearchUseCase
 
+  @Published var searchText: String = ""
   @Published var topAllAnimes: [AnimeModel] = []
   @Published var errorMessage: String = ""
   @Published var loadingState: Bool = false
