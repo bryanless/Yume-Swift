@@ -13,6 +13,7 @@ struct YumeColor {
   static let secondaryContainer = Color("ColorSecondaryContainer")
   static let onSecondaryContainer = Color("ColorOnSecondaryContainer")
   static let surface = Color("ColorSurface")
+  static let surface2 = Color("ColorSurface2")
   static let onSurface = Color("ColorOnSurface")
   static let surfaceVariant = Color("ColorSurfaceVariant")
   static let onSurfaceVariant = Color("ColorOnSurfaceVariant")

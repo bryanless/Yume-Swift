@@ -26,23 +26,28 @@ struct AnimeDetailView: View {
               synopsis
               YumeDivider()
               information
-            }.padding(Space.medium)
-              .toolbar {
-                Button {
-                  self.presenter.updateAnimeFavorite()
-                } label: {
-                  IconView(
-                    icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
-                    color: .red
-                  )
-                }
-              }
+            }.padding(
+              EdgeInsets(
+                top: 56,
+                leading: Space.medium,
+                bottom: Space.medium,
+                trailing: Space.medium)
+            )
           }
           .background(YumeColor.background)
           .onAppear {
             self.presenter.refreshAnime()
           }
-          appBar(scrollOffset: scrollOffset)
+          BackAppBar(scrollOffset: scrollOffset, label: "", trailing: {
+            Button {
+              self.presenter.updateAnimeFavorite()
+            } label: {
+              IconView(
+                icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
+                color: .red
+              )
+            }
+          })
         }
       }
     }.toolbar(.hidden)

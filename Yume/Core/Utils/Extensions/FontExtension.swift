@@ -20,17 +20,17 @@ extension Font {
 }
 
 enum TypographyStyle {
-  case largeTitle(weight: Font.Weight = .regular, color: Color = .black)
-  case title(weight: Font.Weight = .regular, color: Color = .black)
-  case title2(weight: Font.Weight = .regular, color: Color = .black)
-  case title3(weight: Font.Weight = .regular, color: Color = .black)
-  case headline(weight: Font.Weight = .bold, color: Color = .black)
-  case body(weight: Font.Weight = .regular, color: Color = .black)
-  case callout(weight: Font.Weight = .regular, color: Color = .black)
-  case subheadline(weight: Font.Weight = .regular, color: Color = .black)
-  case footnote(weight: Font.Weight = .regular, color: Color = .black)
-  case caption(weight: Font.Weight = .regular, color: Color = .black)
-  case caption2(weight: Font.Weight = .regular, color: Color = .black)
+  case largeTitle(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case title(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case title2(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case title3(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case headline(weight: Font.Weight = .bold, color: Color = YumeColor.onBackground)
+  case body(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case callout(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case subheadline(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case footnote(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case caption(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
+  case caption2(weight: Font.Weight = .regular, color: Color = YumeColor.onBackground)
 
   var size: CGFloat {
     switch self {
@@ -82,7 +82,7 @@ struct BaseTypography: ViewModifier {
       .foregroundColor(color)
   }
 
-  init(type: TypographyStyle, weight: Font.Weight, color: Color = .black) {
+  init(type: TypographyStyle, weight: Font.Weight, color: Color = YumeColor.onBackground) {
     self.type = type
     self.weight = weight
     self.color = color

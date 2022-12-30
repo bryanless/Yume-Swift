@@ -26,9 +26,15 @@ struct HomeView: View {
                 topUpcomingAnime
                 popularAnime
                 topAllAnime
-              }.padding(.vertical, Space.medium)
+              }.padding(
+                EdgeInsets(
+                  top: 40,
+                  leading: Space.none,
+                  bottom: Space.medium,
+                  trailing: Space.none)
+              )
             }
-            appBar(scrollOffset: scrollOffset)
+            AppBar(scrollOffset: scrollOffset, label: "Home")
           }
           .background(YumeColor.background)
         }.onAppear {
@@ -43,31 +49,10 @@ struct HomeView: View {
 }
 
 extension HomeView {
-  func appBar(scrollOffset: CGFloat) -> some View {
-    return GeometryReader { geo in
-      ZStack {
-          HStack {
-            Text("Home")
-              .typography(.title3(color: .black))
-          }
-          .padding(
-            EdgeInsets(
-              top: Space.none,
-              leading: Space.medium,
-              bottom: Space.small,
-              trailing: Space.medium)
-          )
-          .frame(width: geo.size.width)
-        }
-      .background(Material.thinMaterial)
-      .opacity(scrollOffset / 10)
-    }
-  }
-
   var header: some View {
     HStack {
       Text("Home")
-        .typography(.largeTitle(color: YumeColor.onBackground))
+        .typography(.largeTitle(weight: .bold, color: YumeColor.onBackground))
       Spacer()
     }.padding(.horizontal, Space.medium)
   }

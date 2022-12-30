@@ -88,6 +88,7 @@
 		936C7738295EE736009C5BC6 /* AnimeListMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7737295EE736009C5BC6 /* AnimeListMapper.swift */; };
 		936C773A295EF716009C5BC6 /* ProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7739295EF716009C5BC6 /* ProgressIndicator.swift */; };
 		936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773B295EFA56009C5BC6 /* NothingFound.swift */; };
+		936C773E295F2599009C5BC6 /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773D295F2599009C5BC6 /* AppBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -189,6 +190,7 @@
 		936C7737295EE736009C5BC6 /* AnimeListMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListMapper.swift; sourceTree = "<group>"; };
 		936C7739295EF716009C5BC6 /* ProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicator.swift; sourceTree = "<group>"; };
 		936C773B295EFA56009C5BC6 /* NothingFound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFound.swift; sourceTree = "<group>"; };
+		936C773D295F2599009C5BC6 /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 		931BBF7C295C18C300359359 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				936C773D295F2599009C5BC6 /* AppBar.swift */,
 				931BBFD0295CADB800359359 /* AnimeCardItem.swift */,
 				931BC002295CDF1B00359359 /* IconView.swift */,
 				936C773B295EFA56009C5BC6 /* NothingFound.swift */,
@@ -892,6 +895,7 @@
 				931BBFCF295CAC9E00359359 /* SearchView.swift in Sources */,
 				931BBFD6295CC81400359359 /* FontExtension.swift in Sources */,
 				931BBF89295C19C400359359 /* APICall.swift in Sources */,
+				936C773E295F2599009C5BC6 /* AppBar.swift in Sources */,
 				934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */,
 				931BBF84295C197400359359 /* HomePresenter.swift in Sources */,
 			);
