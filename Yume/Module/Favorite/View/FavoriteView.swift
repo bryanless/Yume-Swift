@@ -19,50 +19,52 @@ struct FavoriteView: View {
             self.presenter.getFavoriteAnimes()
           }
       } else {
-        if self.presenter.favoriteAnimes.isEmpty {
-          VStack(alignment: .leading) {
-            Text("Favorites")
-              .typography(.largeTitle(weight: .bold))
-            NothingFound(label: "No favorite anime")
-              .background(YumeColor.background)
-              .onAppear {
-                self.presenter.getFavoriteAnimes()
-              }
-          }
-          .padding(
-            EdgeInsets(
-              top: 40,
-              leading: Space.medium,
-              bottom: Space.medium,
-              trailing: Space.medium)
-          )
-          .background(YumeColor.background)
-        } else {
-          NavigationStack {
+        NavigationStack {
+          if self.presenter.favoriteAnimes.isEmpty {
+            VStack(alignment: .leading) {
+              Text("Favorites")
+                .typography(.largeTitle(weight: .bold))
+              NothingFound(label: "No favorite anime")
+                .background(YumeColor.background)
+                .onAppear {
+                  self.presenter.getFavoriteAnimes()
+                }
+            }
+            .padding(
+              EdgeInsets(
+                top: 40,
+                leading: Space.medium,
+                bottom: Space.medium,
+                trailing: Space.medium)
+            )
+            .background(YumeColor.background)
+          } else {
             ZStack(alignment: .top) {
               ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
-                LazyVStack(spacing: Space.small) {
+                LazyVStack(alignment: .leading, spacing: Space.small) {
+                  Text("Favorites")
+                    .typography(.largeTitle(weight: .bold))
                   ForEach(self.presenter.favoriteAnimes) { anime in
                     self.presenter.linkBuilder(for: anime) {
                       AnimeCardItem(anime: anime)
                     }.buttonStyle(.plain)
                   }
                 }.padding(
-                    EdgeInsets(
-                      top: 56,
-                      leading: Space.medium,
-                      bottom: Space.medium,
-                      trailing: Space.medium)
-                  )
-                }
-                .background(YumeColor.background)
-                .onAppear {
-                  self.presenter.getFavoriteAnimes()
-                }
-                AppBar(scrollOffset: scrollOffset, label: "Favorite")
+                  EdgeInsets(
+                    top: 40,
+                    leading: Space.medium,
+                    bottom: Space.medium,
+                    trailing: Space.medium)
+                )
               }
+              .background(YumeColor.background)
+              .onAppear {
+                self.presenter.getFavoriteAnimes()
+              }
+              AppBar(scrollOffset: scrollOffset, label: "Favorite")
             }
           }
+        }
       }
     }
   }
