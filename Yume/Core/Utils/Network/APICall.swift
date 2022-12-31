@@ -14,7 +14,23 @@ struct API {
   static let defaultFields = "alternative_titles,start_date,end_date,synopsis,mean,"
   + "rank,popularity,num_list_users,num_favorites,genres,media_type,"
   + "status,num_episodes,start_season,source,average_episode_duration,studios"
-  static let headers: HTTPHeaders = ["X-MAL-CLIENT-ID": "23edfd1bf4b15809b72c7268fc63bd74"]
+
+  private var apiKey: String {
+    guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+      fatalError("Couldn't find file 'Info.plist'.")
+    }
+
+    let plist = NSDictionary(contentsOfFile: filePath)
+    guard let value = plist?.object(forKey: "API_KEY") as? String else {
+      fatalError("Couldn't find key 'API_KEY' in 'Info.plist'.")
+    }
+
+    return value
+  }
+
+  func getHeaders() -> HTTPHeaders {
+    return ["X-MAL-CLIENT-ID": apiKey]
+  }
 
 }
 

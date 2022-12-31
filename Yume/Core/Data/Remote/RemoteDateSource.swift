@@ -36,7 +36,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeRankingParameters.getAnimeRankingParameters(.all),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -57,7 +57,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeRankingParameters.getAnimeRankingParameters(.airing),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -78,7 +78,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeRankingParameters.getAnimeRankingParameters(.upcoming),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -99,7 +99,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeRankingParameters.getAnimeRankingParameters(.byPopularity),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -120,7 +120,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeRankingParameters.getAnimeRankingParameters(.favorite),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -141,7 +141,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeListParameters.getAnimeListParameters(query: query),
-          headers: API.headers
+          headers: API().getHeaders()
         )
         .validate()
         .responseDecodable(of: AnimeListsResponse.self) { response in
