@@ -90,6 +90,7 @@
 		936C773C295EFA56009C5BC6 /* NothingFound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773B295EFA56009C5BC6 /* NothingFound.swift */; };
 		936C773E295F2599009C5BC6 /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773D295F2599009C5BC6 /* AppBar.swift */; };
 		936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */; };
+		93C14CE229602B5400097AFB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 93C14CE129602B5400097AFB /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,7 @@
 		936C773B295EFA56009C5BC6 /* NothingFound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingFound.swift; sourceTree = "<group>"; };
 		936C773D295F2599009C5BC6 /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
 		936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeMapper.swift; sourceTree = "<group>"; };
+		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +577,7 @@
 		934AF4AC2958A82100C413B4 = {
 			isa = PBXGroup;
 			children = (
+				93C14CE129602B5400097AFB /* .swiftlint.yml */,
 				934AF4B72958A82200C413B4 /* Yume */,
 				934AF4C82958A82200C413B4 /* YumeTests */,
 				934AF4D22958A82200C413B4 /* YumeUITests */,
@@ -781,6 +784,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C14CE229602B5400097AFB /* .swiftlint.yml in Resources */,
 				934AF4C02958A82200C413B4 /* Preview Assets.xcassets in Resources */,
 				931BBFF1295CC94300359359 /* Nunito-Italic.ttf in Resources */,
 				931BBFE9295CC94300359359 /* Nunito-Black.ttf in Resources */,

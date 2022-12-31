@@ -44,7 +44,7 @@ struct AnimeDetailView: View {
             } label: {
               IconView(
                 icon: self.presenter.anime.isFavorite ? Icons.heart : Icons.heartOutlined,
-                color: .red
+                color: self.presenter.anime.isFavorite ? .red : YumeColor.onSurface
               )
             }
           })
