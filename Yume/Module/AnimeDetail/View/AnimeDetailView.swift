@@ -28,7 +28,7 @@ struct AnimeDetailView: View {
               information
             }.padding(
               EdgeInsets(
-                top: 56,
+                top: 40,
                 leading: Space.medium,
                 bottom: Space.medium,
                 trailing: Space.medium)
