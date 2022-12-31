@@ -51,7 +51,7 @@ struct AppBar<Content: View>: View {
           trailing: Space.medium)
       )
       .frame(width: geo.size.width)
-      .background(scrollOffset > 1 ? YumeColor.surface2 : YumeColor.surface)
+      .background(scrollOffset > 1 ? YumeColor.surface2 : Color.black.opacity(0))
     }
   }
 }
@@ -101,7 +101,7 @@ struct BackAppBar<Content: View>: View {
           trailing: Space.medium)
       )
       .frame(width: geo.size.width)
-      .background(scrollOffset > 1 ? YumeColor.surface2 : YumeColor.surface)
+      .background(scrollOffset > 1 ? YumeColor.surface2 : Color.black.opacity(0))
     }
   }
 }
@@ -110,11 +110,9 @@ struct AppBar_Previews: PreviewProvider {
     static var previews: some View {
       Group {
         AppBar(scrollOffset: 500, label: "Title")
-          .previewLayout(PreviewLayout.sizeThatFits)
           .previewDisplayName("App Bar")
 
         BackAppBar(scrollOffset: 500, label: "Title")
-          .previewLayout(PreviewLayout.sizeThatFits)
           .previewDisplayName("App Bar with Back")
       }
     }

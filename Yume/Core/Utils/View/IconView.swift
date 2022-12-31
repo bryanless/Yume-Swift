@@ -22,6 +22,6 @@ struct IconView: View {
 
 struct IconView_Previews: PreviewProvider {
   static var previews: some View {
-    IconView(icon: Icons.trendingUp, color: .green, size: IconSize.large)
+    IconView(icon: Icons.trendingUp, color: .green, size: IconSize.medium)
   }
 }

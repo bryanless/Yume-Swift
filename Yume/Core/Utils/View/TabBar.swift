@@ -45,8 +45,15 @@ struct TabBar: View {
       }
     }
     .frame(height: 56.0)
-    .padding(.horizontal, Space.medium)
-    .background(YumeColor.surface)
+    .padding(
+      EdgeInsets(
+        top: Space.tiny,
+        leading: Space.medium,
+        bottom: Space.none,
+        trailing: Space.medium
+      )
+    )
+    .background(YumeColor.surface2)
   }
 }
 
