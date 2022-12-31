@@ -12,7 +12,7 @@ protocol AnimeDetailUseCase {
 
   func getAnime() -> AnimeModel
   func refreshAnime() -> AnyPublisher<AnimeModel, Error>
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error>
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeModel, Error>
 
 }
 
@@ -37,8 +37,8 @@ class AnimeDetailInteractor: AnimeDetailUseCase {
     return repository.getAnime(withId: anime.id)
   }
 
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error> {
-    return repository.updateAnimeFavorite(withId: id, isFavorite: isFavorite)
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeModel, Error> {
+    return repository.updateAnimeFavorite(withId: id)
   }
 
 }

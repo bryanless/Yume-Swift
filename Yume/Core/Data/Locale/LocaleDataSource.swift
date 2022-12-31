@@ -19,7 +19,7 @@ protocol LocaleDataSourceProtocol: AnyObject {
   func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeEntity, Error>
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
 
 }
 
@@ -155,12 +155,8 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
   // MARK: - Get an anime
   func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error> {
     return Future<AnimeEntity, Error> { completion in
-      if let realm = self.realm {
-        if let anime = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
-          completion(.success(anime))
-        } else {
-          completion(.failure(DatabaseError.requestFailed))
-        }
+      if let realm = self.realm, let animeEntity = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
+        completion(.success(animeEntity))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
@@ -168,18 +164,14 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
   }
 
   // MARK: - Update favorite
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeEntity, Error> {
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeEntity, Error> {
     return Future<AnimeEntity, Error> { completion in
-      if let realm = self.realm {
+      if let realm = self.realm, let animeEntity = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
         do {
           try realm.write {
-            if let anime = realm.object(ofType: AnimeEntity.self, forPrimaryKey: id) {
-              anime.isFavorite = isFavorite
-              completion(.success(anime))
-            } else {
-              completion(.failure(DatabaseError.requestFailed))
-            }
+            animeEntity.setValue(!animeEntity.isFavorite, forKey: "isFavorite")
           }
+          completion(.success(animeEntity))
         } catch {
           completion(.failure(DatabaseError.requestFailed))
         }

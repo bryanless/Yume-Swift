@@ -40,7 +40,7 @@ class AnimeDetailPresenter: ObservableObject {
   }
 
   func updateAnimeFavorite() {
-    animeDetailUseCase.updateAnimeFavorite(withId: anime.id, isFavorite: !anime.isFavorite)
+    animeDetailUseCase.updateAnimeFavorite(withId: anime.id)
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {

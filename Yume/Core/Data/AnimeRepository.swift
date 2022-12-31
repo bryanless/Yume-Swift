@@ -18,7 +18,7 @@ protocol AnimeRepositoryProtocol {
   func getFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error>
   func getAnime(withId id: Int) -> AnyPublisher<AnimeModel, Error>
   func searchAnime(name: String) -> AnyPublisher<[AnimeModel], Error>
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error>
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeModel, Error>
 
 }
 
@@ -166,8 +166,8 @@ extension AnimeRepository: AnimeRepositoryProtocol {
       .eraseToAnyPublisher()
   }
 
-  func updateAnimeFavorite(withId id: Int, isFavorite: Bool) -> AnyPublisher<AnimeModel, Error> {
-    return self.locale.updateAnimeFavorite(withId: id, isFavorite: isFavorite)
+  func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeModel, Error> {
+    return self.locale.updateAnimeFavorite(withId: id)
       .map { AnimeMapper.mapAnimeEntityToDomain(input: $0) }
       .eraseToAnyPublisher()
   }
