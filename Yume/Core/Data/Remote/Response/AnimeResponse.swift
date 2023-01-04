@@ -5,8 +5,6 @@
 //  Created by Bryan on 28/12/22.
 //
 
-import Foundation
-
 // MARK: - Anime
 struct AnimeResponse: Codable {
   let id: Int

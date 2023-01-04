@@ -5,7 +5,6 @@
 //  Created by Bryan on 28/12/22.
 //
 
-import Foundation
 import RealmSwift
 
 class AnimeEntity: Object {

@@ -5,8 +5,6 @@
 //  Created by Bryan on 28/12/22.
 //
 
-import Foundation
-
 // MARK: - AnimeRankingsResponse
 struct AnimeRankingsResponse: Codable {
   let animes: [AnimeRankingResponse]
