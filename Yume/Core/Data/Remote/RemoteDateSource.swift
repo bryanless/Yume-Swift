@@ -11,11 +11,7 @@ import Combine
 
 protocol RemoteDataSourceProtocol: AnyObject {
 
-  func getTopAllAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
-  func getTopAiringAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
-  func getTopUpcomingAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
-  func getPopularAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
-  func getTopFavoriteAnimes() -> AnyPublisher<[AnimeRankingResponse], Error>
+  func getTopAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeRankingResponse], Error>
   func searchAnime(name query: String) -> AnyPublisher<[AnimeListResponse], Error>
 
 }
@@ -30,97 +26,19 @@ final class RemoteDataSource: NSObject {
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
 
-  func getTopAllAnimes() -> AnyPublisher<[AnimeRankingResponse], Error> {
+  func getTopAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeRankingResponse], Error> {
     return Future<[AnimeRankingResponse], Error> { completion in
       if let url = URL(string: Endpoints.Gets.ranking.url) {
         AF.request(
           url,
-          parameters: AnimeRankingParameters.getAnimeRankingParameters(.all),
-          headers: API().getHeaders()
-        )
-        .validate()
-        .responseDecodable(of: AnimeRankingsResponse.self) { response in
-          switch response.result {
-          case .success(let value):
-            completion(.success(value.animes))
-          case .failure:
-            completion(.failure(URLError.invalidResponse))
-          }
-        }
-      }
-    }.eraseToAnyPublisher()
-  }
-
-  func getTopAiringAnimes() -> AnyPublisher<[AnimeRankingResponse], Error> {
-    return Future<[AnimeRankingResponse], Error> { completion in
-      if let url = URL(string: Endpoints.Gets.ranking.url) {
-        AF.request(
-          url,
-          parameters: AnimeRankingParameters.getAnimeRankingParameters(.airing),
-          headers: API().getHeaders()
-        )
-        .validate()
-        .responseDecodable(of: AnimeRankingsResponse.self) { response in
-          switch response.result {
-          case .success(let value):
-            completion(.success(value.animes))
-          case .failure:
-            completion(.failure(URLError.invalidResponse))
-          }
-        }
-      }
-    }.eraseToAnyPublisher()
-  }
-
-  func getTopUpcomingAnimes() -> AnyPublisher<[AnimeRankingResponse], Error> {
-    return Future<[AnimeRankingResponse], Error> { completion in
-      if let url = URL(string: Endpoints.Gets.ranking.url) {
-        AF.request(
-          url,
-          parameters: AnimeRankingParameters.getAnimeRankingParameters(.upcoming),
-          headers: API().getHeaders()
-        )
-        .validate()
-        .responseDecodable(of: AnimeRankingsResponse.self) { response in
-          switch response.result {
-          case .success(let value):
-            completion(.success(value.animes))
-          case .failure:
-            completion(.failure(URLError.invalidResponse))
-          }
-        }
-      }
-    }.eraseToAnyPublisher()
-  }
-
-  func getPopularAnimes() -> AnyPublisher<[AnimeRankingResponse], Error> {
-    return Future<[AnimeRankingResponse], Error> { completion in
-      if let url = URL(string: Endpoints.Gets.ranking.url) {
-        AF.request(
-          url,
-          parameters: AnimeRankingParameters.getAnimeRankingParameters(.byPopularity),
-          headers: API().getHeaders()
-        )
-        .validate()
-        .responseDecodable(of: AnimeRankingsResponse.self) { response in
-          switch response.result {
-          case .success(let value):
-            completion(.success(value.animes))
-          case .failure:
-            completion(.failure(URLError.invalidResponse))
-          }
-        }
-      }
-    }.eraseToAnyPublisher()
-  }
-
-  func getTopFavoriteAnimes() -> AnyPublisher<[AnimeRankingResponse], Error> {
-    return Future<[AnimeRankingResponse], Error> { completion in
-      if let url = URL(string: Endpoints.Gets.ranking.url) {
-        AF.request(
-          url,
-          parameters: AnimeRankingParameters.getAnimeRankingParameters(.favorite),
-          headers: API().getHeaders()
+          parameters: AnimeRankingRequestParameter(
+            type: request.rankingType,
+            limit: request.limit,
+            offsets: request.offsets,
+            fields: request.fields
+          ),
+          encoder: API.encoder,
+          headers: API.headers
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
@@ -141,7 +59,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         AF.request(
           url,
           parameters: AnimeListParameters.getAnimeListParameters(query: query),
-          headers: API().getHeaders()
+          headers: API.headers
         )
         .validate()
         .responseDecodable(of: AnimeListsResponse.self) { response in

@@ -10,7 +10,7 @@ final class AnimeRankingMapper {
   // MARK: - Response to Entities Mapper
   static func mapAnimeRankingResponsesToEntities(
     input animeRankingResponses: [AnimeRankingResponse],
-    type rankingType: AnimeRankingParameters.RankingType
+    type rankingType: RankingType
   ) -> [AnimeEntity] {
     return animeRankingResponses.map { result in
       let newAnime = AnimeEntity()

@@ -62,7 +62,7 @@ class SearchPresenter: ObservableObject {
   }
 
   func getTopFavoriteAnimes() {
-    searchUseCase.getTopFavoriteAnimes()
+    searchUseCase.getTopFavoriteAnimes(request: AnimeRankingRequest(type: .favorite))
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {

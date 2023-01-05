@@ -14,8 +14,8 @@ struct API {
   static let defaultFields = "alternative_titles,start_date,end_date,synopsis,mean,"
   + "rank,popularity,num_list_users,num_favorites,genres,media_type,"
   + "status,num_episodes,start_season,source,average_episode_duration,studios"
-
-  private var apiKey: String {
+  static let encoder = URLEncodedFormParameterEncoder(encoder: URLEncodedFormEncoder(keyEncoding: .convertToSnakeCase))
+  static var headers: HTTPHeaders {
     guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
       fatalError("Couldn't find file 'Info.plist'.")
     }
@@ -25,11 +25,7 @@ struct API {
       fatalError("Couldn't find key 'API_KEY' in 'Info.plist'.")
     }
 
-    return value
-  }
-
-  func getHeaders() -> HTTPHeaders {
-    return ["X-MAL-CLIENT-ID": apiKey]
+    return ["X-MAL-CLIENT-ID": value]
   }
 
 }
@@ -56,36 +52,76 @@ enum Endpoints {
 
 }
 
+enum RankingType: String {
+  case all
+  case airing
+  case upcoming
+  case tv
+  case ova
+  case movie
+  case special
+  case byPopularity
+  case favorite
+
+  var name: String {
+    return rawValue.lowercased()
+  }
+
+  var sortKey: String {
+    switch self {
+    case .all, .airing, .tv, .ova, .movie, .special:
+      return "rank"
+    case .upcoming, .byPopularity:
+      return "popularity"
+    case .favorite:
+      return "favoriteAmount"
+    }
+  }
+}
+
+struct AnimeRankingRequest {
+  let rankingType: RankingType
+  let limit: Int
+  let offsets: Int
+  let fields: String
+
+  init(
+    type rankingType: RankingType = .all,
+    limit: Int = 20,
+    offsets: Int = 0,
+    fields: String = API.defaultFields
+  ) {
+    self.rankingType = rankingType
+    self.limit = limit
+    self.offsets = offsets
+    self.fields = fields
+  }
+}
+
+struct AnimeRankingRequestParameter: Encodable {
+  let rankingType: String
+  let limit: Int
+  let offsets: Int
+  let fields: String
+
+  init(
+    type rankingType: RankingType = .all,
+    limit: Int = 20,
+    offsets: Int = 0,
+    fields: String = API.defaultFields
+  ) {
+    self.rankingType = rankingType.name
+    self.limit = limit
+    self.offsets = offsets
+    self.fields = fields
+  }
+}
+
 struct AnimeListParameters {
   static func getAnimeListParameters(query: String) -> [String: String] {
     return [
       "q": query,
       "fields": API.defaultFields
     ]
-  }
-}
-
-struct AnimeRankingParameters {
-  static func getAnimeRankingParameters(_ rankingType: RankingType) -> [String: String] {
-    return [
-      "ranking_type": rankingType.name,
-      "fields": API.defaultFields
-    ]
-  }
-
-  enum RankingType: String {
-    case all
-    case airing
-    case upcoming
-    case tv
-    case ova
-    case movie
-    case special
-    case byPopularity
-    case favorite
-
-    var name: String {
-      return rawValue.lowercased()
-    }
   }
 }
