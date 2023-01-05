@@ -15,6 +15,7 @@ struct AnimeResponse: Codable {
   let rating: Double?
   let rank, popularity: Int?
   let userAmount, favoriteAmount: Int
+  let nsfw: Nsfw?
   let genres: [Genre]
   let mediaType: MediaType
   let status: Status
@@ -35,6 +36,7 @@ struct AnimeResponse: Codable {
     case rank, popularity
     case userAmount = "num_list_users"
     case favoriteAmount = "num_favorites"
+    case nsfw
     case genres
     case mediaType = "media_type"
     case status
@@ -61,6 +63,7 @@ struct AnimeResponse: Codable {
     self.popularity = try? container.decodeIfPresent(Int.self, forKey: .popularity)
     self.userAmount = try container.decode(Int.self, forKey: .userAmount)
     self.favoriteAmount = try container.decode(Int.self, forKey: .favoriteAmount)
+    self.nsfw = try? container.decodeIfPresent(Nsfw.self, forKey: .nsfw)
     self.genres = try container.decode([Genre].self, forKey: .genres)
     self.mediaType = try container.decode(MediaType.self, forKey: .mediaType)
     self.status = try container.decode(Status.self, forKey: .status)
@@ -96,40 +99,39 @@ struct MainPicture: Codable {
   let large: String?
 }
 
+// MARK: - NSFW
+enum Nsfw: String, Codable {
+  case white
+  case gray
+  case black
+
+  var name: String {
+    return rawValue
+  }
+}
+
 // MARK: - MediaType
 enum MediaType: String, Codable {
   case unknown, tv, ova
   case movie, special, ona
   case music
-}
 
-enum MediaTypeName: String, Codable {
-  case unknown = "Unknown"
-  case tv = "TV"
-  case ova = "OVA"
-  case movie = "Movie"
-  case special = "Special"
-  case ona = "ONA"
-  case music = "Music"
-}
-
-extension MediaType {
-  func toName() -> MediaTypeName {
+  var name: String {
     switch self {
     case .unknown:
-      return MediaTypeName.unknown
+      return "Unknown"
     case .tv:
-      return MediaTypeName.tv
+      return "TV"
     case .ova:
-      return MediaTypeName.ova
+      return "OVA"
     case .movie:
-      return MediaTypeName.movie
+      return "Movie"
     case .special:
-      return MediaTypeName.special
+      return "Special"
     case .ona:
-      return MediaTypeName.ona
+      return "ONA"
     case .music:
-      return MediaTypeName.music
+      return "Music"
     }
   }
 }

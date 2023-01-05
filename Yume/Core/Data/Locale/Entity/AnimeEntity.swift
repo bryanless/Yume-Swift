@@ -23,6 +23,7 @@ class AnimeEntity: Object {
   @Persisted var popularity: Int = 0
   @Persisted var userAmount: Int = 0
   @Persisted var favoriteAmount: Int = 0
+  @Persisted var nsfw: String = ""
   @Persisted var genre: List<String> = List<String>()
   @Persisted var mediaType: String = ""
   @Persisted var status: String = ""
