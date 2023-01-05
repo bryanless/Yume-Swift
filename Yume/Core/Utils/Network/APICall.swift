@@ -91,7 +91,7 @@ struct AnimeRankingRequest {
     limit: Int = 20,
     offsets: Int = 0,
     fields: String = API.defaultFields,
-    nsfw: Bool = false
+    nsfw: Bool = true
   ) {
     self.rankingType = rankingType
     self.limit = limit
@@ -113,7 +113,7 @@ struct AnimeRankingRequestParameter: Encodable {
     limit: Int = 20,
     offsets: Int = 0,
     fields: String = API.defaultFields,
-    nsfw: Bool = false
+    nsfw: Bool = true
   ) {
     self.rankingType = rankingType.name
     self.limit = limit
