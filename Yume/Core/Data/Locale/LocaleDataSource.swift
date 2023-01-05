@@ -45,9 +45,10 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
-            .sorted(byKeyPath: "rating", ascending: false)
+            .where { $0.rank != 0 }
+            .sorted(byKeyPath: RankingType.all.sortKey)
         }()
-        completion(.success(Array(animes.toArray(ofType: AnimeEntity.self).prefix(10))))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
@@ -61,9 +62,9 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
             .where { $0.status == Status.currentlyAiring.name }
-            .sorted(byKeyPath: "rank")
+            .sorted(byKeyPath: RankingType.airing.sortKey)
         }()
-        completion(.success(Array(animes.toArray(ofType: AnimeEntity.self).prefix(10))))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
@@ -77,9 +78,9 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
             .where { $0.status == Status.notYetAired.name }
-            .sorted(byKeyPath: "popularity")
+            .sorted(byKeyPath: RankingType.upcoming.sortKey)
         }()
-        completion(.success(Array(animes.toArray(ofType: AnimeEntity.self).prefix(10))))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
@@ -92,9 +93,10 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
-            .sorted(byKeyPath: "popularity")
+            .where { $0.popularity != 0 }
+            .sorted(byKeyPath: RankingType.byPopularity.sortKey)
         }()
-        completion(.success(Array(animes.toArray(ofType: AnimeEntity.self).prefix(10))))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }
@@ -107,9 +109,9 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
-            .sorted(byKeyPath: "favoriteAmount", ascending: false)
+            .sorted(byKeyPath: RankingType.favorite.sortKey, ascending: false)
         }()
-        completion(.success(Array(animes.toArray(ofType: AnimeEntity.self).prefix(10))))
+        completion(.success(animes.toArray(ofType: AnimeEntity.self)))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }

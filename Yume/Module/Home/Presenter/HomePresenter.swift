@@ -29,19 +29,19 @@ class HomePresenter: ObservableObject {
     loadingState = true
 
     // Get top airing anime
-    let topAiringAnimePublisher = homeUseCase.getTopAiringAnimes()
+    let topAiringAnimePublisher = homeUseCase.getTopAiringAnimes(request: AnimeRankingRequest(type: .airing))
     getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
-    let topUpcomingAnimePublisher = homeUseCase.getTopUpcomingAnimes()
+    let topUpcomingAnimePublisher = homeUseCase.getTopUpcomingAnimes(request: AnimeRankingRequest(type: .upcoming))
     getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
-    let popularAnimePublisher = homeUseCase.getPopularAnimes()
+    let popularAnimePublisher = homeUseCase.getPopularAnimes(request: AnimeRankingRequest(type: .byPopularity))
     getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series
-    let topAllAnimePublisher = homeUseCase.getTopAllAnimes()
+    let topAllAnimePublisher = homeUseCase.getTopAllAnimes(request: AnimeRankingRequest(type: .all))
     getTopAllAnimes(publisher: topAllAnimePublisher)
 
     let loadingPublishers = Publishers.CombineLatest4(

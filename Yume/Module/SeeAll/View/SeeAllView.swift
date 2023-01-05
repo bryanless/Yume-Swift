@@ -20,7 +20,7 @@ struct SeeAllView: View {
           ZStack(alignment: .top) {
             ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
               LazyVStack(spacing: Space.small) {
-                ForEach(self.presenter.animes) { anime in
+                ForEach(self.presenter.animes.prefix(20)) { anime in
                   self.presenter.linkBuilder(for: anime) {
                     AnimeCardItem(anime: anime)
                   }.buttonStyle(.plain)

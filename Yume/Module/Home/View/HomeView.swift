@@ -74,7 +74,7 @@ extension HomeView {
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
-          ForEach(self.presenter.topAiringAnimes) { anime in
+          ForEach(self.presenter.topAiringAnimes.prefix(10)) { anime in
             self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)
@@ -101,7 +101,7 @@ extension HomeView {
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
-          ForEach(self.presenter.topUpcomingAnimes) { anime in
+          ForEach(self.presenter.topUpcomingAnimes.prefix(10)) { anime in
             self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)
@@ -128,7 +128,7 @@ extension HomeView {
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
-          ForEach(self.presenter.popularAnimes) { anime in
+          ForEach(self.presenter.popularAnimes.prefix(10)) { anime in
             self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)
@@ -155,7 +155,7 @@ extension HomeView {
 
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
-          ForEach(self.presenter.topAllAnimes) { anime in
+          ForEach(self.presenter.topAllAnimes.prefix(10)) { anime in
             self.presenter.animeDetailLinkBuilder(for: anime) {
               AnimeItem(anime: anime)
             }.buttonStyle(.plain)

@@ -10,10 +10,10 @@ import Combine
 
 protocol HomeUseCase {
 
-  func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error>
-  func getTopAiringAnimes() -> AnyPublisher<[AnimeModel], Error>
-  func getTopUpcomingAnimes() -> AnyPublisher<[AnimeModel], Error>
-  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error>
+  func getTopAllAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
+  func getTopAiringAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
+  func getTopUpcomingAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
+  func getPopularAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
 
 }
 
@@ -25,20 +25,20 @@ class HomeInteractor: HomeUseCase {
     self.repository = repository
   }
 
-  func getTopAllAnimes() -> AnyPublisher<[AnimeModel], Error> {
-    return repository.getTopAllAnimes()
+  func getTopAllAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getTopAllAnimes(request: request)
   }
 
-  func getTopAiringAnimes() -> AnyPublisher<[AnimeModel], Error> {
-    return repository.getTopAiringAnimes()
+  func getTopAiringAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getTopAiringAnimes(request: request)
   }
 
-  func getTopUpcomingAnimes() -> AnyPublisher<[AnimeModel], Error> {
-    return repository.getTopUpcomingAnimes()
+  func getTopUpcomingAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getTopUpcomingAnimes(request: request)
   }
 
-  func getPopularAnimes() -> AnyPublisher<[AnimeModel], Error> {
-    return repository.getPopularAnimes()
+  func getPopularAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error> {
+    return repository.getPopularAnimes(request: request)
   }
 
 }

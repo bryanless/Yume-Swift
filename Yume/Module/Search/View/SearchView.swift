@@ -38,7 +38,9 @@ struct SearchView: View {
                     }.buttonStyle(.plain)
                   }
                 }.padding(Space.medium)
-              }.padding(.top, 40.0)
+              }
+              .padding(.top, 40.0)
+              .background(YumeColor.background)
             }
 
             appBar(
@@ -48,7 +50,7 @@ struct SearchView: View {
             )
           }
         }
-        .background(YumeColor.background).onAppear {
+        .onAppear {
           if self.presenter.topFavoriteAnimes.isEmpty {
             self.presenter.getTopFavoriteAnimes()
           }
@@ -75,6 +77,6 @@ extension SearchView {
         bottom: Space.small,
         trailing: Space.medium)
     )
-    .background(YumeColor.background)
+    .background(scrollOffset > 1 ? YumeColor.surface2 : Color.black.opacity(0))
   }
 }
