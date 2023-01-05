@@ -84,17 +84,20 @@ struct AnimeRankingRequest {
   let limit: Int
   let offsets: Int
   let fields: String
+  let nsfw: Bool
 
   init(
     type rankingType: RankingType = .all,
     limit: Int = 20,
     offsets: Int = 0,
-    fields: String = API.defaultFields
+    fields: String = API.defaultFields,
+    nsfw: Bool = false
   ) {
     self.rankingType = rankingType
     self.limit = limit
     self.offsets = offsets
     self.fields = fields
+    self.nsfw = nsfw
   }
 }
 
@@ -103,17 +106,20 @@ struct AnimeRankingRequestParameter: Encodable {
   let limit: Int
   let offsets: Int
   let fields: String
+  let nsfw: Bool
 
   init(
     type rankingType: RankingType = .all,
     limit: Int = 20,
     offsets: Int = 0,
-    fields: String = API.defaultFields
+    fields: String = API.defaultFields,
+    nsfw: Bool = false
   ) {
     self.rankingType = rankingType.name
     self.limit = limit
     self.offsets = offsets
     self.fields = fields
+    self.nsfw = nsfw
   }
 }
 
