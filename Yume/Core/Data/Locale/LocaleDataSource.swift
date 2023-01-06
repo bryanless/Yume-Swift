@@ -164,7 +164,12 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         do {
           try realm.write {
             for anime in animes {
-              realm.add(anime, update: .all)
+              if let animeEntity = realm.object(ofType: AnimeEntity.self, forPrimaryKey: anime.id) {
+                anime.isFavorite = animeEntity.isFavorite
+                realm.add(anime, update: .all)
+              } else {
+                realm.add(anime)
+              }
             }
             completion(.success(true))
           }
