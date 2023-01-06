@@ -23,7 +23,11 @@ let package = Package(
       name: "Core",
       dependencies: [
         .product(name: "RealmSwift", package: "realm-cocoa")
-      ]),
+      ],
+      resources: [
+        .process("Utils/Theme/Fonts")
+      ]
+    ),
     .testTarget(
       name: "CoreTests",
       dependencies: ["Core"])
