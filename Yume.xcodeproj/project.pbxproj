@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		931BBF65295C142200359359 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF64295C142200359359 /* Alamofire */; };
-		931BBF6A295C16B700359359 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF69295C16B700359359 /* Realm */; };
-		931BBF6C295C16B700359359 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF6B295C16B700359359 /* RealmSwift */; };
-		931BBF6F295C171000359359 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 931BBF6E295C171000359359 /* SDWebImageSwiftUI */; };
 		931BBF82295C18FD00359359 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBF81295C18FD00359359 /* HomeView.swift */; };
 		931BBF84295C197400359359 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBF83295C197400359359 /* HomePresenter.swift */; };
 		931BBF89295C19C400359359 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBF88295C19C400359359 /* APICall.swift */; };
@@ -83,6 +79,10 @@
 		935289EE295E1DCD009DF307 /* AnimeStatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289ED295E1DCD009DF307 /* AnimeStatItem.swift */; };
 		935289F0295E1FB0009DF307 /* YumeDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289EF295E1FB0009DF307 /* YumeDivider.swift */; };
 		935289F2295E2113009DF307 /* AnimeInformationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289F1295E2113009DF307 /* AnimeInformationItem.swift */; };
+		93648F09296866D500CAB465 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F08296866D500CAB465 /* RealmSwift */; };
+		93648F0B296866DF00CAB465 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0A296866DF00CAB465 /* Realm */; };
+		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
+		93648F0F296866F000CAB465 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0E296866F000CAB465 /* SDWebImageSwiftUI */; };
 		936C7734295ED579009C5BC6 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7733295ED579009C5BC6 /* SearchBar.swift */; };
 		936C7736295EE4F6009C5BC6 /* AnimeListsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */; };
 		936C7738295EE736009C5BC6 /* AnimeListMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C7737295EE736009C5BC6 /* AnimeListMapper.swift */; };
@@ -190,6 +190,7 @@
 		935289ED295E1DCD009DF307 /* AnimeStatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeStatItem.swift; sourceTree = "<group>"; };
 		935289EF295E1FB0009DF307 /* YumeDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeDivider.swift; sourceTree = "<group>"; };
 		935289F1295E2113009DF307 /* AnimeInformationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeInformationItem.swift; sourceTree = "<group>"; };
+		93648F03296862B100CAB465 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = Modules/Core; sourceTree = "<group>"; };
 		936C7733295ED579009C5BC6 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		936C7735295EE4F6009C5BC6 /* AnimeListsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListsResponse.swift; sourceTree = "<group>"; };
 		936C7737295EE736009C5BC6 /* AnimeListMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListMapper.swift; sourceTree = "<group>"; };
@@ -208,10 +209,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				931BBF6F295C171000359359 /* SDWebImageSwiftUI in Frameworks */,
-				931BBF6C295C16B700359359 /* RealmSwift in Frameworks */,
-				931BBF6A295C16B700359359 /* Realm in Frameworks */,
-				931BBF65295C142200359359 /* Alamofire in Frameworks */,
+				93648F0F296866F000CAB465 /* SDWebImageSwiftUI in Frameworks */,
+				93648F0D296866EB00CAB465 /* Alamofire in Frameworks */,
+				93648F0B296866DF00CAB465 /* Realm in Frameworks */,
+				93648F09296866D500CAB465 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,10 +588,12 @@
 			isa = PBXGroup;
 			children = (
 				93C14CE129602B5400097AFB /* .swiftlint.yml */,
+				93648F03296862B100CAB465 /* Core */,
 				934AF4B72958A82200C413B4 /* Yume */,
 				934AF4C82958A82200C413B4 /* YumeTests */,
 				934AF4D22958A82200C413B4 /* YumeUITests */,
 				934AF4B62958A82200C413B4 /* Products */,
+				93648F07296866D500CAB465 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -677,6 +680,13 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		93648F07296866D500CAB465 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		93C14CE529602D0C00097AFB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,10 +721,10 @@
 			);
 			name = Yume;
 			packageProductDependencies = (
-				931BBF64295C142200359359 /* Alamofire */,
-				931BBF69295C16B700359359 /* Realm */,
-				931BBF6B295C16B700359359 /* RealmSwift */,
-				931BBF6E295C171000359359 /* SDWebImageSwiftUI */,
+				93648F08296866D500CAB465 /* RealmSwift */,
+				93648F0A296866DF00CAB465 /* Realm */,
+				93648F0C296866EB00CAB465 /* Alamofire */,
+				93648F0E296866F000CAB465 /* SDWebImageSwiftUI */,
 			);
 			productName = Yume;
 			productReference = 934AF4B52958A82200C413B4 /* Yume.app */;
@@ -789,9 +799,9 @@
 			);
 			mainGroup = 934AF4AC2958A82100C413B4;
 			packageReferences = (
-				931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
-				931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				93648F04296865AC00CAB465 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				93648F06296865EE00CAB465 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 934AF4B62958A82200C413B4 /* Products */;
 			projectDirPath = "";
@@ -1256,23 +1266,23 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		93648F04296865AC00CAB465 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
-				kind = exactVersion;
-				version = 5.6.4;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
 			};
 		};
-		931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
 			requirement = {
-				kind = exactVersion;
-				version = 10.33.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
 			};
 		};
-		931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+		93648F06296865EE00CAB465 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
 			requirement = {
@@ -1283,24 +1293,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		931BBF64295C142200359359 /* Alamofire */ = {
+		93648F08296866D500CAB465 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 931BBF63295C142200359359 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		931BBF69295C16B700359359 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = Realm;
-		};
-		931BBF6B295C16B700359359 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 931BBF68295C16B700359359 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = 93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
-		931BBF6E295C171000359359 /* SDWebImageSwiftUI */ = {
+		93648F0A296866DF00CAB465 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 931BBF6D295C171000359359 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			package = 93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		93648F0C296866EB00CAB465 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93648F04296865AC00CAB465 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		93648F0E296866F000CAB465 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93648F06296865EE00CAB465 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
