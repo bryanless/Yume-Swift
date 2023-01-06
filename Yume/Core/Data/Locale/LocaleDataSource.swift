@@ -62,8 +62,10 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
-            .where { $0.status == Status.currentlyAiring.name }
-            .where { $0.rank != 0 }
+            .where {
+              $0.status == Status.currentlyAiring.name
+              && $0.rank != 0
+            }
             .sorted(byKeyPath: RankingType.airing.sortKey)
         }()
         completion(.success(animes.toArray(ofType: AnimeEntity.self)))
