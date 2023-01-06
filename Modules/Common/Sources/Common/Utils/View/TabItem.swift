@@ -5,6 +5,7 @@
 //  Created by Bryan on 29/12/22.
 //
 
+import Core
 import SwiftUI
 
 struct TabItem: View {
