@@ -1,4 +1,2 @@
-identifier_name:
-  min_length:
-    warning: 2
-    error: 1
+disabled_rules:
+  - identifier_name
