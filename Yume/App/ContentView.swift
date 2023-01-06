@@ -5,10 +5,42 @@
 //  Created by Bryan on 25/12/22.
 //
 
+import Anime
+import Core
+import Home
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var homePresenter: HomePresenter
+  @EnvironmentObject var homePresenter: Home.HomePresenter<
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimesRepository<
+        GetTopAllAnimesLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimeTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimesRepository<
+        GetTopAllAnimesLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimeTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimesRepository<
+        GetTopAllAnimesLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimeTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimesRepository<
+        GetTopAllAnimesLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimeTransformer>>>
+//  @EnvironmentObject var homePresenter: HomePresenter
   @EnvironmentObject var searchPresenter: SearchPresenter
   @EnvironmentObject var favoritePresenter: FavoritePresenter
   @State private var selection: Tab = .home
@@ -21,8 +53,11 @@ struct ContentView: View {
     VStack(spacing: 0) {
       TabView(selection: $selection) {
         NavigationStack {
-          HomeView(presenter: homePresenter)
+          Home.HomeView(presenter: homePresenter)
         }.tag(Tab.home)
+//        NavigationStack {
+//          HomeView(presenter: homePresenter)
+//        }.tag(Tab.home)
         NavigationStack {
           SearchView(presenter: searchPresenter)
         }.tag(Tab.search)

@@ -5,10 +5,31 @@
 //  Created by Bryan on 28/12/22.
 //
 
+import Anime
+import Core
+
 import Foundation
 import RealmSwift
 
 final class Injection: NSObject {
+  func provideTopAllAnime<U: UseCase>() -> U where U.Request == AnimeRankingModuleRequest, U.Response == [AnimeDomainModel] {
+    let locale = GetTopAllAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
+
+    let remote = GetAnimeRankingRemoteDataSource(
+      endpoint: Endpoints.Gets.ranking.url,
+      encoder: API.encoder,
+      headers: API.headers
+    )
+
+    let mapper = AnimeTransformer()
+
+    let repository = GetAnimesRepository(
+      localeDataSource: locale,
+      remoteDataSource: remote,
+      mapper: mapper)
+
+    return Interactor(repository: repository) as! U
+  }
 
   private func provideRepository() -> AnimeRepositoryProtocol {
     let realm = try? Realm()
