@@ -16,6 +16,7 @@ protocol LocaleDataSourceProtocol: AnyObject {
   func getTopUpcomingAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getPopularAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getTopFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeEntity], Error>
   func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
@@ -61,7 +62,10 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
       if let realm = self.realm {
         let animes: Results<AnimeEntity> = {
           realm.objects(AnimeEntity.self)
-            .where { $0.status == Status.currentlyAiring.name }
+            .where {
+              $0.status == Status.currentlyAiring.name
+              && $0.rank != 0
+            }
             .sorted(byKeyPath: RankingType.airing.sortKey)
         }()
         completion(.success(animes.toArray(ofType: AnimeEntity.self)))
@@ -118,6 +122,28 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
     }.eraseToAnyPublisher()
   }
 
+  // MARK: - Search anime
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeEntity], Error> {
+    return Future<[AnimeEntity], Error> { completion in
+      if let realm = self.realm {
+        let animes: Results<AnimeEntity> = {
+          realm.objects(AnimeEntity.self)
+            .sorted(byKeyPath: "userAmount", ascending: false)
+        }()
+        let filteredAnimes = animes.toArray(ofType: AnimeEntity.self)
+          .filter {
+            $0.title.containsWords(request.q)
+            || Array($0.alternativeTitleSynonyms).contains(where: { $0.containsWords(request.q) })
+            || $0.alternativeTitleEnglish.containsWords(request.q)
+            || $0.alternativeTitleJapanese.containsWords(request.q)
+          }
+        completion(.success(filteredAnimes))
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
   // MARK: - Get favorite anime
   func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error> {
     return Future<[AnimeEntity], Error> { completion in
@@ -141,7 +167,12 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
         do {
           try realm.write {
             for anime in animes {
-              realm.add(anime, update: .all)
+              if let animeEntity = realm.object(ofType: AnimeEntity.self, forPrimaryKey: anime.id) {
+                anime.isFavorite = animeEntity.isFavorite
+                realm.add(anime, update: .all)
+              } else {
+                realm.add(anime)
+              }
             }
             completion(.success(true))
           }

@@ -15,6 +15,7 @@ struct SeeAllView: View {
     ZStack {
       if presenter.loadingState {
         ProgressIndicator()
+          .background(YumeColor.background)
       } else {
         NavigationStack {
           ZStack(alignment: .top) {

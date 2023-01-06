@@ -20,14 +20,18 @@ struct ContentView: View {
   var body: some View {
     VStack(spacing: 0) {
       TabView(selection: $selection) {
-        HomeView(presenter: homePresenter)
-          .tag(Tab.home)
-        SearchView(presenter: searchPresenter)
-          .tag(Tab.search)
-        FavoriteView(presenter: favoritePresenter)
-          .tag(Tab.favorite)
-        ProfileView()
-          .tag(Tab.profile)
+        NavigationStack {
+          HomeView(presenter: homePresenter)
+        }.tag(Tab.home)
+        NavigationStack {
+          SearchView(presenter: searchPresenter)
+        }.tag(Tab.search)
+        NavigationStack {
+          FavoriteView(presenter: favoritePresenter)
+        }.tag(Tab.favorite)
+        NavigationStack {
+          ProfileView()
+        }.tag(Tab.profile)
       }
       TabBar(selection: $selection)
     }

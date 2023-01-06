@@ -82,46 +82,65 @@ enum RankingType: String {
 struct AnimeRankingRequest {
   let rankingType: RankingType
   let limit: Int
-  let offsets: Int
+  let offset: Int
   let fields: String
+  let nsfw: Bool
 
   init(
     type rankingType: RankingType = .all,
     limit: Int = 20,
-    offsets: Int = 0,
-    fields: String = API.defaultFields
+    offset: Int = 0,
+    fields: String = API.defaultFields,
+    nsfw: Bool = true
   ) {
     self.rankingType = rankingType
     self.limit = limit
-    self.offsets = offsets
+    self.offset = offset
     self.fields = fields
+    self.nsfw = nsfw
   }
 }
 
 struct AnimeRankingRequestParameter: Encodable {
   let rankingType: String
   let limit: Int
-  let offsets: Int
+  let offset: Int
   let fields: String
+  let nsfw: Bool
 
   init(
     type rankingType: RankingType = .all,
     limit: Int = 20,
-    offsets: Int = 0,
-    fields: String = API.defaultFields
+    offset: Int = 0,
+    fields: String = API.defaultFields,
+    nsfw: Bool = true
   ) {
     self.rankingType = rankingType.name
     self.limit = limit
-    self.offsets = offsets
+    self.offset = offset
     self.fields = fields
+    self.nsfw = nsfw
   }
 }
 
-struct AnimeListParameters {
-  static func getAnimeListParameters(query: String) -> [String: String] {
-    return [
-      "q": query,
-      "fields": API.defaultFields
-    ]
+struct AnimeListRequest: Encodable {
+  let q: String
+  let limit: Int
+  let offset: Int
+  let fields: String
+  let nsfw: Bool
+
+  init(
+    title q: String,
+    limit: Int = 100,
+    offset: Int = 0,
+    fields: String = API.defaultFields,
+    nsfw: Bool = true
+  ) {
+    self.q = q
+    self.limit = limit
+    self.offset = offset
+    self.fields = fields
+    self.nsfw = nsfw
   }
 }

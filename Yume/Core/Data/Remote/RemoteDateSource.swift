@@ -12,7 +12,7 @@ import Combine
 protocol RemoteDataSourceProtocol: AnyObject {
 
   func getTopAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeRankingResponse], Error>
-  func searchAnime(name query: String) -> AnyPublisher<[AnimeListResponse], Error>
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeListResponse], Error>
 
 }
 
@@ -34,7 +34,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
           parameters: AnimeRankingRequestParameter(
             type: request.rankingType,
             limit: request.limit,
-            offsets: request.offsets,
+            offset: request.offset,
             fields: request.fields
           ),
           encoder: API.encoder,
@@ -53,12 +53,13 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     }.eraseToAnyPublisher()
   }
 
-  func searchAnime(name query: String) -> AnyPublisher<[AnimeListResponse], Error> {
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeListResponse], Error> {
     return Future<[AnimeListResponse], Error> { completion in
       if let url = URL(string: Endpoints.Gets.search.url) {
         AF.request(
           url,
-          parameters: AnimeListParameters.getAnimeListParameters(query: query),
+          parameters: request,
+          encoder: API.encoder,
           headers: API.headers
         )
         .validate()

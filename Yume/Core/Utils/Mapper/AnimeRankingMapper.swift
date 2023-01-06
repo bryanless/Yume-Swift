@@ -28,8 +28,9 @@ final class AnimeRankingMapper {
       newAnime.popularity = result.anime.popularity ?? 0
       newAnime.userAmount = result.anime.userAmount
       newAnime.favoriteAmount = result.anime.favoriteAmount
-      newAnime.genre.append(objectsIn: result.anime.genres.map { $0.name })
-      newAnime.mediaType = result.anime.mediaType.toName().rawValue
+      newAnime.nsfw = result.anime.nsfw?.name ?? "Unknown"
+      newAnime.genre.append(objectsIn: result.anime.genres?.map { $0.name } ?? [])
+      newAnime.mediaType = result.anime.mediaType.name
       newAnime.status = result.anime.status.name
       newAnime.episodeAmount = result.anime.episodeAmount
       newAnime.startSeason = result.anime.startSeason?.season.name ?? "Unknown"
@@ -63,8 +64,9 @@ final class AnimeRankingMapper {
         popularity: result.anime.popularity ?? 0,
         userAmount: result.anime.userAmount,
         favoriteAmount: result.anime.favoriteAmount,
-        genre: result.anime.genres.map { $0.name },
-        mediaType: result.anime.mediaType.toName().rawValue,
+        nsfw: result.anime.nsfw?.name ?? "Unknown",
+        genre: result.anime.genres?.map { $0.name } ?? [],
+        mediaType: result.anime.mediaType.name,
         status: result.anime.status.name,
         episodeAmount: result.anime.episodeAmount,
         startSeason: result.anime.startSeason?.season.name ?? "Unknown",

@@ -23,6 +23,7 @@ struct AnimeModel: Equatable, Identifiable {
   let popularity: Int
   let userAmount: Int
   let favoriteAmount: Int
+  let nsfw: String
   let genre: [String]
   let mediaType: String
   let status: String

@@ -15,9 +15,9 @@ protocol AnimeRepositoryProtocol {
   func getTopUpcomingAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
   func getPopularAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
   func getTopFavoriteAnimes(request: AnimeRankingRequest) -> AnyPublisher<[AnimeModel], Error>
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeModel], Error>
   func getFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error>
   func getAnime(withId id: Int) -> AnyPublisher<AnimeModel, Error>
-  func searchAnime(name: String) -> AnyPublisher<[AnimeModel], Error>
   func updateAnimeFavorite(withId id: Int) -> AnyPublisher<AnimeModel, Error>
 
 }
@@ -142,6 +142,17 @@ extension AnimeRepository: AnimeRepositoryProtocol {
       }.eraseToAnyPublisher()
   }
 
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeModel], Error> {
+    return self.remote.searchAnime(request: request)
+      .map { AnimeListMapper.mapAnimeListResponsesToEntities(input: $0) }
+      .flatMap { self.locale.addAnimes(from: $0) }
+      .filter { $0 }
+      .flatMap { _ in self.locale.searchAnime(request: request)
+          .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
+      }
+      .eraseToAnyPublisher()
+  }
+
   func getFavoriteAnimes() -> AnyPublisher<[AnimeModel], Error> {
     return self.locale.getFavoriteAnimes()
       .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
@@ -151,18 +162,6 @@ extension AnimeRepository: AnimeRepositoryProtocol {
   func getAnime(withId id: Int) -> AnyPublisher<AnimeModel, Error> {
     return self.locale.getAnime(withId: id)
       .map { AnimeMapper.mapAnimeEntityToDomain(input: $0) }
-      .eraseToAnyPublisher()
-  }
-
-  func searchAnime(name: String) -> AnyPublisher<[AnimeModel], Error> {
-    return self.remote.searchAnime(name: name)
-      .map { AnimeListMapper.mapAnimeListResponsesToEntities(input: $0) }
-      .flatMap { self.locale.addAnimes(from: $0) }
-      .filter { $0 }
-      .flatMap { _ in self.remote.searchAnime(name: name)
-          .map { AnimeListMapper.mapAnimeListResponsesToEntities(input: $0) }
-          .map { AnimeMapper.mapAnimeEntitiesToDomains(input: $0) }
-      }
       .eraseToAnyPublisher()
   }
 
