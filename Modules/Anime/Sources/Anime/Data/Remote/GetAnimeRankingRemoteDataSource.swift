@@ -33,12 +33,12 @@ public struct GetAnimeRankingRemoteDataSource: DataSource {
     return Future<[AnimeRankingResponse], Error> { completion in
       guard let request = request else { return completion(.failure(URLError.invalidRequest)) }
 
-      if let url = URL(string: "https://api.myanimelist.net/v2/anime/ranking") {
+      if let url = URL(string: _endpoint) {
         AF.request(
           url,
           parameters: request,
           encoder: _encoder,
-          headers: ["X-MAL-CLIENT-ID": "23edfd1bf4b15809b72c7268fc63bd74"]
+          headers: _headers
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
