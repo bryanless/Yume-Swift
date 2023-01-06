@@ -71,18 +71,18 @@ public enum TypographyStyle {
   }
 }
 
-public struct BaseTypography: ViewModifier {
+struct BaseTypography: ViewModifier {
   let type: TypographyStyle
   let weight: Font.Weight
   let color: Color
 
-  public func body(content: Content) -> some View {
+  func body(content: Content) -> some View {
     content
       .font(.nunitoFont(size: type.size, weight: weight))
       .foregroundColor(color)
   }
 
-  public init(type: TypographyStyle, weight: Font.Weight, color: Color = YumeColor.onBackground) {
+  init(type: TypographyStyle, weight: Font.Weight, color: Color = YumeColor.onBackground) {
     self.type = type
     self.weight = weight
     self.color = color

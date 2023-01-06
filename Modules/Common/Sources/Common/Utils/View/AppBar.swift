@@ -5,6 +5,7 @@
 //  Created by Bryan on 30/12/22.
 //
 
+import Core
 import SwiftUI
 
 struct AppBar<Content: View>: View {

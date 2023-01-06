@@ -5,11 +5,13 @@
 //  Created by Bryan on 29/12/22.
 //
 
+import Anime
+import Core
 import SwiftUI
 import SDWebImageSwiftUI
 
 struct AnimeCardItem: View {
-  @State var anime: AnimeModel
+  @State var anime: AnimeDomainModel
 
   var body: some View {
     HStack(spacing: Space.small) {
@@ -92,7 +94,7 @@ extension AnimeCardItem {
           color: .orange,
           size: IconSize.small
         )
-        Text("#\(Formatter.formatNumber(anime.rank))")
+        Text("#\(anime.rank.formatNumber())")
           .typography(.caption(color: YumeColor.onSurfaceVariant))
       }
       HStack(spacing: Space.tiny) {
@@ -101,21 +103,9 @@ extension AnimeCardItem {
           color: .green,
           size: IconSize.small
         )
-        Text("#\(Formatter.formatNumber(anime.popularity))")
+        Text("#\(anime.popularity.formatNumber())")
           .typography(.caption(color: YumeColor.onSurfaceVariant))
       }
     }
-  }
-}
-
-struct AnimeCardItem_Previews: PreviewProvider {
-  static let animeRankingsResponse: AnimeRankingsResponse = PreviewData.load("top_all_anime_response")
-
-  static var previews: some View {
-    AnimeCardItem(
-      anime: AnimeRankingMapper.mapAnimeRankingResponsesToDomains(
-        input: animeRankingsResponse.animes
-      ).first!
-    )
   }
 }
