@@ -8,15 +8,18 @@
 import Core
 import SwiftUI
 
-struct YumeDivider: View {
-    var body: some View {
-        Divider()
-        .overlay(YumeColor.outlineVariant)
-    }
+public struct YumeDivider: View {
+
+  public init() {}
+
+  public var body: some View {
+    Divider()
+      .overlay(YumeColor.outlineVariant)
+  }
 }
 
 struct YumeDivider_Previews: PreviewProvider {
-    static var previews: some View {
-        YumeDivider()
-    }
+  static var previews: some View {
+    YumeDivider()
+  }
 }

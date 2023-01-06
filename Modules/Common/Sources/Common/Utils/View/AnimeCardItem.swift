@@ -10,10 +10,10 @@ import Core
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct AnimeCardItem: View {
+public struct AnimeCardItem: View {
   @State var anime: AnimeDomainModel
 
-  var body: some View {
+  public var body: some View {
     HStack(spacing: Space.small) {
       mainPicture
       content

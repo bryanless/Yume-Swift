@@ -8,13 +8,13 @@
 import Core
 import SwiftUI
 
-struct TabItem: View {
+public struct TabItem: View {
   let icon: UIImage
   let label: String
   let isActive: Bool
   let onTap: () -> Void
 
-  var body: some View {
+  public var body: some View {
     let color = isActive ? YumeColor.onSurface : YumeColor.onSurfaceVariant
     GeometryReader { geo in
       VStack(alignment: .center, spacing: Space.tiny) {
@@ -35,7 +35,7 @@ struct TabItem: View {
 struct TabItem_Previews: PreviewProvider {
   static var previews: some View {
     TabItem(icon: Icons.houseOutlined, label: "Home", isActive: true) {
-
+      
     }
   }
 }

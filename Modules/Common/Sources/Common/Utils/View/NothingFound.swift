@@ -8,10 +8,10 @@
 import Core
 import SwiftUI
 
-struct NothingFound: View {
+public struct NothingFound: View {
   var label: String
 
-  var body: some View {
+  public var body: some View {
     GeometryReader { geo in
       VStack {
         Text(label)

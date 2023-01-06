@@ -8,11 +8,11 @@
 import Core
 import SwiftUI
 
-struct SearchBar: View {
+public struct SearchBar: View {
   let placeholder: String
   @Binding var searchText: String
 
-  var body: some View {
+  public var body: some View {
     HStack {
       IconView(
         icon: Icons.search,

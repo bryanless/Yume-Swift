@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct IconView: View {
+public struct IconView: View {
   var icon: UIImage
   var color: Color = .black
   var size: CGFloat = IconSize.medium
-
-  var body: some View {
+  
+  public var body: some View {
     Image(uiImage: icon)
       .resizable()
       .foregroundColor(color)

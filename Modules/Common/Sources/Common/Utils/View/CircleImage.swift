@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct CircleImage: View {
+public struct CircleImage: View {
   let image: Image
 
-  var body: some View {
+  public var body: some View {
     image
       .resizable()
       .aspectRatio(1, contentMode: .fit)

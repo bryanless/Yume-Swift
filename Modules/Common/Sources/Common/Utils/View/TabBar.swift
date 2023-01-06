@@ -8,10 +8,10 @@
 import Core
 import SwiftUI
 
-struct TabBar: View {
+public struct TabBar: View {
   @Binding var selection: Tab
 
-  var body: some View {
+  public var body: some View {
     HStack(alignment: .center) {
       TabItem(
         icon: selection == .home ? Icons.house : Icons.houseOutlined,
@@ -58,7 +58,7 @@ struct TabBar: View {
   }
 }
 
-enum Tab {
+public enum Tab {
   case home, search, favorite, profile
 }
 
