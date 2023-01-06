@@ -20,43 +20,40 @@ struct SearchView: View {
             self.presenter.getTopFavoriteAnimes()
           }
       } else {
-        NavigationStack {
-          ZStack(alignment: .top) {
-            if presenter.viewState == .loading {
-              ProgressIndicator(label: "Searching anime")
-                .background(YumeColor.background)
-            } else if presenter.viewState == .completed && presenter.searchAnimeResults.isEmpty {
-              NothingFound(label: "No anime found")
-                .background(YumeColor.background)
-            } else {
-              ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
-                LazyVStack(spacing: Space.small) {
-                  ForEach(
-                    self.presenter.searchAnimeResults.isEmpty
-                    ? self.presenter.topFavoriteAnimes : self.presenter.searchAnimeResults
-                  ) { anime in
-                    self.presenter.linkBuilder(for: anime) {
-                      AnimeCardItem(anime: anime)
-                    }.buttonStyle(.plain)
-                  }
-                }.padding(Space.medium)
-              }
-              .padding(.top, 40.0)
+        ZStack(alignment: .top) {
+          if presenter.viewState == .loading {
+            ProgressIndicator(label: "Searching anime")
               .background(YumeColor.background)
+          } else if presenter.viewState == .completed && presenter.searchAnimeResults.isEmpty {
+            NothingFound(label: "No anime found")
+              .background(YumeColor.background)
+          } else {
+            ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+              LazyVStack(spacing: Space.small) {
+                ForEach(
+                  self.presenter.searchAnimeResults.isEmpty
+                  ? self.presenter.topFavoriteAnimes : self.presenter.searchAnimeResults
+                ) { anime in
+                  self.presenter.linkBuilder(for: anime) {
+                    AnimeCardItem(anime: anime)
+                  }.buttonStyle(.plain)
+                }
+              }.padding(Space.medium)
             }
+            .padding(.top, 40.0)
+            .background(YumeColor.background)
+          }
 
-            appBar(
-              scrollOffset: scrollOffset,
-              placeholder: "Search anime",
-              searchText: self.$presenter.searchText
-            )
-          }
+          appBar(
+            scrollOffset: scrollOffset,
+            placeholder: "Search anime",
+            searchText: self.$presenter.searchText
+          )
         }
-        .onAppear {
-          if self.presenter.topFavoriteAnimes.isEmpty {
-            self.presenter.getTopFavoriteAnimes()
-          }
-        }
+      }
+    }.onAppear {
+      if self.presenter.topFavoriteAnimes.isEmpty {
+        self.presenter.getTopFavoriteAnimes()
       }
     }
   }

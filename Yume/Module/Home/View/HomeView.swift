@@ -17,32 +17,29 @@ struct HomeView: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else {
-        NavigationStack {
-          ZStack(alignment: .top) {
-            ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
-              LazyVStack(spacing: Space.large) {
-                header
-                topAiringAnime
-                topUpcomingAnime
-                popularAnime
-                topAllAnime
-              }.padding(
-                EdgeInsets(
-                  top: 40,
-                  leading: Space.none,
-                  bottom: Space.medium,
-                  trailing: Space.none)
-              )
-            }
-            AppBar(scrollOffset: scrollOffset, label: "Home")
+        ZStack(alignment: .top) {
+          ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+            LazyVStack(spacing: Space.large) {
+              header
+              topAiringAnime
+              topUpcomingAnime
+              popularAnime
+              topAllAnime
+            }.padding(
+              EdgeInsets(
+                top: 40,
+                leading: Space.none,
+                bottom: Space.medium,
+                trailing: Space.none)
+            )
           }
-          .background(YumeColor.background)
-        }.onAppear {
-          if self.presenter.topAllAnimes.isEmpty
-              || self.presenter.popularAnimes.isEmpty {
-            self.presenter.setupHomeView()
-          }
-        }
+          AppBar(scrollOffset: scrollOffset, label: "Home")
+        }.background(YumeColor.background)
+      }
+    }.onAppear {
+      if self.presenter.topAllAnimes.isEmpty
+          || self.presenter.popularAnimes.isEmpty {
+        self.presenter.setupHomeView()
       }
     }
   }

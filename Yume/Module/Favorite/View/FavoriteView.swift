@@ -16,57 +16,50 @@ struct FavoriteView: View {
       if presenter.viewState == .unknown {
         ProgressIndicator()
           .background(YumeColor.background)
-          .onAppear {
-            self.presenter.getFavoriteAnimes()
-          }
+      } else if self.presenter.favoriteAnimes.isEmpty {
+        VStack(alignment: .leading) {
+          Text("Favorites")
+            .typography(.largeTitle(weight: .bold))
+          NothingFound(label: "No favorite anime")
+            .background(YumeColor.background)
+            .onAppear {
+              self.presenter.getFavoriteAnimes()
+            }
+        }
+        .padding(
+          EdgeInsets(
+            top: 40,
+            leading: Space.medium,
+            bottom: Space.medium,
+            trailing: Space.medium)
+        )
+        .background(YumeColor.background)
       } else {
-        NavigationStack {
-          if self.presenter.favoriteAnimes.isEmpty {
-            VStack(alignment: .leading) {
+        ZStack(alignment: .top) {
+          ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+            LazyVStack(alignment: .leading, spacing: Space.small) {
               Text("Favorites")
                 .typography(.largeTitle(weight: .bold))
-              NothingFound(label: "No favorite anime")
-                .background(YumeColor.background)
-                .onAppear {
-                  self.presenter.getFavoriteAnimes()
-                }
-            }
-            .padding(
+              ForEach(self.presenter.favoriteAnimes) { anime in
+                self.presenter.linkBuilder(for: anime) {
+                  AnimeCardItem(anime: anime)
+                }.buttonStyle(.plain)
+              }
+            }.padding(
               EdgeInsets(
                 top: 40,
                 leading: Space.medium,
                 bottom: Space.medium,
                 trailing: Space.medium)
             )
-            .background(YumeColor.background)
-          } else {
-            ZStack(alignment: .top) {
-              ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
-                LazyVStack(alignment: .leading, spacing: Space.small) {
-                  Text("Favorites")
-                    .typography(.largeTitle(weight: .bold))
-                  ForEach(self.presenter.favoriteAnimes) { anime in
-                    self.presenter.linkBuilder(for: anime) {
-                      AnimeCardItem(anime: anime)
-                    }.buttonStyle(.plain)
-                  }
-                }.padding(
-                  EdgeInsets(
-                    top: 40,
-                    leading: Space.medium,
-                    bottom: Space.medium,
-                    trailing: Space.medium)
-                )
-              }
-              .background(YumeColor.background)
-              .onAppear {
-                self.presenter.getFavoriteAnimes()
-              }
-              AppBar(scrollOffset: scrollOffset, label: "Favorite")
-            }
           }
+          .background(YumeColor.background)
+          AppBar(scrollOffset: scrollOffset, label: "Favorite")
         }
       }
+    }
+    .onAppear {
+      self.presenter.getFavoriteAnimes()
     }
   }
 }
