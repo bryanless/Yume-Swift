@@ -15,6 +15,7 @@ struct SearchView: View {
     ZStack {
       if presenter.viewState == .unknown {
         ProgressIndicator()
+          .background(YumeColor.background)
           .onAppear {
             self.presenter.getTopFavoriteAnimes()
           }
@@ -23,6 +24,7 @@ struct SearchView: View {
           ZStack(alignment: .top) {
             if presenter.viewState == .loading {
               ProgressIndicator(label: "Searching anime")
+                .background(YumeColor.background)
             } else if presenter.viewState == .completed && presenter.searchAnimeResults.isEmpty {
               NothingFound(label: "No anime found")
                 .background(YumeColor.background)

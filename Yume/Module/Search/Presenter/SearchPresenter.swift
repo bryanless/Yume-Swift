@@ -29,11 +29,10 @@ class SearchPresenter: ObservableObject {
     $searchText
       .removeDuplicates()
       .debounce(for: 0.6, scheduler: RunLoop.main)
-      .map { $0.count > 2 }
       .receive(on: RunLoop.main)
-      .sink(receiveValue: { [weak self] isValid in
-        if isValid {
-          self?.searchAnime()
+      .sink(receiveValue: { [weak self] searchText in
+        if searchText.count > 2 {
+          self?.searchAnime(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
         } else {
           self?.viewState = .none
           self?.searchAnimeResults = []
@@ -42,10 +41,10 @@ class SearchPresenter: ObservableObject {
       .store(in: &cancellables)
   }
 
-  func searchAnime() {
+  func searchAnime(title: String) {
     viewState = .loading
     searchAnimeResults = []
-    searchUseCase.searchAnime(name: searchText)
+    searchUseCase.searchAnime(request: AnimeListRequest(title: title))
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {

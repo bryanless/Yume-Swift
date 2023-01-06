@@ -16,6 +16,7 @@ struct AnimeDetailView: View {
     ZStack {
       if presenter.loadingState {
         ProgressIndicator()
+          .background(YumeColor.background)
       } else {
         ZStack(alignment: .top) {
           ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in

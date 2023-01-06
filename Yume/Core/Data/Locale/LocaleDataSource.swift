@@ -16,6 +16,7 @@ protocol LocaleDataSourceProtocol: AnyObject {
   func getTopUpcomingAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getPopularAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getTopFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeEntity], Error>
   func getFavoriteAnimes() -> AnyPublisher<[AnimeEntity], Error>
   func getAnime(withId id: Int) -> AnyPublisher<AnimeEntity, Error>
   func addAnimes(from animes: [AnimeEntity]) -> AnyPublisher<Bool, Error>
@@ -112,6 +113,28 @@ extension LocaleDataSource: LocaleDataSourceProtocol {
             .sorted(byKeyPath: RankingType.favorite.sortKey, ascending: false)
         }()
         completion(.success(animes.toArray(ofType: AnimeEntity.self)))
+      } else {
+        completion(.failure(DatabaseError.invalidInstance))
+      }
+    }.eraseToAnyPublisher()
+  }
+
+  // MARK: - Search anime
+  func searchAnime(request: AnimeListRequest) -> AnyPublisher<[AnimeEntity], Error> {
+    return Future<[AnimeEntity], Error> { completion in
+      if let realm = self.realm {
+        let animes: Results<AnimeEntity> = {
+          realm.objects(AnimeEntity.self)
+            .sorted(byKeyPath: "userAmount", ascending: false)
+        }()
+        let filteredAnimes = animes.toArray(ofType: AnimeEntity.self)
+          .filter {
+            $0.title.containsWords(request.q)
+            || Array($0.alternativeTitleSynonyms).contains(where: { $0.containsWords(request.q) })
+            || $0.alternativeTitleEnglish.containsWords(request.q)
+            || $0.alternativeTitleJapanese.containsWords(request.q)
+          }
+        completion(.success(filteredAnimes))
       } else {
         completion(.failure(DatabaseError.invalidInstance))
       }

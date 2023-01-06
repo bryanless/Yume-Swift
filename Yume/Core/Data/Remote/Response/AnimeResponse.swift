@@ -16,7 +16,7 @@ struct AnimeResponse: Codable {
   let rank, popularity: Int?
   let userAmount, favoriteAmount: Int
   let nsfw: Nsfw?
-  let genres: [Genre]
+  let genres: [Genre]?
   let mediaType: MediaType
   let status: Status
   let episodeAmount: Int
@@ -64,7 +64,7 @@ struct AnimeResponse: Codable {
     self.userAmount = try container.decode(Int.self, forKey: .userAmount)
     self.favoriteAmount = try container.decode(Int.self, forKey: .favoriteAmount)
     self.nsfw = try? container.decodeIfPresent(Nsfw.self, forKey: .nsfw)
-    self.genres = try container.decode([Genre].self, forKey: .genres)
+    self.genres = try? container.decodeIfPresent([Genre].self, forKey: .genres) ?? []
     self.mediaType = try container.decode(MediaType.self, forKey: .mediaType)
     self.status = try container.decode(Status.self, forKey: .status)
     self.episodeAmount = try container.decode(Int.self, forKey: .episodeAmount)

@@ -15,6 +15,7 @@ struct FavoriteView: View {
     ZStack {
       if presenter.viewState == .unknown {
         ProgressIndicator()
+          .background(YumeColor.background)
           .onAppear {
             self.presenter.getFavoriteAnimes()
           }
