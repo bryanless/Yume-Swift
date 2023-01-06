@@ -8,14 +8,14 @@
 import Core
 import SwiftUI
 
-struct AppBar<Content: View>: View {
+public struct AppBar<Content: View>: View {
   var scrollOffset: CGFloat
   let label: String
   let alwaysShowLabel: Bool
   let leading: () -> Content?
   let trailing: () -> Content?
 
-  init(
+  public init(
     scrollOffset: CGFloat,
     label: String,
     alwaysShowLabel: Bool = false,
@@ -29,7 +29,7 @@ struct AppBar<Content: View>: View {
     self.trailing = trailing
   }
 
-  var body: some View {
+  public var body: some View {
     GeometryReader { geo in
       VStack(spacing: Space.small) {
         HStack(spacing: Space.small) {
@@ -57,14 +57,14 @@ struct AppBar<Content: View>: View {
   }
 }
 
-struct BackAppBar<Content: View>: View {
+public struct BackAppBar<Content: View>: View {
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   var scrollOffset: CGFloat
   let label: String
   let alwaysShowLabel: Bool
   let trailing: () -> Content?
 
-  init(
+  public init(
     scrollOffset: CGFloat,
     label: String,
     alwaysShowLabel: Bool = false,
@@ -76,7 +76,7 @@ struct BackAppBar<Content: View>: View {
     self.trailing = trailing
   }
 
-  var body: some View {
+  public var body: some View {
     GeometryReader { geo in
       VStack(spacing: Space.small) {
         HStack(spacing: Space.small) {
