@@ -15,38 +15,36 @@ struct YumeApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
   var body: some Scene {
+    let injection = Injection.init()
+
     let topAiringAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopAiringAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>
-    > = Injection.init().provideTopAiringAnime()
+        AnimesTransformer>> = injection.provideTopAiringAnime()
     let topUpcomingAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopUpcomingAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>
-    > = Injection.init().provideTopUpcomingAnime()
+        AnimesTransformer>> = injection.provideTopUpcomingAnime()
     let popularAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetPopularAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>
-    > = Injection.init().providePopularAnime()
+        AnimesTransformer>> = injection.providePopularAnime()
     let topAllAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopAllAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>
-    > = Injection.init().provideTopAllAnime()
+        AnimesTransformer>> = injection.provideTopAllAnime()
     //    let homeUseCase = Injection.init().provideHome()
     let searchUseCase = Injection.init().provideSearch()
     let favoriteUseCase = Injection.init().provideFavorite()

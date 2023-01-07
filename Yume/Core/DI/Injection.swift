@@ -122,6 +122,38 @@ final class Injection: NSObject {
     return Interactor(repository: repository) as! U
   }
 
+  func provideAnime<U: UseCase>() -> U
+  where
+  U.Request == Int,
+  U.Response == AnimeDomainModel {
+    let locale = GetAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+
+    let mapper = AnimeTransformer()
+
+    let repository = GetAnimeRepository(
+      localeDataSource: locale,
+      mapper: mapper
+    )
+
+    return Interactor(repository: repository) as! U
+  }
+
+  func provideUpdateFavoriteAnime<U: UseCase>() -> U
+  where
+  U.Request == Int,
+  U.Response == AnimeDomainModel {
+    let locale = GetFavoriteAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+
+    let mapper = AnimeTransformer()
+
+    let repository = UpdateFavoriteAnimeRepository(
+      localeDataSource: locale,
+      mapper: mapper
+    )
+
+    return Interactor(repository: repository) as! U
+  }
+
   private func provideRepository() -> AnimeRepositoryProtocol {
     let realm = try? Realm()
 

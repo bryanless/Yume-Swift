@@ -6,11 +6,14 @@
 //
 
 import Anime
+import AnimeDetail
 import Common
 import Core
 import SwiftUI
 
-public struct HomeView: View {
+public struct HomeView<
+  //  SeeAllDestination: View,
+  DetailDestination: View>: View {
   @ObservedObject var presenter: HomePresenter<
     Interactor<
       AnimeRankingModuleRequest,
@@ -40,7 +43,9 @@ public struct HomeView: View {
         GetTopAllAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
-  @State var scrollOffset: CGFloat
+  @State var _scrollOffset: CGFloat
+  //  let seeAllDestination: ((_ animes: [AnimeDomainModel]) -> SeeAllDestination)
+  let detailDestination: ((_ anime: AnimeDomainModel) -> DetailDestination)
 
   public init(
     presenter: HomePresenter<
@@ -72,10 +77,14 @@ public struct HomeView: View {
     GetTopAllAnimesLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>>,
-    scrollOffset: CGFloat = CGFloat.zero
+    scrollOffset: CGFloat = CGFloat.zero,
+    //    seeAllDestination: @escaping (([AnimeDomainModel]) -> SeeAllDestination),
+    detailDestination: @escaping ((AnimeDomainModel) -> DetailDestination)
   ) {
     self.presenter = presenter
-    self.scrollOffset = scrollOffset
+    _scrollOffset = scrollOffset
+    //    self.seeAllDestination = seeAllDestination
+    self.detailDestination = detailDestination
   }
 
   public var body: some View {
@@ -103,7 +112,7 @@ public struct HomeView: View {
 extension HomeView {
   var content: some View {
     ZStack(alignment: .top) {
-      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+      ObservableScrollView(scrollOffset: $_scrollOffset, showsIndicators: false) { _ in
         LazyVStack(spacing: Space.large) {
           header
           topAiringAnime
@@ -119,7 +128,7 @@ extension HomeView {
         )
       }
 
-      AppBar(scrollOffset: scrollOffset, label: "Home")
+      AppBar(scrollOffset: _scrollOffset, label: "Home")
     }.background(YumeColor.background)
   }
 
@@ -137,10 +146,7 @@ extension HomeView {
         Text("Now Airing")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        self.presenter.seeAllLinkBuilder(
-        //          for: self.presenter.topAiringAnimes,
-        //          navigationTitle: "Now Airing"
-        //        ) {
+        //        NavigationLink (destination: seeAllDestination(presenter.topAiringAnimeList)) {
         Text("See All")
           .typography(.subheadline(color: YumeColor.primary))
         //        }
@@ -149,9 +155,9 @@ extension HomeView {
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topAiringAnimeList.prefix(10)) { anime in
-            //            self.presenter.animeDetailLinkBuilder(for: anime) {
-            AnimeItem(anime: anime)
-            //            }.buttonStyle(.plain)
+            NavigationLink(destination: detailDestination(anime)) {
+              Common.AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
       }
@@ -164,10 +170,7 @@ extension HomeView {
         Text("Upcoming")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        self.presenter.seeAllLinkBuilder(
-        //          for: self.presenter.topUpcomingAnimes,
-        //          navigationTitle: "Upcoming"
-        //        ) {
+        //        NavigationLink (destination: seeAllDestination(presenter.topUpcomingAnimeList)) {
         Text("See All")
           .typography(.subheadline(color: YumeColor.primary))
         //        }
@@ -176,9 +179,9 @@ extension HomeView {
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topUpcomingAnimeList.prefix(10)) { anime in
-            //            self.presenter.animeDetailLinkBuilder(for: anime) {
-            AnimeItem(anime: anime)
-            //            }.buttonStyle(.plain)
+            NavigationLink(destination: detailDestination(anime)) {
+              Common.AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
       }
@@ -191,10 +194,7 @@ extension HomeView {
         Text("Most Popular")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        self.presenter.seeAllLinkBuilder(
-        //          for: self.presenter.popularAnimes,
-        //          navigationTitle: "Most Popular"
-        //        ) {
+        //        NavigationLink (destination: seeAllDestination(presenter.popularAnimeList)) {
         Text("See All")
           .typography(.subheadline(color: YumeColor.primary))
         //        }
@@ -203,9 +203,9 @@ extension HomeView {
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.popularAnimeList.prefix(10)) { anime in
-            //            self.presenter.animeDetailLinkBuilder(for: anime) {
-            AnimeItem(anime: anime)
-            //            }.buttonStyle(.plain)
+            NavigationLink(destination: detailDestination(anime)) {
+              Common.AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
       }
@@ -218,10 +218,7 @@ extension HomeView {
         Text("Top Rated")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        self.presenter.seeAllLinkBuilder(
-        //          for: self.presenter.topAllAnimes,
-        //          navigationTitle: "Top Rated"
-        //        ) {
+        //        NavigationLink (destination: seeAllDestination(presenter.topAllAnimeList)) {
         Text("See All")
           .typography(.subheadline(color: YumeColor.primary))
         //        }
@@ -230,9 +227,9 @@ extension HomeView {
       ScrollView(.horizontal, showsIndicators: false) {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topAllAnimeList.prefix(10)) { anime in
-            //            self.presenter.animeDetailLinkBuilder(for: anime) {
-            AnimeItem(anime: anime)
-            //            }.buttonStyle(.plain)
+            NavigationLink(destination: detailDestination(anime)) {
+              Common.AnimeItem(anime: anime)
+            }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
       }

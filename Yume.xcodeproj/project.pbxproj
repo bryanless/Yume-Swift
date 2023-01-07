@@ -95,6 +95,7 @@
 		936C773E295F2599009C5BC6 /* AppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773D295F2599009C5BC6 /* AppBar.swift */; };
 		936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */; };
 		938399D5296781150090441B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938399D4296781150090441B /* StringExtension.swift */; };
+		93A3C9EF296A164200B4483F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3C9EE296A164200B4483F /* Router.swift */; };
 		93C14CE229602B5400097AFB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 93C14CE129602B5400097AFB /* .swiftlint.yml */; };
 		93C14CE729602E1100097AFB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C14CE629602E1100097AFB /* ProfileView.swift */; };
 		93C14CEA2960351E00097AFB /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C14CE92960351E00097AFB /* CircleImage.swift */; };
@@ -207,6 +208,7 @@
 		936C773D295F2599009C5BC6 /* AppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBar.swift; sourceTree = "<group>"; };
 		936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeMapper.swift; sourceTree = "<group>"; };
 		938399D4296781150090441B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		93A3C9EE296A164200B4483F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		93C14CE629602E1100097AFB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		93C14CE92960351E00097AFB /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				93648F232968B8BF00CAB465 /* AppDelegate.swift */,
 				934AF4B82958A82200C413B4 /* YumeApp.swift */,
 				934AF4BA2958A82200C413B4 /* ContentView.swift */,
+				93A3C9EE296A164200B4483F /* Router.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				93648F242968B8BF00CAB465 /* AppDelegate.swift in Sources */,
 				935289E2295DAC6A009DF307 /* FavoriteView.swift in Sources */,
 				931BBFFB295CD79C00359359 /* SeeAllInteractor.swift in Sources */,
+				93A3C9EF296A164200B4483F /* Router.swift in Sources */,
 				935289E6295DDE30009DF307 /* TabBar.swift in Sources */,
 				936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */,
 				931BBF99295C27A300359359 /* AnimeEntity.swift in Sources */,

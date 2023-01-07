@@ -42,7 +42,6 @@ public struct GetAnimeRankingRemoteDataSource: DataSource {
         )
         .validate()
         .responseDecodable(of: AnimeRankingsResponse.self) { response in
-          debugPrint(response)
           switch response.result {
           case .success(let value):
             completion(.success(value.animes))
