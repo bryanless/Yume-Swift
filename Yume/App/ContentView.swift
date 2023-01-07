@@ -16,21 +16,21 @@ struct ContentView: View {
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+        GetTopAiringAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimeTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+        GetTopUpcomingAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimeTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+        GetPopularAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimeTransformer>>,
     Interactor<

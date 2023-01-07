@@ -10,7 +10,11 @@ import Combine
 import Core
 import Foundation
 
-public class HomePresenter<TopAiringAnimeUseCase: UseCase, TopUpcomingAnimeUseCase: UseCase, PopularAnimeUseCase: UseCase, TopAllAnimeUseCase: UseCase>: ObservableObject
+public class HomePresenter<
+  TopAiringAnimeUseCase: UseCase,
+  TopUpcomingAnimeUseCase: UseCase,
+  PopularAnimeUseCase: UseCase,
+  TopAllAnimeUseCase: UseCase>: ObservableObject
 where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
       TopAiringAnimeUseCase.Response == [AnimeDomainModel],
       TopUpcomingAnimeUseCase.Request == AnimeRankingModuleRequest,
@@ -18,7 +22,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
       PopularAnimeUseCase.Request == AnimeRankingModuleRequest,
       PopularAnimeUseCase.Response == [AnimeDomainModel],
       TopAllAnimeUseCase.Request == AnimeRankingModuleRequest,
-      TopAllAnimeUseCase.Response == [AnimeDomainModel]{
+      TopAllAnimeUseCase.Response == [AnimeDomainModel] {
   private var cancellables: Set<AnyCancellable> = []
 
   private let _topAiringAnimeUseCase: TopAiringAnimeUseCase
@@ -137,7 +141,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
       })
       .store(in: &cancellables)
   }
-
+  
   private func getTopAllAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
     publisher
       .receive(on: RunLoop.main)
