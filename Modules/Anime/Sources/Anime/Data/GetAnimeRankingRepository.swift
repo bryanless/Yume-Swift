@@ -32,7 +32,6 @@ where AnimeLocaleDataSource.Request == Any,
     localeDataSource: AnimeLocaleDataSource,
     remoteDataSource: RemoteDataSource,
     mapper: Transformer) {
-
       _localeDataSource = localeDataSource
       _remoteDataSource = remoteDataSource
       _mapper = mapper

@@ -34,8 +34,6 @@ public struct TabItem: View {
 
 struct TabItem_Previews: PreviewProvider {
   static var previews: some View {
-    TabItem(icon: Icons.houseOutlined, label: "Home", isActive: true) {
-      
-    }
+    TabItem(icon: Icons.houseOutlined, label: "Home", isActive: true) {}
   }
 }

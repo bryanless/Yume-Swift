@@ -58,7 +58,8 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
     getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
-    let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "upcoming"))
+    let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
+      request: AnimeRankingModuleRequest(type: "upcoming"))
     getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
@@ -141,7 +142,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
       })
       .store(in: &cancellables)
   }
-  
+
   private func getTopAllAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
     publisher
       .receive(on: RunLoop.main)

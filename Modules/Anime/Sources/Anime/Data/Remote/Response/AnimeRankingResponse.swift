@@ -29,4 +29,3 @@ public struct AnimeRankingResponse: Codable {
 public struct Ranking: Codable {
   let rank: Int
 }
-

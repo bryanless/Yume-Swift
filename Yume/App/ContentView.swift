@@ -18,28 +18,28 @@ struct ContentView: View {
       GetAnimesRepository<
         GetTopAiringAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopUpcomingAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetPopularAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopAllAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>>
+        AnimesTransformer>>>
 //  @EnvironmentObject var homePresenter: HomePresenter
   @EnvironmentObject var searchPresenter: SearchPresenter
   @EnvironmentObject var favoritePresenter: FavoritePresenter

@@ -7,7 +7,7 @@
 
 import Core
 
-public struct AnimeTransformer: Mapper {
+public struct AnimesTransformer: Mapper {
   public typealias Request = Any
   public typealias Response = [AnimeRankingResponse]
   public typealias Entity = [AnimeModuleEntity]
@@ -17,32 +17,32 @@ public struct AnimeTransformer: Mapper {
 
   public func transformResponseToEntity(request: Any?, response: [AnimeRankingResponse]) -> Entity {
     return response.map { result in
-      let newAnime = AnimeModuleEntity()
-      newAnime.id = result.anime.id
-      newAnime.title = result.anime.title
-      newAnime.mainPicture = result.anime.mainPicture?.medium ?? "Unknown"
-      newAnime.alternativeTitleSynonyms.append(objectsIn: result.anime.alternativeTitles?.synonyms ?? [])
-      newAnime.alternativeTitleEnglish = result.anime.alternativeTitles?.english ?? "Unknown"
-      newAnime.alternativeTitleJapanese = result.anime.alternativeTitles?.japanese ?? "Unknown"
-      newAnime.startDate = result.anime.startDate ?? "Unknown"
-      newAnime.endDate = result.anime.endDate ?? "Unknown"
-      newAnime.synopsis = result.anime.synopsis ?? "Unknown"
-      newAnime.rating = result.anime.rating ?? 0
-      newAnime.rank = result.anime.rank ?? 0
-      newAnime.popularity = result.anime.popularity ?? 0
-      newAnime.userAmount = result.anime.userAmount
-      newAnime.favoriteAmount = result.anime.favoriteAmount
-      newAnime.nsfw = result.anime.nsfw?.name ?? "Unknown"
-      newAnime.genre.append(objectsIn: result.anime.genres?.map { $0.name } ?? [])
-      newAnime.mediaType = result.anime.mediaType.name
-      newAnime.status = result.anime.status.name
-      newAnime.episodeAmount = result.anime.episodeAmount
-      newAnime.startSeason = result.anime.startSeason?.season.name ?? "Unknown"
-      newAnime.startSeasonYear = result.anime.startSeason?.year.description ?? ""
-      newAnime.source = result.anime.source?.name ?? "Unknown"
-      newAnime.episodeDuration = result.anime.episodeDuration ?? 0
-      newAnime.studios.append(objectsIn: result.anime.studios.map { $0.name })
-      return newAnime
+      let animeEntity = AnimeModuleEntity()
+      animeEntity.id = result.anime.id
+      animeEntity.title = result.anime.title
+      animeEntity.mainPicture = result.anime.mainPicture?.medium ?? "Unknown"
+      animeEntity.alternativeTitleSynonyms.append(objectsIn: result.anime.alternativeTitles?.synonyms ?? [])
+      animeEntity.alternativeTitleEnglish = result.anime.alternativeTitles?.english ?? "Unknown"
+      animeEntity.alternativeTitleJapanese = result.anime.alternativeTitles?.japanese ?? "Unknown"
+      animeEntity.startDate = result.anime.startDate ?? "Unknown"
+      animeEntity.endDate = result.anime.endDate ?? "Unknown"
+      animeEntity.synopsis = result.anime.synopsis ?? "Unknown"
+      animeEntity.rating = result.anime.rating ?? 0
+      animeEntity.rank = result.anime.rank ?? 0
+      animeEntity.popularity = result.anime.popularity ?? 0
+      animeEntity.userAmount = result.anime.userAmount
+      animeEntity.favoriteAmount = result.anime.favoriteAmount
+      animeEntity.nsfw = result.anime.nsfw?.name ?? "Unknown"
+      animeEntity.genre.append(objectsIn: result.anime.genres?.map { $0.name } ?? [])
+      animeEntity.mediaType = result.anime.mediaType.name
+      animeEntity.status = result.anime.status.name
+      animeEntity.episodeAmount = result.anime.episodeAmount
+      animeEntity.startSeason = result.anime.startSeason?.season.name ?? "Unknown"
+      animeEntity.startSeasonYear = result.anime.startSeason?.year.description ?? ""
+      animeEntity.source = result.anime.source?.name ?? "Unknown"
+      animeEntity.episodeDuration = result.anime.episodeDuration ?? 0
+      animeEntity.studios.append(objectsIn: result.anime.studios.map { $0.name })
+      return animeEntity
     }
   }
 

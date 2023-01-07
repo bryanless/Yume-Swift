@@ -191,4 +191,3 @@ public enum Status: String, Codable {
     return rawValue.snakeCaseToTitleCase()
   }
 }
-

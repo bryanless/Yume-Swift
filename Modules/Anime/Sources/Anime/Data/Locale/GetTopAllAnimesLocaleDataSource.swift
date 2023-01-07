@@ -52,7 +52,7 @@ public struct GetTopAllAnimesLocaleDataSource: LocaleDataSource {
     }.eraseToAnyPublisher()
   }
 
-  public func get(id: String) -> AnyPublisher<AnimeModuleEntity, Error> {
+  public func get(id: Int) -> AnyPublisher<AnimeModuleEntity, Error> {
     fatalError()
   }
 

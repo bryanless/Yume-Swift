@@ -8,10 +8,20 @@
 import SwiftUI
 
 public struct IconView: View {
-  var icon: UIImage
-  var color: Color = .black
-  var size: CGFloat = IconSize.medium
-  
+  let icon: UIImage
+  let color: Color
+  let size: CGFloat
+
+  public init(
+    icon: UIImage,
+    color: Color = .black,
+    size: CGFloat = IconSize.medium
+  ) {
+    self.icon = icon
+    self.color = color
+    self.size = size
+  }
+
   public var body: some View {
     Image(uiImage: icon)
       .resizable()

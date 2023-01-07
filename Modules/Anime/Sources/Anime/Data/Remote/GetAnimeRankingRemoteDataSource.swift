@@ -11,7 +11,7 @@ import Combine
 import Foundation
 
 public struct GetAnimeRankingRemoteDataSource: DataSource {
-  
+
   public typealias Request = AnimeRankingModuleRequest
   public typealias Response = [AnimeRankingResponse]
 

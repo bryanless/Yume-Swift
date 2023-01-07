@@ -18,29 +18,29 @@ public struct HomeView: View {
       GetAnimesRepository<
         GetTopAiringAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopUpcomingAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetPopularAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>,
+        AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
       GetAnimesRepository<
         GetTopAllAnimesLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimeTransformer>>>
-  @State var scrollOffset = CGFloat.zero
+        AnimesTransformer>>>
+  @State var scrollOffset: CGFloat
 
   public init(
     presenter: HomePresenter<
@@ -50,41 +50,42 @@ public struct HomeView: View {
     GetAnimesRepository<
     GetTopAiringAnimesLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
-    AnimeTransformer>>,
+    AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
     GetAnimesRepository<
     GetTopUpcomingAnimesLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
-    AnimeTransformer>>,
+    AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
     GetAnimesRepository<
     GetPopularAnimesLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
-    AnimeTransformer>>,
+    AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
     GetAnimesRepository<
     GetTopAllAnimesLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
-    AnimeTransformer>>>,
-    scrollOffset: CGFloat = CGFloat.zero) {
-      self.presenter = presenter
-      self.scrollOffset = scrollOffset
-    }
+    AnimesTransformer>>>,
+    scrollOffset: CGFloat = CGFloat.zero
+  ) {
+    self.presenter = presenter
+    self.scrollOffset = scrollOffset
+  }
 
   public var body: some View {
     ZStack {
       if presenter.isLoading {
         ProgressIndicator()
-          .backgroundStyle(YumeColor.background)
+          .background(YumeColor.background)
       } else if presenter.isError {
         Text(presenter.errorMessage)
-          .backgroundStyle(YumeColor.background)
+          .background(YumeColor.background)
       } else {
         content
       }

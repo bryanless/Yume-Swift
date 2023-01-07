@@ -24,7 +24,7 @@ final class Injection: NSObject {
       headers: API.headers
     )
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimesTransformer()
 
     let repository = GetAnimesRepository(
       localeDataSource: locale,
@@ -46,7 +46,7 @@ final class Injection: NSObject {
       headers: API.headers
     )
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimesTransformer()
 
     let repository = GetAnimesRepository(
       localeDataSource: locale,
@@ -68,7 +68,7 @@ final class Injection: NSObject {
       headers: API.headers
     )
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimesTransformer()
 
     let repository = GetAnimesRepository(
       localeDataSource: locale,
@@ -90,7 +90,7 @@ final class Injection: NSObject {
       headers: API.headers
     )
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimesTransformer()
 
     let repository = GetAnimesRepository(
       localeDataSource: locale,
@@ -112,7 +112,7 @@ final class Injection: NSObject {
       headers: API.headers
     )
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimesTransformer()
 
     let repository = GetAnimesRepository(
       localeDataSource: locale,
