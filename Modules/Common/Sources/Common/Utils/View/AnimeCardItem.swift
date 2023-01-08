@@ -13,6 +13,10 @@ import SDWebImageSwiftUI
 public struct AnimeCardItem: View {
   @State var anime: AnimeDomainModel
 
+  public init(anime: AnimeDomainModel) {
+    self.anime = anime
+  }
+
   public var body: some View {
     HStack(spacing: Space.small) {
       mainPicture

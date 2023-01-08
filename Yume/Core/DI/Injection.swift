@@ -12,11 +12,11 @@ import Foundation
 import RealmSwift
 
 final class Injection: NSObject {
-  func provideTopAllAnime<U: UseCase>() -> U
+  func provideAnimeRanking<U: UseCase>() -> U
   where
   U.Request == AnimeRankingModuleRequest,
   U.Response == [AnimeDomainModel] {
-    let locale = GetTopAllAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
+    let locale = GetAnimeRankingLocaleDataSource(realm: AppDelegate.instance.realm)
 
     let remote = GetAnimeRankingRemoteDataSource(
       endpoint: Endpoints.Gets.ranking.url,
@@ -26,95 +26,7 @@ final class Injection: NSObject {
 
     let mapper = AnimesTransformer()
 
-    let repository = GetAnimesRepository(
-      localeDataSource: locale,
-      remoteDataSource: remote,
-      mapper: mapper)
-
-    return Interactor(repository: repository) as! U
-  }
-
-  func provideTopAiringAnime<U: UseCase>() -> U
-  where
-  U.Request == AnimeRankingModuleRequest,
-  U.Response == [AnimeDomainModel] {
-    let locale = GetTopAiringAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
-
-    let remote = GetAnimeRankingRemoteDataSource(
-      endpoint: Endpoints.Gets.ranking.url,
-      encoder: API.encoder,
-      headers: API.headers
-    )
-
-    let mapper = AnimesTransformer()
-
-    let repository = GetAnimesRepository(
-      localeDataSource: locale,
-      remoteDataSource: remote,
-      mapper: mapper)
-
-    return Interactor(repository: repository) as! U
-  }
-
-  func provideTopUpcomingAnime<U: UseCase>() -> U
-  where
-  U.Request == AnimeRankingModuleRequest,
-  U.Response == [AnimeDomainModel] {
-    let locale = GetTopUpcomingAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
-
-    let remote = GetAnimeRankingRemoteDataSource(
-      endpoint: Endpoints.Gets.ranking.url,
-      encoder: API.encoder,
-      headers: API.headers
-    )
-
-    let mapper = AnimesTransformer()
-
-    let repository = GetAnimesRepository(
-      localeDataSource: locale,
-      remoteDataSource: remote,
-      mapper: mapper)
-
-    return Interactor(repository: repository) as! U
-  }
-
-  func providePopularAnime<U: UseCase>() -> U
-  where
-  U.Request == AnimeRankingModuleRequest,
-  U.Response == [AnimeDomainModel] {
-    let locale = GetPopularAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
-
-    let remote = GetAnimeRankingRemoteDataSource(
-      endpoint: Endpoints.Gets.ranking.url,
-      encoder: API.encoder,
-      headers: API.headers
-    )
-
-    let mapper = AnimesTransformer()
-
-    let repository = GetAnimesRepository(
-      localeDataSource: locale,
-      remoteDataSource: remote,
-      mapper: mapper)
-
-    return Interactor(repository: repository) as! U
-  }
-
-  func provideTopFavoriteAnime<U: UseCase>() -> U
-  where
-  U.Request == AnimeRankingModuleRequest,
-  U.Response == [AnimeDomainModel] {
-    let locale = GetTopFavoriteAnimesLocaleDataSource(realm: AppDelegate.instance.realm)
-
-    let remote = GetAnimeRankingRemoteDataSource(
-      endpoint: Endpoints.Gets.ranking.url,
-      encoder: API.encoder,
-      headers: API.headers
-    )
-
-    let mapper = AnimesTransformer()
-
-    let repository = GetAnimesRepository(
+    let repository = GetAnimeRankingRepository(
       localeDataSource: locale,
       remoteDataSource: remote,
       mapper: mapper)

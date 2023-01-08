@@ -1,8 +1,8 @@
 //
-//  GetPopularAnimesLocaleDataSource.swift
+//  GetAnimeRankingLocaleDataSource.swift
 //  
 //
-//  Created by Bryan on 06/01/23.
+//  Created by Bryan on 08/01/23.
 //
 
 import Core
@@ -10,9 +10,9 @@ import Combine
 import Foundation
 import RealmSwift
 
-public struct GetPopularAnimesLocaleDataSource: LocaleDataSource {
+public struct GetAnimeRankingLocaleDataSource: LocaleDataSource {
 
-  public typealias Request = Any
+  public typealias Request = AnimeRankingModuleRequest
   public typealias Response = AnimeModuleEntity
 
   private let _realm: Realm
@@ -21,12 +21,34 @@ public struct GetPopularAnimesLocaleDataSource: LocaleDataSource {
     _realm = realm
   }
 
-  public func list(request: Any?) -> AnyPublisher<[AnimeModuleEntity], Error> {
+  public func list(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeModuleEntity], Error> {
     return Future<[AnimeModuleEntity], Error> { completion in
       let animes: Results<AnimeModuleEntity> = {
-        _realm.objects(AnimeModuleEntity.self)
-          .where { $0.popularity != 0 }
-          .sorted(byKeyPath: "popularity")
+        switch request?.rankingType {
+        case "airing":
+          return _realm.objects(AnimeModuleEntity.self)
+            .where {
+              $0.status == Status.currentlyAiring.name
+              && $0.rank != 0
+            }
+            .sorted(byKeyPath: "rank")
+        case "upcoming":
+          return _realm.objects(AnimeModuleEntity.self)
+            .where { $0.status == Status.notYetAired.name }
+            .sorted(byKeyPath: "popularity")
+        case "bypopularity":
+          return _realm.objects(AnimeModuleEntity.self)
+            .where { $0.popularity != 0 }
+            .sorted(byKeyPath: "popularity")
+        case "favorite":
+          return _realm.objects(AnimeModuleEntity.self)
+            .sorted(byKeyPath: "favoriteAmount", ascending: false)
+        default:
+          // All
+          return _realm.objects(AnimeModuleEntity.self)
+            .where { $0.rank != 0 }
+            .sorted(byKeyPath: "rank")
+        }
       }()
       completion(.success(animes.toArray(ofType: AnimeModuleEntity.self)))
     }.eraseToAnyPublisher()

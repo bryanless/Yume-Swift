@@ -96,6 +96,7 @@
 		936C7740295F4AB2009C5BC6 /* AnimeMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */; };
 		938399D5296781150090441B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938399D4296781150090441B /* StringExtension.swift */; };
 		93A3C9EF296A164200B4483F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A3C9EE296A164200B4483F /* Router.swift */; };
+		93A3C9F2296A3F9300B4483F /* SeeAllAnime in Frameworks */ = {isa = PBXBuildFile; productRef = 93A3C9F1296A3F9300B4483F /* SeeAllAnime */; };
 		93C14CE229602B5400097AFB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 93C14CE129602B5400097AFB /* .swiftlint.yml */; };
 		93C14CE729602E1100097AFB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C14CE629602E1100097AFB /* ProfileView.swift */; };
 		93C14CEA2960351E00097AFB /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C14CE92960351E00097AFB /* CircleImage.swift */; };
@@ -209,6 +210,7 @@
 		936C773F295F4AB2009C5BC6 /* AnimeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeMapper.swift; sourceTree = "<group>"; };
 		938399D4296781150090441B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		93A3C9EE296A164200B4483F /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		93A3C9F0296A3AF800B4483F /* SeeAllAnime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SeeAllAnime; path = Modules/SeeAllAnime; sourceTree = "<group>"; };
 		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		93C14CE629602E1100097AFB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		93C14CE92960351E00097AFB /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				93C5814A29690B0900D3C1A0 /* AnimeDetail in Frameworks */,
 				93648F132968858000CAB465 /* Anime in Frameworks */,
 				93648F0B296866DF00CAB465 /* Realm in Frameworks */,
+				93A3C9F2296A3F9300B4483F /* SeeAllAnime in Frameworks */,
 				93648F09296866D500CAB465 /* RealmSwift in Frameworks */,
 				93648F152968858500CAB465 /* Core in Frameworks */,
 				93648F2A2968C8E400CAB465 /* Home in Frameworks */,
@@ -610,6 +613,7 @@
 				93648F11296873D400CAB465 /* Anime */,
 				93648F282968C7F600CAB465 /* Home */,
 				93C581482968F0FC00D3C1A0 /* AnimeDetail */,
+				93A3C9F0296A3AF800B4483F /* SeeAllAnime */,
 				934AF4B72958A82200C413B4 /* Yume */,
 				934AF4C82958A82200C413B4 /* YumeTests */,
 				934AF4D22958A82200C413B4 /* YumeUITests */,
@@ -751,6 +755,7 @@
 				93648F292968C8E400CAB465 /* Home */,
 				93648F2E2968E1B200CAB465 /* Common */,
 				93C5814929690B0900D3C1A0 /* AnimeDetail */,
+				93A3C9F1296A3F9300B4483F /* SeeAllAnime */,
 			);
 			productName = Yume;
 			productReference = 934AF4B52958A82200C413B4 /* Yume.app */;
@@ -1355,6 +1360,10 @@
 		93648F2E2968E1B200CAB465 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
+		};
+		93A3C9F1296A3F9300B4483F /* SeeAllAnime */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SeeAllAnime;
 		};
 		93C5814929690B0900D3C1A0 /* AnimeDetail */ = {
 			isa = XCSwiftPackageProductDependency;

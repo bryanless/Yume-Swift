@@ -6,45 +6,42 @@
 //
 
 import Anime
-import AnimeDetail
 import Common
 import Core
 import SwiftUI
 
-public struct HomeView<
-  //  SeeAllDestination: View,
-  DetailDestination: View>: View {
+public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
   @ObservedObject var presenter: HomePresenter<
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAiringAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopUpcomingAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetPopularAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
   @State var _scrollOffset: CGFloat
-  //  let seeAllDestination: ((_ animes: [AnimeDomainModel]) -> SeeAllDestination)
+  let seeAllDestination: ((_ rankingType: String) -> SeeAllDestination)
   let detailDestination: ((_ anime: AnimeDomainModel) -> DetailDestination)
 
   public init(
@@ -52,38 +49,38 @@ public struct HomeView<
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
-    GetAnimesRepository<
-    GetTopAiringAnimesLocaleDataSource,
+    GetAnimeRankingRepository<
+    GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
-    GetAnimesRepository<
-    GetTopUpcomingAnimesLocaleDataSource,
+    GetAnimeRankingRepository<
+    GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
-    GetAnimesRepository<
-    GetPopularAnimesLocaleDataSource,
+    GetAnimeRankingRepository<
+    GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
     AnimeRankingModuleRequest,
     [AnimeDomainModel],
-    GetAnimesRepository<
-    GetTopAllAnimesLocaleDataSource,
+    GetAnimeRankingRepository<
+    GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>>,
     scrollOffset: CGFloat = CGFloat.zero,
-    //    seeAllDestination: @escaping (([AnimeDomainModel]) -> SeeAllDestination),
+    seeAllDestination: @escaping ((String) -> SeeAllDestination),
     detailDestination: @escaping ((AnimeDomainModel) -> DetailDestination)
   ) {
     self.presenter = presenter
     _scrollOffset = scrollOffset
-    //    self.seeAllDestination = seeAllDestination
+    self.seeAllDestination = seeAllDestination
     self.detailDestination = detailDestination
   }
 
@@ -146,10 +143,10 @@ extension HomeView {
         Text("Now Airing")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        NavigationLink (destination: seeAllDestination(presenter.topAiringAnimeList)) {
-        Text("See All")
-          .typography(.subheadline(color: YumeColor.primary))
-        //        }
+        NavigationLink(destination: seeAllDestination("airing")) {
+          Text("See All")
+            .typography(.subheadline(color: YumeColor.primary))
+        }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
@@ -170,10 +167,10 @@ extension HomeView {
         Text("Upcoming")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        NavigationLink (destination: seeAllDestination(presenter.topUpcomingAnimeList)) {
-        Text("See All")
-          .typography(.subheadline(color: YumeColor.primary))
-        //        }
+        NavigationLink(destination: seeAllDestination("upcoming")) {
+          Text("See All")
+            .typography(.subheadline(color: YumeColor.primary))
+        }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
@@ -194,10 +191,10 @@ extension HomeView {
         Text("Most Popular")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        NavigationLink (destination: seeAllDestination(presenter.popularAnimeList)) {
-        Text("See All")
-          .typography(.subheadline(color: YumeColor.primary))
-        //        }
+        NavigationLink(destination: seeAllDestination("bypopularity")) {
+          Text("See All")
+            .typography(.subheadline(color: YumeColor.primary))
+        }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {
@@ -218,10 +215,10 @@ extension HomeView {
         Text("Top Rated")
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        //        NavigationLink (destination: seeAllDestination(presenter.topAllAnimeList)) {
-        Text("See All")
-          .typography(.subheadline(color: YumeColor.primary))
-        //        }
+        NavigationLink(destination: seeAllDestination("all")) {
+          Text("See All")
+            .typography(.subheadline(color: YumeColor.primary))
+        }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
 
       ScrollView(.horizontal, showsIndicators: false) {

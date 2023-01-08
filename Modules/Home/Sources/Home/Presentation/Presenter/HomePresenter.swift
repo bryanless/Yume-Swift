@@ -63,7 +63,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
     getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
-    let popularAnimePublisher = _popularAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "popular"))
+    let popularAnimePublisher = _popularAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "bypopularity"))
     getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series

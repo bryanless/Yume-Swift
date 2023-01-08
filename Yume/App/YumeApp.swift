@@ -20,31 +20,31 @@ struct YumeApp: App {
     let topAiringAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAiringAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>> = injection.provideTopAiringAnime()
+        AnimesTransformer>> = injection.provideAnimeRanking()
     let topUpcomingAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopUpcomingAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>> = injection.provideTopUpcomingAnime()
+        AnimesTransformer>> = injection.provideAnimeRanking()
     let popularAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetPopularAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>> = injection.providePopularAnime()
+        AnimesTransformer>> = injection.provideAnimeRanking()
     let topAllAnimeUseCase: Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
-        AnimesTransformer>> = injection.provideTopAllAnime()
+        AnimesTransformer>> = injection.provideAnimeRanking()
     //    let homeUseCase = Injection.init().provideHome()
     let searchUseCase = Injection.init().provideSearch()
     let favoriteUseCase = Injection.init().provideFavorite()

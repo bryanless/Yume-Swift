@@ -9,6 +9,7 @@ import Anime
 import AnimeDetail
 import Core
 import Home
+import SeeAllAnime
 import SwiftUI
 
 struct ContentView: View {
@@ -16,29 +17,29 @@ struct ContentView: View {
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAiringAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopUpcomingAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetPopularAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
-      GetAnimesRepository<
-        GetTopAllAnimesLocaleDataSource,
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
   //  @EnvironmentObject var homePresenter: HomePresenter
@@ -54,9 +55,15 @@ struct ContentView: View {
     VStack(spacing: 0) {
       TabView(selection: $selection) {
         NavigationStack {
-          Home.HomeView<AnimeDetail.AnimeDetailView>(presenter: homePresenter) { anime in
-            Router().makeAnimeDetailView(for: anime)
-          }
+          Home.HomeView<
+            SeeAllAnimeView<AnimeDetail.AnimeDetailView>,
+            AnimeDetail.AnimeDetailView>(presenter: homePresenter) { rankingType in
+              Router().makeSeeAllAnimeView(for: rankingType) { anime in
+                Router().makeAnimeDetailView(for: anime)
+              }
+            } detailDestination: { anime in
+              Router().makeAnimeDetailView(for: anime)
+            }
         }.tag(Tab.home)
         //        NavigationStack {
         //          HomeView(presenter: homePresenter)
