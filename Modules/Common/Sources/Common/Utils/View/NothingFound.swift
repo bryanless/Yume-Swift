@@ -9,7 +9,11 @@ import Core
 import SwiftUI
 
 public struct NothingFound: View {
-  var label: String
+  let label: String
+
+  public init(label: String) {
+    self.label = label
+  }
 
   public var body: some View {
     GeometryReader { geo in

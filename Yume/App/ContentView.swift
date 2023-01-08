@@ -8,6 +8,7 @@
 import Anime
 import AnimeDetail
 import Core
+import Favorite
 import Home
 import SeeAllAnime
 import SwiftUI
@@ -42,9 +43,18 @@ struct ContentView: View {
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
+  @EnvironmentObject var favoritePresenter: GetListPresenter<
+    Int,
+    AnimeDomainModel,
+    Interactor<
+      Int,
+      [AnimeDomainModel],
+      GetFavoriteAnimesRepository<
+        GetFavoriteAnimeLocaleDataSource,
+        AnimesTransformer>>>
   //  @EnvironmentObject var homePresenter: HomePresenter
   @EnvironmentObject var searchPresenter: SearchPresenter
-  @EnvironmentObject var favoritePresenter: FavoritePresenter
+//  @EnvironmentObject var favoritePresenter: FavoritePresenter
   @State private var selection: Tab = .home
 
   init() {
@@ -72,7 +82,9 @@ struct ContentView: View {
           SearchView(presenter: searchPresenter)
         }.tag(Tab.search)
         NavigationStack {
-          FavoriteView(presenter: favoritePresenter)
+          Favorite.FavoriteView(presenter: favoritePresenter) { anime in
+            Router().makeAnimeDetailView(for: anime)
+          }
         }.tag(Tab.favorite)
         NavigationStack {
           ProfileView()

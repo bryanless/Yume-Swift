@@ -45,23 +45,29 @@ struct YumeApp: App {
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>> = injection.provideAnimeRanking()
+    let favoriteAnimeUseCase: Interactor<
+      Int,
+      [AnimeDomainModel],
+      GetFavoriteAnimesRepository<
+        GetFavoriteAnimeLocaleDataSource,
+        AnimesTransformer>> = injection.provideFavoriteAnime()
     //    let homeUseCase = Injection.init().provideHome()
     let searchUseCase = Injection.init().provideSearch()
-    let favoriteUseCase = Injection.init().provideFavorite()
+//    let favoriteUseCase = Injection.init().provideFavorite()
 
     let homePresenter = Home.HomePresenter(
       topAiringAnimeUseCase: topAiringAnimeUseCase,
       topUpcomingAnimeUseCase: topUpcomingAnimeUseCase,
       popularAnimeUseCase: popularAnimeUseCase,
       topAllAnimeUseCase: topAllAnimeUseCase)
+    let favoritePresenter = GetListPresenter(useCase: favoriteAnimeUseCase)
     //    let homePresenter = HomePresenter(homeUseCase: homeUseCase)
     let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
-    let favoritePresenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
+//    let favoritePresenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
 
     WindowGroup {
       ContentView()
         .environmentObject(homePresenter)
-      //        .environmentObject(homePresenter)
         .environmentObject(searchPresenter)
         .environmentObject(favoritePresenter)
     }

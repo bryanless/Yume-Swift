@@ -14,7 +14,7 @@ public struct GetAnimeRepository<
 where AnimeLocaleDataSource.Request == Int,
       AnimeLocaleDataSource.Response == AnimeModuleEntity,
       Transformer.Request == Any,
-      Transformer.Response == AnimeRankingResponse,
+      Transformer.Response == AnimeDataResponse,
       Transformer.Entity == AnimeModuleEntity,
       Transformer.Domain == AnimeDomainModel {
 

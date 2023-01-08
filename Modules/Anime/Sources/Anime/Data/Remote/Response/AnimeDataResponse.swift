@@ -6,8 +6,8 @@
 //
 
 // MARK: - AnimeRankingResponse
-public struct AnimeRankingsResponse: Codable {
-  let animes: [AnimeRankingResponse]
+public struct AnimesResponse: Codable {
+  let animes: [AnimeDataResponse]
 
   private enum CodingKeys: String, CodingKey {
     case animes = "data"
@@ -15,13 +15,11 @@ public struct AnimeRankingsResponse: Codable {
 }
 
 // MARK: - AnimeRankingResponse
-public struct AnimeRankingResponse: Codable {
+public struct AnimeDataResponse: Codable {
   let anime: AnimeResponse
-  let ranking: Ranking
 
   private enum CodingKeys: String, CodingKey {
     case anime = "node"
-    case ranking
   }
 }
 

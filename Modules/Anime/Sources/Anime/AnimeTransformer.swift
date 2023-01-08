@@ -9,13 +9,13 @@ import Core
 
 public struct AnimeTransformer: Mapper {
   public typealias Request = Any
-  public typealias Response = AnimeRankingResponse
+  public typealias Response = AnimeDataResponse
   public typealias Entity = AnimeModuleEntity
   public typealias Domain = AnimeDomainModel
 
   public init() {}
 
-  public func transformResponseToEntity(request: Any?, response: AnimeRankingResponse) -> Entity {
+  public func transformResponseToEntity(request: Any?, response: AnimeDataResponse) -> Entity {
     let animeEntity = AnimeModuleEntity()
     animeEntity.id = response.anime.id
     animeEntity.title = response.anime.title
