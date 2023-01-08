@@ -10,6 +10,7 @@ import AnimeDetail
 import Core
 import Favorite
 import Home
+import Profile
 import SeeAllAnime
 import SwiftUI
 
@@ -87,7 +88,7 @@ struct ContentView: View {
           }
         }.tag(Tab.favorite)
         NavigationStack {
-          ProfileView()
+          Profile.ProfileView()
         }.tag(Tab.profile)
       }
       TabBar(selection: $selection)

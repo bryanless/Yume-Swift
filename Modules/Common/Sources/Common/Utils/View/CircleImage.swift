@@ -10,6 +10,10 @@ import SwiftUI
 public struct CircleImage: View {
   let image: Image
 
+  public init(image: Image) {
+    self.image = image
+  }
+
   public var body: some View {
     image
       .resizable()

@@ -40,7 +40,7 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
-  @State var _scrollOffset: CGFloat
+  @State var scrollOffset: CGFloat
   let seeAllDestination: ((_ rankingType: String) -> SeeAllDestination)
   let detailDestination: ((_ anime: AnimeDomainModel) -> DetailDestination)
 
@@ -79,7 +79,7 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
     detailDestination: @escaping ((AnimeDomainModel) -> DetailDestination)
   ) {
     self.presenter = presenter
-    _scrollOffset = scrollOffset
+    self.scrollOffset = scrollOffset
     self.seeAllDestination = seeAllDestination
     self.detailDestination = detailDestination
   }
@@ -109,7 +109,7 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
 extension HomeView {
   var content: some View {
     ZStack(alignment: .top) {
-      ObservableScrollView(scrollOffset: $_scrollOffset, showsIndicators: false) { _ in
+      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
         LazyVStack(spacing: Space.large) {
           header
           topAiringAnime
@@ -125,7 +125,7 @@ extension HomeView {
         )
       }
 
-      AppBar(scrollOffset: _scrollOffset, label: "Home")
+      AppBar(scrollOffset: scrollOffset, label: "Home")
     }.background(YumeColor.background)
   }
 
