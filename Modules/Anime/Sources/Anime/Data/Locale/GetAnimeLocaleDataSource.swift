@@ -26,7 +26,23 @@ public struct GetAnimeLocaleDataSource: LocaleDataSource {
   }
 
   public func add(entities: [AnimeModuleEntity]) -> AnyPublisher<Bool, Error> {
-    fatalError()
+    return Future<Bool, Error> { completion in
+      do {
+        try _realm.write {
+          for anime in entities {
+            if let animeEntity = _realm.object(ofType: AnimeModuleEntity.self, forPrimaryKey: anime.id) {
+              anime.isFavorite = animeEntity.isFavorite
+              _realm.add(anime, update: .all)
+            } else {
+              _realm.add(anime)
+            }
+          }
+          completion(.success(true))
+        }
+      } catch {
+        completion(.failure(DatabaseError.requestFailed))
+      }
+    }.eraseToAnyPublisher()
   }
 
   public func get(id: Int) -> AnyPublisher<AnimeModuleEntity, Error> {

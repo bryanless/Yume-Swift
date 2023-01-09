@@ -38,6 +38,10 @@ where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
     }
 
   public func execute(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeDomainModel], Error> {
+    guard let request = request else {
+      fatalError("Request cannot be empty")
+    }
+
     return _localeDataSource.list(request: request)
       .flatMap { result -> AnyPublisher<[AnimeDomainModel], Error> in
         if result.isEmpty {
@@ -56,4 +60,5 @@ where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
         }
       }.eraseToAnyPublisher()
   }
+
 }

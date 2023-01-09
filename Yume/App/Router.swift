@@ -15,10 +15,11 @@ class Router {
   func makeAnimeDetailView(for anime: AnimeDomainModel) -> AnimeDetail.AnimeDetailView {
 
     let animeUseCase: Interactor<
-      Int,
+      AnimeRequest,
       AnimeDomainModel,
       GetAnimeRepository<
         GetAnimeLocaleDataSource,
+        GetAnimeRemoteDataSource,
         AnimeTransformer>> = Injection.init().provideAnime()
 
     let favoriteUseCase: Interactor<
@@ -26,7 +27,7 @@ class Router {
       AnimeDomainModel,
       UpdateFavoriteAnimeRepository<
         GetFavoriteAnimeLocaleDataSource,
-        AnimeTransformer>> = Injection.init().provideUpdateFavoriteAnime()
+        AnimeDataTransformer>> = Injection.init().provideUpdateFavoriteAnime()
 
     let presenter = AnimePresenter(animeUseCase: animeUseCase, favoriteUseCase: favoriteUseCase)
 

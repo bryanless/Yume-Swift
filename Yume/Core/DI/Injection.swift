@@ -34,16 +34,42 @@ final class Injection: NSObject {
     return Interactor(repository: repository) as! U
   }
 
+  func provideSearchAnime<U: UseCase>() -> U
+  where
+  U.Request == AnimeListModuleRequest,
+  U.Response == [AnimeDomainModel] {
+    let remote = GetAnimeListRemoteDataSource(
+      endpoint: Endpoints.Gets.search.url,
+      encoder: API.encoder,
+      headers: API.headers
+    )
+
+    let mapper = AnimesTransformer()
+
+    let repository = SearchAnimeRepository(
+      remoteDataSource: remote,
+      mapper: mapper)
+
+    return Interactor(repository: repository) as! U
+  }
+
   func provideAnime<U: UseCase>() -> U
   where
-  U.Request == Int,
+  U.Request == AnimeRequest,
   U.Response == AnimeDomainModel {
     let locale = GetAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+
+    let remote = GetAnimeRemoteDataSource(
+      endpoint: Endpoints.Gets.detail.url,
+      encoder: API.encoder,
+      headers: API.headers
+    )
 
     let mapper = AnimeTransformer()
 
     let repository = GetAnimeRepository(
       localeDataSource: locale,
+      remoteDataSource: remote,
       mapper: mapper
     )
 
@@ -56,7 +82,7 @@ final class Injection: NSObject {
   U.Response == AnimeDomainModel {
     let locale = GetFavoriteAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
 
-    let mapper = AnimeTransformer()
+    let mapper = AnimeDataTransformer()
 
     let repository = UpdateFavoriteAnimeRepository(
       localeDataSource: locale,

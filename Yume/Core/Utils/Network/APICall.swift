@@ -39,11 +39,13 @@ protocol Endpoint {
 enum Endpoints {
 
   enum Gets: Endpoint {
+    case detail
     case ranking
     case search
 
     public var url: String {
       switch self {
+      case .detail: return "\(API.baseUrl)anime"
       case .ranking: return "\(API.baseUrl)anime/ranking"
       case .search: return "\(API.baseUrl)anime"
       }

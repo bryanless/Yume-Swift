@@ -1,5 +1,5 @@
 //
-//  AnimerTransformer.swift
+//  AnimeDataTransformer.swift
 //  
 //
 //  Created by Bryan on 07/01/23.
@@ -7,7 +7,7 @@
 
 import Core
 
-public struct AnimeTransformer: Mapper {
+public struct AnimeDataTransformer: Mapper {
   public typealias Request = Any
   public typealias Response = AnimeDataResponse
   public typealias Entity = AnimeModuleEntity

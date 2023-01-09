@@ -12,6 +12,11 @@ public struct SearchBar: View {
   let placeholder: String
   @Binding var searchText: String
 
+  public init(placeholder: String, searchText: Binding<String>) {
+    self.placeholder = placeholder
+    self._searchText = searchText
+  }
+
   public var body: some View {
     HStack {
       IconView(

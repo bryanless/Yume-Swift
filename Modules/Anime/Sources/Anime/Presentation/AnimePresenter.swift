@@ -10,7 +10,7 @@ import Core
 import Foundation
 
 public class AnimePresenter<AnimeUseCase: UseCase, FavoriteUseCase: UseCase>: ObservableObject
-where AnimeUseCase.Request == Int,
+where AnimeUseCase.Request == AnimeRequest,
       AnimeUseCase.Response == AnimeDomainModel,
       FavoriteUseCase.Request == Int,
       FavoriteUseCase.Response == AnimeDomainModel {
