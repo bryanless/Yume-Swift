@@ -68,9 +68,6 @@ struct ContentView: View {
       GetFavoriteAnimesRepository<
         GetFavoriteAnimeLocaleDataSource,
         AnimesTransformer>>>
-  //  @EnvironmentObject var homePresenter: HomePresenter
-//  @EnvironmentObject var searchPresenter: SearchPresenter
-//  @EnvironmentObject var favoritePresenter: FavoritePresenter
   @State private var selection: Tab = .home
 
   init() {
@@ -91,9 +88,6 @@ struct ContentView: View {
               Router().makeAnimeDetailView(for: anime)
             }
         }.tag(Tab.home)
-        //        NavigationStack {
-        //          HomeView(presenter: homePresenter)
-        //        }.tag(Tab.home)
         NavigationStack {
           Search.SearchView(presenter: searchPresenter) { anime in
             Router().makeAnimeDetailView(for: anime)

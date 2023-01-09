@@ -31,9 +31,11 @@ public struct GetAnimeRemoteDataSource: DataSource {
 
   public func execute(request: AnimeRequest?) -> AnyPublisher<AnimeResponse, Error> {
     return Future<AnimeResponse, Error> { completion in
-      guard let request = request else { return completion(.failure(URLError.invalidRequest)) }
+      guard let request = request else {
+        return completion(.failure(URLError.invalidRequest))
+      }
 
-      if let url = URL(string: "\(_endpoint)/\(request.animeId)") {
+      if let url = URL(string: "\(_endpoint)/\(request.animeId)/") {
         AF.request(
           url,
           parameters: request,

@@ -84,25 +84,20 @@ public struct SearchView<DetailDestination: View>: View {
 extension SearchView {
   var content: some View {
     ZStack {
-      if presenter.searchText.count > 2 && presenter.searchAnimeList.isEmpty {
-        NothingFound(label: "No anime found")
-          .background(YumeColor.background)
-      } else {
-        ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
-          LazyVStack(spacing: Space.small) {
-            ForEach(
-              presenter.searchAnimeList.isEmpty
-              ? presenter.topFavoriteAnimeList : presenter.searchAnimeList
-            ) { anime in
-              NavigationLink(destination: detailDestination(anime)) {
-                Common.AnimeCardItem(anime: anime)
-              }.buttonStyle(.plain)
-            }
-          }.padding(Space.medium)
-        }
-        .padding(.top, 40.0)
-        .background(YumeColor.background)
+      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+        LazyVStack(spacing: Space.small) {
+          ForEach(
+            presenter.searchAnimeList.isEmpty
+            ? presenter.topFavoriteAnimeList : presenter.searchAnimeList
+          ) { anime in
+            NavigationLink(destination: detailDestination(anime)) {
+              Common.AnimeCardItem(anime: anime)
+            }.buttonStyle(.plain)
+          }
+        }.padding(Space.medium)
       }
+      .padding(.top, 40.0)
+      .background(YumeColor.background)
     }
   }
 
