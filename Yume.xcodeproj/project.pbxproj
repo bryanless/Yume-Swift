@@ -13,6 +13,7 @@
 		931BBFAD295C3C8900359359 /* top_all_anime_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFAC295C3C8900359359 /* top_all_anime_response.json */; };
 		93298CF8296BA896006AEC25 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = 93298CF7296BA896006AEC25 /* Search */; };
 		93298D02296BED12006AEC25 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */; };
+		93298D06296BF244006AEC25 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 93298D05296BF244006AEC25 /* Core */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -25,7 +26,6 @@
 		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
 		93648F0F296866F000CAB465 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0E296866F000CAB465 /* SDWebImageSwiftUI */; };
 		93648F132968858000CAB465 /* Anime in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F122968858000CAB465 /* Anime */; };
-		93648F152968858500CAB465 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F142968858500CAB465 /* Core */; };
 		93648F242968B8BF00CAB465 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93648F232968B8BF00CAB465 /* AppDelegate.swift */; };
 		93648F2A2968C8E400CAB465 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F292968C8E400CAB465 /* Home */; };
 		93648F2F2968E1B200CAB465 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F2E2968E1B200CAB465 /* Common */; };
@@ -87,7 +87,6 @@
 		934AF4CF2958A82200C413B4 /* YumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		93648F03296862B100CAB465 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = Modules/Core; sourceTree = "<group>"; };
 		93648F11296873D400CAB465 /* Anime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Anime; path = Modules/Anime; sourceTree = "<group>"; };
 		93648F232968B8BF00CAB465 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93648F282968C7F600CAB465 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Home; path = Modules/Home; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 				93298CF8296BA896006AEC25 /* Search in Frameworks */,
 				939959EB296B109700C7761C /* Profile in Frameworks */,
 				93648F0F296866F000CAB465 /* SDWebImageSwiftUI in Frameworks */,
+				93298D06296BF244006AEC25 /* Core in Frameworks */,
 				93648F0D296866EB00CAB465 /* Alamofire in Frameworks */,
 				93C5814A29690B0900D3C1A0 /* AnimeDetail in Frameworks */,
 				93648F132968858000CAB465 /* Anime in Frameworks */,
@@ -132,7 +132,6 @@
 				93A3C9F5296A5B2400B4483F /* Favorite in Frameworks */,
 				93A3C9F2296A3F9300B4483F /* SeeAllAnime in Frameworks */,
 				93648F09296866D500CAB465 /* RealmSwift in Frameworks */,
-				93648F152968858500CAB465 /* Core in Frameworks */,
 				93648F2A2968C8E400CAB465 /* Home in Frameworks */,
 				93648F2F2968E1B200CAB465 /* Common in Frameworks */,
 			);
@@ -245,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				93C14CE129602B5400097AFB /* .swiftlint.yml */,
-				93648F03296862B100CAB465 /* Core */,
 				93648F2B2968D3E700CAB465 /* Common */,
 				93648F11296873D400CAB465 /* Anime */,
 				93648F282968C7F600CAB465 /* Home */,
@@ -340,7 +338,6 @@
 				93648F0C296866EB00CAB465 /* Alamofire */,
 				93648F0E296866F000CAB465 /* SDWebImageSwiftUI */,
 				93648F122968858000CAB465 /* Anime */,
-				93648F142968858500CAB465 /* Core */,
 				93648F292968C8E400CAB465 /* Home */,
 				93648F2E2968E1B200CAB465 /* Common */,
 				93C5814929690B0900D3C1A0 /* AnimeDetail */,
@@ -348,6 +345,7 @@
 				93A3C9F4296A5B2400B4483F /* Favorite */,
 				939959EA296B109700C7761C /* Profile */,
 				93298CF7296BA896006AEC25 /* Search */,
+				93298D05296BF244006AEC25 /* Core */,
 			);
 			productName = Yume;
 			productReference = 934AF4B52958A82200C413B4 /* Yume.app */;
@@ -425,6 +423,7 @@
 				93648F04296865AC00CAB465 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				93648F06296865EE00CAB465 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				93298D04296BF244006AEC25 /* XCRemoteSwiftPackageReference "Yume-Core-Module" */,
 			);
 			productRefGroup = 934AF4B62958A82200C413B4 /* Products */;
 			projectDirPath = "";
@@ -837,6 +836,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		93298D04296BF244006AEC25 /* XCRemoteSwiftPackageReference "Yume-Core-Module" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bryanless/Yume-Core-Module";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		93648F04296865AC00CAB465 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -868,6 +875,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Search;
 		};
+		93298D05296BF244006AEC25 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93298D04296BF244006AEC25 /* XCRemoteSwiftPackageReference "Yume-Core-Module" */;
+			productName = Core;
+		};
 		93648F08296866D500CAB465 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
@@ -891,10 +903,6 @@
 		93648F122968858000CAB465 /* Anime */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Anime;
-		};
-		93648F142968858500CAB465 /* Core */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Core;
 		};
 		93648F292968C8E400CAB465 /* Home */ = {
 			isa = XCSwiftPackageProductDependency;
