@@ -5,12 +5,70 @@
 //  Created by Bryan on 25/12/22.
 //
 
+import Anime
+import AnimeDetail
+import Core
+import Common
+import Favorite
+import Home
+import Profile
+import Search
+import SeeAllAnime
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var homePresenter: HomePresenter
-  @EnvironmentObject var searchPresenter: SearchPresenter
-  @EnvironmentObject var favoritePresenter: FavoritePresenter
+  @EnvironmentObject var homePresenter: HomePresenter<
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>>>
+  @EnvironmentObject var searchPresenter: SearchPresenter<
+    Interactor<
+      AnimeListModuleRequest,
+      [AnimeDomainModel],
+      SearchAnimeRepository<
+        GetAnimeListRemoteDataSource,
+        AnimesTransformer>>,
+    Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>>>
+  @EnvironmentObject var favoritePresenter: GetListPresenter<
+    Int,
+    AnimeDomainModel,
+    Interactor<
+      Int,
+      [AnimeDomainModel],
+      GetFavoriteAnimesRepository<
+        GetFavoriteAnimeLocaleDataSource,
+        AnimesTransformer>>>
   @State private var selection: Tab = .home
 
   init() {
@@ -21,13 +79,25 @@ struct ContentView: View {
     VStack(spacing: 0) {
       TabView(selection: $selection) {
         NavigationStack {
-          HomeView(presenter: homePresenter)
+          HomeView<
+            SeeAllAnimeView<AnimeDetailView>,
+            AnimeDetailView>(presenter: homePresenter) { rankingType in
+              Router().makeSeeAllAnimeView(for: rankingType) { anime in
+                Router().makeAnimeDetailView(for: anime)
+              }
+            } detailDestination: { anime in
+              Router().makeAnimeDetailView(for: anime)
+            }
         }.tag(Tab.home)
         NavigationStack {
-          SearchView(presenter: searchPresenter)
+          SearchView(presenter: searchPresenter) { anime in
+            Router().makeAnimeDetailView(for: anime)
+          }
         }.tag(Tab.search)
         NavigationStack {
-          FavoriteView(presenter: favoritePresenter)
+          FavoriteView(presenter: favoritePresenter) { anime in
+            Router().makeAnimeDetailView(for: anime)
+          }
         }.tag(Tab.favorite)
         NavigationStack {
           ProfileView()
@@ -40,18 +110,7 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-  static let homeUseCase = Injection.init().provideHome()
-  static let searchUseCase = Injection.init().provideSearch()
-  static let favoriteUseCase = Injection.init().provideFavorite()
-
-  static let homePresenter = HomePresenter(homeUseCase: homeUseCase)
-  static let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
-  static let favoritePresenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
-
   static var previews: some View {
     ContentView()
-      .environmentObject(homePresenter)
-      .environmentObject(searchPresenter)
-      .environmentObject(favoritePresenter)
   }
 }

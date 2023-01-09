@@ -5,18 +5,81 @@
 //  Created by Bryan on 25/12/22.
 //
 
+import Anime
+import Core
+import Home
+import Search
 import SwiftUI
 
 @main
 struct YumeApp: App {
-  var body: some Scene {
-    let homeUseCase = Injection.init().provideHome()
-    let searchUseCase = Injection.init().provideSearch()
-    let favoriteUseCase = Injection.init().provideFavorite()
+  @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    let homePresenter = HomePresenter(homeUseCase: homeUseCase)
-    let searchPresenter = SearchPresenter(searchUseCase: searchUseCase)
-    let favoritePresenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
+  var body: some Scene {
+    let injection = Injection.init()
+
+    // Home
+    let topAiringAnimeUseCase: Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>> = injection.provideAnimeRanking()
+    let topUpcomingAnimeUseCase: Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>> = injection.provideAnimeRanking()
+    let popularAnimeUseCase: Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>> = injection.provideAnimeRanking()
+    let topAllAnimeUseCase: Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>> = injection.provideAnimeRanking()
+
+    // Search
+    let searchAnimeUseCase: Interactor<
+      AnimeListModuleRequest,
+      [AnimeDomainModel],
+      SearchAnimeRepository<
+        GetAnimeListRemoteDataSource,
+        AnimesTransformer>> = injection.provideSearchAnime()
+    let topFavoriteAnimeUseCase: Interactor<
+      AnimeRankingModuleRequest,
+      [AnimeDomainModel],
+      GetAnimeRankingRepository<
+        GetAnimeRankingLocaleDataSource,
+        GetAnimeRankingRemoteDataSource,
+        AnimesTransformer>> = injection.provideAnimeRanking()
+
+    // Favorite
+    let favoriteAnimeUseCase: Interactor<
+      Int,
+      [AnimeDomainModel],
+      GetFavoriteAnimesRepository<
+        GetFavoriteAnimeLocaleDataSource,
+        AnimesTransformer>> = injection.provideFavoriteAnime()
+
+    let homePresenter = Home.HomePresenter(
+      topAiringAnimeUseCase: topAiringAnimeUseCase,
+      topUpcomingAnimeUseCase: topUpcomingAnimeUseCase,
+      popularAnimeUseCase: popularAnimeUseCase,
+      topAllAnimeUseCase: topAllAnimeUseCase)
+    let searchPresenter = Search.SearchPresenter(
+      searchAnimeUseCase: searchAnimeUseCase,
+      topFavoriteAnimeUseCase: topFavoriteAnimeUseCase)
+    let favoritePresenter = GetListPresenter(useCase: favoriteAnimeUseCase)
 
     WindowGroup {
       ContentView()
