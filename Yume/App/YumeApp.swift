@@ -15,10 +15,6 @@ import SwiftUI
 struct YumeApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-  init() {
-    UIFont.loadFonts()
-  }
-
   var body: some Scene {
     let injection = Injection.init()
 
