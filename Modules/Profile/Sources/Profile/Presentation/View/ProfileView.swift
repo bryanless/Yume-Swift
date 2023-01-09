@@ -63,7 +63,7 @@ extension ProfileView {
   }
 
   var profilePicture: some View {
-    CircleImage(image: Image("ProfilePicture"))
+    CircleImage(image: Image("ProfilePicture", bundle: .module))
       .frame(width: 80, height: 80)
       .overlay {
         Circle().stroke(.white, lineWidth: 2)
