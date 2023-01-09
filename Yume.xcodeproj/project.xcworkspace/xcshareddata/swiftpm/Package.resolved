@@ -44,6 +44,15 @@
         "revision" : "61fefe9c284fd41ddef77d02749e88f00c305196",
         "version" : "2.2.2"
       }
+    },
+    {
+      "identity" : "yume-core-module",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bryanless/Yume-Core-Module",
+      "state" : {
+        "revision" : "b07fa0031877cdeb793a0e53ef7ea6b64d097058",
+        "version" : "1.0.0"
+      }
     }
   ],
   "version" : 2

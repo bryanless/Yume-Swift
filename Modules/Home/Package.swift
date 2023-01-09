@@ -14,9 +14,9 @@ let package = Package(
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
+    .package(url: "https://github.com/bryanless/Yume-Core-Module.git", .upToNextMajor(from: "1.0.0")),
     .package(path: "../Anime"),
-    .package(path: "../Common"),
-    .package(path: "../Core")
+    .package(path: "../Common")
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -24,9 +24,9 @@ let package = Package(
     .target(
       name: "Home",
       dependencies: [
+        .product(name: "Core", package: "Yume-Core-Module"),
         "Anime",
-        "Common",
-        "Core"
+        "Common"
       ]),
     .testTarget(
       name: "HomeTests",
