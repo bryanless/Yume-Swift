@@ -9,11 +9,11 @@ import Common
 import Core
 import SwiftUI
 
-struct AnimeInformationItem: View {
+public struct AnimeInformationItem: View {
   @State var label: String
   @State var value: String
 
-  var body: some View {
+  public var body: some View {
     VStack(alignment: .leading, spacing: Space.none) {
       Text(label)
         .typography(.body(color: YumeColor.onSurfaceVariant))

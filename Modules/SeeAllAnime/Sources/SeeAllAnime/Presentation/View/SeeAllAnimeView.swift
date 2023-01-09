@@ -76,7 +76,7 @@ extension SeeAllAnimeView {
         LazyVStack(spacing: Space.small) {
           ForEach(presenter.list.prefix(20)) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeCardItem(anime: anime)
+              AnimeCardItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }

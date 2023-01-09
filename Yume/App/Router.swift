@@ -12,7 +12,7 @@ import SeeAllAnime
 import SwiftUI
 
 class Router {
-  func makeAnimeDetailView(for anime: AnimeDomainModel) -> AnimeDetail.AnimeDetailView {
+  func makeAnimeDetailView(for anime: AnimeDomainModel) -> AnimeDetailView {
 
     let animeUseCase: Interactor<
       AnimeRequest,
@@ -31,14 +31,13 @@ class Router {
 
     let presenter = AnimePresenter(animeUseCase: animeUseCase, favoriteUseCase: favoriteUseCase)
 
-    return AnimeDetail.AnimeDetailView(presenter: presenter, anime: anime)
+    return AnimeDetailView(presenter: presenter, anime: anime)
 
   }
 
   func makeSeeAllAnimeView(
     for rankingType: String,
-    detailDestination: @escaping ((_ anime: AnimeDomainModel) ->
-                                  AnimeDetail.AnimeDetailView)) -> SeeAllAnimeView<AnimeDetail.AnimeDetailView> {
+    detailDestination: @escaping ((_ anime: AnimeDomainModel) -> AnimeDetailView)) -> SeeAllAnimeView<AnimeDetailView> {
     var navigationTitle: String
 
     switch rankingType {
@@ -63,7 +62,7 @@ class Router {
 
     let presenter = GetListPresenter(useCase: seeAllAnimeUseCase)
 
-    return SeeAllAnimeView<AnimeDetail.AnimeDetailView>(
+    return SeeAllAnimeView<AnimeDetailView>(
       presenter: presenter,
       rankingType: rankingType,
       navigationTitle: navigationTitle,

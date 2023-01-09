@@ -153,7 +153,7 @@ extension HomeView {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topAiringAnimeList.prefix(10)) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeItem(anime: anime)
+              AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
@@ -177,7 +177,7 @@ extension HomeView {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topUpcomingAnimeList.prefix(10)) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeItem(anime: anime)
+              AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
@@ -201,7 +201,7 @@ extension HomeView {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.popularAnimeList.prefix(10)) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeItem(anime: anime)
+              AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)
@@ -225,7 +225,7 @@ extension HomeView {
         LazyHStack(spacing: Space.small) {
           ForEach(presenter.topAllAnimeList.prefix(10)) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeItem(anime: anime)
+              AnimeItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(.horizontal, Space.medium)

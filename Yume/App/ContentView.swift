@@ -17,7 +17,7 @@ import SeeAllAnime
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var homePresenter: Home.HomePresenter<
+  @EnvironmentObject var homePresenter: HomePresenter<
     Interactor<
       AnimeRankingModuleRequest,
       [AnimeDomainModel],
@@ -46,7 +46,7 @@ struct ContentView: View {
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
-  @EnvironmentObject var searchPresenter: Search.SearchPresenter<
+  @EnvironmentObject var searchPresenter: SearchPresenter<
     Interactor<
       AnimeListModuleRequest,
       [AnimeDomainModel],
@@ -79,9 +79,9 @@ struct ContentView: View {
     VStack(spacing: 0) {
       TabView(selection: $selection) {
         NavigationStack {
-          Home.HomeView<
-            SeeAllAnimeView<AnimeDetail.AnimeDetailView>,
-            AnimeDetail.AnimeDetailView>(presenter: homePresenter) { rankingType in
+          HomeView<
+            SeeAllAnimeView<AnimeDetailView>,
+            AnimeDetailView>(presenter: homePresenter) { rankingType in
               Router().makeSeeAllAnimeView(for: rankingType) { anime in
                 Router().makeAnimeDetailView(for: anime)
               }
@@ -90,17 +90,17 @@ struct ContentView: View {
             }
         }.tag(Tab.home)
         NavigationStack {
-          Search.SearchView(presenter: searchPresenter) { anime in
+          SearchView(presenter: searchPresenter) { anime in
             Router().makeAnimeDetailView(for: anime)
           }
         }.tag(Tab.search)
         NavigationStack {
-          Favorite.FavoriteView(presenter: favoritePresenter) { anime in
+          FavoriteView(presenter: favoritePresenter) { anime in
             Router().makeAnimeDetailView(for: anime)
           }
         }.tag(Tab.favorite)
         NavigationStack {
-          Profile.ProfileView()
+          ProfileView()
         }.tag(Tab.profile)
       }
       TabBar(selection: $selection)

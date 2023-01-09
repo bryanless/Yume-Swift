@@ -91,7 +91,7 @@ extension SearchView {
             ? Array(presenter.topFavoriteAnimeList.prefix(20)) : presenter.searchAnimeList
           ) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeCardItem(anime: anime)
+              AnimeCardItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(Space.medium)

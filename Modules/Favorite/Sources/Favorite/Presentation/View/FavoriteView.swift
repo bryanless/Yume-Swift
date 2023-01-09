@@ -85,7 +85,7 @@ extension FavoriteView {
             .typography(.largeTitle(weight: .bold))
           ForEach(presenter.list) { anime in
             NavigationLink(destination: detailDestination(anime)) {
-              Common.AnimeCardItem(anime: anime)
+              AnimeCardItem(anime: anime)
             }.buttonStyle(.plain)
           }
         }.padding(
