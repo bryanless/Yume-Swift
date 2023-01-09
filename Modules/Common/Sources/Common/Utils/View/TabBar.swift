@@ -11,6 +11,10 @@ import SwiftUI
 public struct TabBar: View {
   @Binding var selection: Tab
 
+  public init(selection: Binding<Tab>) {
+    self._selection = selection
+  }
+
   public var body: some View {
     HStack(alignment: .center) {
       TabItem(
