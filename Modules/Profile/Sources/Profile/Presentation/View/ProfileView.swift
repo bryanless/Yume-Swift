@@ -31,7 +31,7 @@ public struct ProfileView: View {
         )
       }.background(YumeColor.background)
 
-      AppBar(scrollOffset: scrollOffset, label: "Profile")
+      AppBar(scrollOffset: scrollOffset, label: "profile_title".localized(bundle: .common))
     }
   }
 }

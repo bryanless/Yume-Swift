@@ -59,8 +59,10 @@ public struct SearchView<DetailDestination: View>: View {
   public var body: some View {
     ZStack(alignment: .top) {
       if presenter.isLoading {
-        ProgressIndicator(label: presenter.topFavoriteAnimeList.isEmpty ? "Loading" : "Searching anime")
-          .background(YumeColor.background)
+        ProgressIndicator(label: presenter.topFavoriteAnimeList.isEmpty
+                          ? "loading_label".localized(bundle: .common)
+                          : "searching_anime_label".localized(bundle: .module))
+        .background(YumeColor.background)
       } else if presenter.isError {
         Text(presenter.errorMessage)
           .background(YumeColor.background)
@@ -70,7 +72,7 @@ public struct SearchView<DetailDestination: View>: View {
 
       appBar(
         scrollOffset: scrollOffset,
-        placeholder: "Search anime",
+        placeholder: "search_placeholder".localized(bundle: .module),
         searchText: self.$presenter.searchText
       )
     }.onAppear {

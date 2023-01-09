@@ -125,13 +125,13 @@ extension HomeView {
         )
       }
 
-      AppBar(scrollOffset: scrollOffset, label: "Home")
+      AppBar(scrollOffset: scrollOffset, label: "home_title".localized(bundle: .common))
     }.background(YumeColor.background)
   }
 
   var header: some View {
     HStack {
-      Text("Home")
+      Text("home_title".localized(bundle: .common))
         .typography(.largeTitle(weight: .bold, color: YumeColor.onBackground))
       Spacer()
     }.padding(.horizontal, Space.medium)
@@ -140,11 +140,11 @@ extension HomeView {
   var topAiringAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
-        Text("Now Airing")
+        Text("now_airing_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         NavigationLink(destination: seeAllDestination("airing")) {
-          Text("See All")
+          Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
@@ -164,11 +164,11 @@ extension HomeView {
   var topUpcomingAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
-        Text("Upcoming")
+        Text("upcoming_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         NavigationLink(destination: seeAllDestination("upcoming")) {
-          Text("See All")
+          Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
@@ -188,11 +188,11 @@ extension HomeView {
   var popularAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
-        Text("Most Popular")
+        Text("most_popular_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         NavigationLink(destination: seeAllDestination("bypopularity")) {
-          Text("See All")
+          Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)
@@ -212,11 +212,11 @@ extension HomeView {
   var topAllAnime: some View {
     VStack(spacing: Space.small) {
       HStack(spacing: Space.small) {
-        Text("Top Rated")
+        Text("top_rated_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
         NavigationLink(destination: seeAllDestination("all")) {
-          Text("See All")
+          Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
       }.padding(.horizontal, Space.medium)

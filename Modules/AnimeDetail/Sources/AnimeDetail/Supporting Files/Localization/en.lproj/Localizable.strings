@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 09/01/23.
+  
+*/
+
+"score_label" = "Score";
+"rank_label" = "Rank";
+"popularity_label" = "Popularity";
+"members_label" = "Members";
+"favorites_label" = "Favorites";
+
+"synopsis_label" = "Synopsis";
+"information_label" = "Information";
+"episodes_label" = "Episodes";
+"duration_label" = "Duration";
+"aired_label" = "Aired";
+"studios_label" = "Studios";

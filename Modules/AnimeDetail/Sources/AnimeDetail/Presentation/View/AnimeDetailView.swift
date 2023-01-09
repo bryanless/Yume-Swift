@@ -97,11 +97,11 @@ extension AnimeDetailView {
         } label: {
           IconView(
             icon: presenter.item?.isFavorite ?? anime.isFavorite ? Icons.heart : Icons.heartOutlined,
-            color: presenter.item?.isFavorite ?? anime.isFavorite ? .red : YumeColor.onSurface
+            color: presenter.item?.isFavorite ?? anime.isFavorite ? YumeColor.primary : YumeColor.onSurface
           )
         }
       })
-    }.background(YumeColor.background)
+    }
   }
 
   var overview: some View {
@@ -152,31 +152,31 @@ extension AnimeDetailView {
       AnimeStatItem(
         icon: Icons.starOutlined,
         iconColor: .yellow,
-        label: "Score",
+        label: "score_label".localized(bundle: .module),
         value: (presenter.item?.rating ?? anime.rating).description
       )
       AnimeStatItem(
         icon: Icons.crownOutlined,
         iconColor: .orange,
-        label: "Rank",
+        label: "rank_label".localized(bundle: .module),
         value: "#\((presenter.item?.rank ?? anime.rank).formatNumber())"
       )
       AnimeStatItem(
         icon: Icons.trendingUp,
         iconColor: .green,
-        label: "Popularity",
+        label: "popularity_label".localized(bundle: .module),
         value: "#\(presenter.item?.popularity.formatNumber() ?? anime.popularity.description)"
       )
       AnimeStatItem(
         icon: Icons.usersOutlined,
         iconColor: .purple,
-        label: "Members",
+        label: "members_label".localized(bundle: .module),
         value: (presenter.item?.userAmount ?? anime.userAmount).formatNumber()
       )
       AnimeStatItem(
         icon: Icons.heartOutlined,
         iconColor: .red,
-        label: "Favorites",
+        label: "favorites_label".localized(bundle: .module),
         value: (presenter.item?.favoriteAmount ?? anime.favoriteAmount).formatNumber()
       )
     }.frame(height: 70)
@@ -185,7 +185,7 @@ extension AnimeDetailView {
   var synopsis: some View {
     HStack {
       VStack(alignment: .leading, spacing: Space.small) {
-        Text("Synopsis")
+        Text("synopsis_label".localized(bundle: .module))
           .typography(.headline(color: YumeColor.onBackground))
         Text(presenter.item?.synopsis ?? anime.synopsis)
           .typography(.body(color: YumeColor.onBackground))
@@ -197,24 +197,34 @@ extension AnimeDetailView {
   var information: some View {
     HStack {
       VStack(alignment: .leading, spacing: Space.small) {
-        Text("Information")
+        Text("information_label".localized(bundle: .module))
           .typography(.headline(color: YumeColor.onBackground))
         AnimeInformationItem(
-          label: "Episodes",
-          value: presenter.item?.episodeAmount == 0
-          ? "Unknown" : (presenter.item?.episodeAmount ?? anime.episodeAmount).description
+          label: "episodes_label".localized(bundle: .module),
+          value: (presenter.item?.episodeAmount ?? anime.episodeAmount) == 0
+          ? "unknown_label".localized(bundle: .common)
+          : (presenter.item?.episodeAmount ?? anime.episodeAmount).description
         )
         AnimeInformationItem(
-          label: "Duration",
-          value: (presenter.item?.episodeDuration ?? anime.episodeDuration).secondsToHoursMinutes()
+          label: "duration_label".localized(bundle: .module),
+          value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == 0
+          ? "unknown_label".localized(bundle: .common)
+          : (presenter.item?.episodeDuration ?? anime.episodeDuration).secondsToHoursMinutes()
         )
         AnimeInformationItem(
-          label: "Aired",
-          value: "\(presenter.item?.startDate ?? anime.startDate) - \(presenter.item?.endDate ?? anime.endDate)"
+          label: "aired_label".localized(bundle: .module),
+          value: ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
+                  ? "unknown_label".localized(bundle: .common)
+                  : (presenter.item?.startDate ?? anime.startDate)) + " - "
+          + ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
+             ? "unknown_label".localized(bundle: .common)
+             : (presenter.item?.startDate ?? anime.startDate))
         )
         AnimeInformationItem(
-          label: "Studios",
-          value: (presenter.item?.studios ?? anime.genre).joined(separator: ", ")
+          label: "studios_label".localized(bundle: .module),
+          value: (presenter.item?.studios ?? anime.genre).isEmpty
+          ? "unknown_label".localized(bundle: .common)
+          : (presenter.item?.studios ?? anime.genre).joined(separator: ", ")
         )
       }
       Spacer()

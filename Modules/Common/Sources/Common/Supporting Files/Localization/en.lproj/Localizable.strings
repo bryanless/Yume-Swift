@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 09/01/23.
+  
+*/
+
+"loading_label" = "Loading";
+"unknown_label" = "Unknown";
+
+"home_title" = "Home";
+"search_title" = "Search";
+"favortie_title" = "Favorite";
+"profile_title" = "Profile";
+
+"now_airing_title" = "Now Airing";
+"upcoming_title" = "Upcoming";
+"most_popular_title" = "Most Popular";
+"top_rated_title" = "Top Rated";

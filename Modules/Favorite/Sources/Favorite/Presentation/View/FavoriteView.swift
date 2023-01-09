@@ -62,9 +62,9 @@ public struct FavoriteView<DetailDestination: View>: View {
 extension FavoriteView {
   var empty: some View {
     VStack(alignment: .leading) {
-      Text("Favorites")
+      Text("favorite_title".localized(bundle: .common))
         .typography(.largeTitle(weight: .bold))
-      NothingFound(label: "No favorite anime")
+      NothingFound(label: "no_favorite_anime_label".localized(bundle: .module))
         .background(YumeColor.background)
     }
     .padding(
@@ -81,7 +81,7 @@ extension FavoriteView {
     ZStack(alignment: .top) {
       ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
         LazyVStack(alignment: .leading, spacing: Space.small) {
-          Text("Favorites")
+          Text("favorite_title".localized(bundle: .common))
             .typography(.largeTitle(weight: .bold))
           ForEach(presenter.list) { anime in
             NavigationLink(destination: detailDestination(anime)) {
@@ -98,7 +98,7 @@ extension FavoriteView {
       }
       .background(YumeColor.background)
 
-      AppBar(scrollOffset: scrollOffset, label: "Favorite")
+      AppBar(scrollOffset: scrollOffset, label: "favorite_title".localized(bundle: .common))
     }
   }
 }
