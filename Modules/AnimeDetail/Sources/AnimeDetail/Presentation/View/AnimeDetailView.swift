@@ -97,11 +97,11 @@ extension AnimeDetailView {
         } label: {
           IconView(
             icon: presenter.item?.isFavorite ?? anime.isFavorite ? Icons.heart : Icons.heartOutlined,
-            color: presenter.item?.isFavorite ?? anime.isFavorite ? .red : YumeColor.onSurface
+            color: presenter.item?.isFavorite ?? anime.isFavorite ? YumeColor.primary : YumeColor.onSurface
           )
         }
       })
-    }.background(YumeColor.background)
+    }
   }
 
   var overview: some View {
