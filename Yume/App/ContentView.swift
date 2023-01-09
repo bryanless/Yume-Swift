@@ -8,6 +8,7 @@
 import Anime
 import AnimeDetail
 import Core
+import Common
 import Favorite
 import Home
 import Profile
