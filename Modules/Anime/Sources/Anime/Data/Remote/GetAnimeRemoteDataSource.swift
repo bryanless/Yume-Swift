@@ -35,7 +35,7 @@ public struct GetAnimeRemoteDataSource: DataSource {
         return completion(.failure(URLError.invalidRequest))
       }
 
-      if let url = URL(string: "\(_endpoint)/\(request.animeId)/") {
+      if let url = URL(string: "\(_endpoint)/\(request.animeId)") {
         AF.request(
           url,
           parameters: request,
