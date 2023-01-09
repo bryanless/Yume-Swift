@@ -28,6 +28,6 @@ public struct NothingFound: View {
 
 struct NothingFound_Previews: PreviewProvider {
   static var previews: some View {
-    NothingFound(label: "No favorite anime")
+    NothingFound(label: "No anime found")
   }
 }

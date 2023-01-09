@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 09/01/23.
+  
+*/
+
+"score_label" = "Skor";
+"rank_label" = "Peringkat";
+"popularity_label" = "Popularitas";
+"members_label" = "Anggota";
+"favorites_label" = "Favorit";
+
+"synopsis_label" = "Sinopsis";
+"information_label" = "Informasi";
+"episodes_label" = "Jumlah Episode";
+"duration_label" = "Durasi";
+"aired_label" = "Tayang";
+"studios_label" = "Studio";

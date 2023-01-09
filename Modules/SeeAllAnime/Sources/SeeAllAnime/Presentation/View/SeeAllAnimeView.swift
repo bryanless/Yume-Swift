@@ -89,7 +89,7 @@ extension SeeAllAnimeView {
         )
       }.background(YumeColor.background)
 
-      BackAppBar(scrollOffset: scrollOffset, label: navigationTitle, alwaysShowLabel: true)
+      BackAppBar(scrollOffset: scrollOffset, label: navigationTitle.localized(bundle: .common), alwaysShowLabel: true)
     }
   }
 }

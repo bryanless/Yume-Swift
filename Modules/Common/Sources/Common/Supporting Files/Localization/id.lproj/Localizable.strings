@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 09/01/23.
+  
+*/
+
+"loading_label" = "Memuat";
+"unknown_label" = "Tidak diketahui";
+
+"home_title" = "Beranda";
+"search_title" = "Cari";
+"favorite_title" = "Favorit";
+"profile_title" = "Profil";
+
+"now_airing_title" = "Sedang Tayang";
+"upcoming_title" = "Mendatang";
+"most_popular_title" = "Paling Populer";
+"top_rated_title" = "Peringkat Teratas";

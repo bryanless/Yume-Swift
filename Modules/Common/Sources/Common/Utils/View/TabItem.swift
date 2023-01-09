@@ -19,7 +19,7 @@ public struct TabItem: View {
     GeometryReader { geo in
       VStack(alignment: .center, spacing: Space.tiny) {
         IconView(icon: icon, color: color)
-        Text(label)
+        Text(label.localized(bundle: .common))
           .typography(.caption(color: color))
       }
       .frame(width: geo.size.width, height: geo.size.height)

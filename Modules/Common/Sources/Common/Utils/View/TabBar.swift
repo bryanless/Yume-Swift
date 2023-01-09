@@ -19,7 +19,7 @@ public struct TabBar: View {
     HStack(alignment: .center) {
       TabItem(
         icon: selection == .home ? Icons.house : Icons.houseOutlined,
-        label: "Home",
+        label: "home_title",
         isActive: selection == .home
       ) {
         selection = .home
@@ -27,7 +27,7 @@ public struct TabBar: View {
 
       TabItem(
         icon: Icons.search,
-        label: "Search",
+        label: "search_title",
         isActive: selection == .search
       ) {
         selection = .search
@@ -35,7 +35,7 @@ public struct TabBar: View {
 
       TabItem(
         icon: selection == .favorite ? Icons.heart : Icons.heartOutlined,
-        label: "Favorite",
+        label: "favorite_title",
         isActive: selection == .favorite
       ) {
         selection = .favorite
@@ -43,7 +43,7 @@ public struct TabBar: View {
 
       TabItem(
         icon: selection == .profile ? Icons.user : Icons.userOutlined,
-        label: "Profile",
+        label: "profile_title",
         isActive: selection == .profile
       ) {
         selection = .profile

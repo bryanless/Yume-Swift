@@ -42,14 +42,14 @@ class Router {
 
     switch rankingType {
     case "airing":
-      navigationTitle = "Now Airing"
+      navigationTitle = "now_airing_title"
     case "upcoming":
-      navigationTitle = "Upcoming"
+      navigationTitle = "upcoming_title"
     case "bypopularity":
-      navigationTitle = "Most Popular"
+      navigationTitle = "most_popular_title"
     default:
       // All
-      navigationTitle = "Top Rated"
+      navigationTitle = "top_rated_title"
     }
 
     let seeAllAnimeUseCase: Interactor<
