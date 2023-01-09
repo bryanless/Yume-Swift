@@ -12,6 +12,7 @@
 		931BBFAB295C3C7500359359 /* PreviewData copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFAA295C3C7500359359 /* PreviewData copy.swift */; };
 		931BBFAD295C3C8900359359 /* top_all_anime_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFAC295C3C8900359359 /* top_all_anime_response.json */; };
 		93298CF8296BA896006AEC25 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = 93298CF7296BA896006AEC25 /* Search */; };
+		93298D02296BED12006AEC25 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */; };
 		934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4B82958A82200C413B4 /* YumeApp.swift */; };
 		934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4BA2958A82200C413B4 /* ContentView.swift */; };
 		934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 934AF4BC2958A82200C413B4 /* Assets.xcassets */; };
@@ -19,7 +20,6 @@
 		934AF4CA2958A82200C413B4 /* YumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4C92958A82200C413B4 /* YumeTests.swift */; };
 		934AF4D42958A82200C413B4 /* YumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D32958A82200C413B4 /* YumeUITests.swift */; };
 		934AF4D62958A82200C413B4 /* YumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */; };
-		935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935289E9295E0B1D009DF307 /* NavigationExtension.swift */; };
 		93648F09296866D500CAB465 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F08296866D500CAB465 /* RealmSwift */; };
 		93648F0B296866DF00CAB465 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0A296866DF00CAB465 /* Realm */; };
 		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
@@ -76,6 +76,7 @@
 		931BBFAA295C3C7500359359 /* PreviewData copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviewData copy.swift"; sourceTree = "<group>"; };
 		931BBFAC295C3C8900359359 /* top_all_anime_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = top_all_anime_response.json; sourceTree = "<group>"; };
 		931BBFD4295CC79900359359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		934AF4B52958A82200C413B4 /* Yume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4B82958A82200C413B4 /* YumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeApp.swift; sourceTree = "<group>"; };
 		934AF4BA2958A82200C413B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		934AF4CF2958A82200C413B4 /* YumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		935289E9295E0B1D009DF307 /* NavigationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
 		93648F03296862B100CAB465 /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Core; path = Modules/Core; sourceTree = "<group>"; };
 		93648F11296873D400CAB465 /* Anime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Anime; path = Modules/Anime; sourceTree = "<group>"; };
 		93648F232968B8BF00CAB465 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 		931BBF85295C199F00359359 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				935289E9295E0B1D009DF307 /* NavigationExtension.swift */,
+				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				931BBFA1295C395100359359 /* Injection.swift in Sources */,
-				935289EA295E0B1D009DF307 /* NavigationExtension.swift in Sources */,
+				93298D02296BED12006AEC25 /* UINavigationController+Ext.swift in Sources */,
 				93648F242968B8BF00CAB465 /* AppDelegate.swift in Sources */,
 				93A3C9EF296A164200B4483F /* Router.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
