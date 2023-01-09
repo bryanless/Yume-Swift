@@ -11,6 +11,9 @@
 		931BBFA1295C395100359359 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFA0295C395100359359 /* Injection.swift */; };
 		931BBFAB295C3C7500359359 /* PreviewData copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931BBFAA295C3C7500359359 /* PreviewData copy.swift */; };
 		931BBFAD295C3C8900359359 /* top_all_anime_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 931BBFAC295C3C8900359359 /* top_all_anime_response.json */; };
+		931CAB5E296C5EAB005546FC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 931CAB5D296C5EAB005546FC /* SDWebImageSwiftUI */; };
+		931CAB60296C5EB0005546FC /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 931CAB5F296C5EB0005546FC /* Realm */; };
+		931CAB62296C5EB0005546FC /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 931CAB61296C5EB0005546FC /* RealmSwift */; };
 		93298CF8296BA896006AEC25 /* Search in Frameworks */ = {isa = PBXBuildFile; productRef = 93298CF7296BA896006AEC25 /* Search */; };
 		93298D02296BED12006AEC25 /* UINavigationController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */; };
 		93298D06296BF244006AEC25 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 93298D05296BF244006AEC25 /* Core */; };
@@ -77,6 +80,7 @@
 		931BBFAA295C3C7500359359 /* PreviewData copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviewData copy.swift"; sourceTree = "<group>"; };
 		931BBFAC295C3C8900359359 /* top_all_anime_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = top_all_anime_response.json; sourceTree = "<group>"; };
 		931BBFD4295CC79900359359 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		931CAB63296C5EC4005546FC /* codemagic.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = codemagic.yaml; sourceTree = "<group>"; };
 		93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Ext.swift"; sourceTree = "<group>"; };
 		934AF4B52958A82200C413B4 /* Yume.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yume.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4B82958A82200C413B4 /* YumeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeApp.swift; sourceTree = "<group>"; };
@@ -144,6 +148,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931CAB62296C5EB0005546FC /* RealmSwift in Frameworks */,
+				931CAB60296C5EB0005546FC /* Realm in Frameworks */,
+				931CAB5E296C5EAB005546FC /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				93C14CE129602B5400097AFB /* .swiftlint.yml */,
+				931CAB63296C5EC4005546FC /* codemagic.yaml */,
 				93648F2B2968D3E700CAB465 /* Common */,
 				93648F11296873D400CAB465 /* Anime */,
 				93648F282968C7F600CAB465 /* Home */,
@@ -369,6 +377,11 @@
 				934AF4C72958A82200C413B4 /* PBXTargetDependency */,
 			);
 			name = YumeTests;
+			packageProductDependencies = (
+				931CAB5D296C5EAB005546FC /* SDWebImageSwiftUI */,
+				931CAB5F296C5EB0005546FC /* Realm */,
+				931CAB61296C5EB0005546FC /* RealmSwift */,
+			);
 			productName = YumeTests;
 			productReference = 934AF4C52958A82200C413B4 /* YumeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -889,6 +902,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		931CAB5D296C5EAB005546FC /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93648F06296865EE00CAB465 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		931CAB5F296C5EB0005546FC /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		931CAB61296C5EB0005546FC /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 93648F05296865C500CAB465 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		93298CF7296BA896006AEC25 /* Search */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Search;
