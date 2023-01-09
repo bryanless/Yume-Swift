@@ -88,7 +88,7 @@ extension SearchView {
         LazyVStack(spacing: Space.small) {
           ForEach(
             presenter.searchAnimeList.isEmpty
-            ? presenter.topFavoriteAnimeList : presenter.searchAnimeList
+            ? Array(presenter.topFavoriteAnimeList.prefix(20)) : presenter.searchAnimeList
           ) { anime in
             NavigationLink(destination: detailDestination(anime)) {
               Common.AnimeCardItem(anime: anime)
