@@ -1,9 +1,19 @@
+![Yume](readme/feature-graphic.jpg "Yume")
+
 # Yume
  An anime list iOS application
 
 This app helps you access information of various anime such as season, score, rank, popularity, members, favorites, synopsis, and many more
 
 ## Features
+
+<p align="center">
+ <img src="readme/screen-1.jpg" width="19%">
+ <img src="readme/screen-2.jpg" width="19%">
+ <img src="readme/screen-3.jpg" width="19%">
+ <img src="readme/screen-4.jpg" width="19%">
+ <img src="readme/screen-5.jpg" width="19%">
+</p>
 
 ### Home
 - Top airing anime
