@@ -64,7 +64,9 @@ public struct SeeAllAnimeView<DetailDestination: View>: View {
     }
     .toolbar(.hidden)
     .onAppear {
-      presenter.getList(request: AnimeRankingModuleRequest(type: rankingType))
+      if presenter.list.isEmpty {
+        presenter.getList(request: AnimeRankingModuleRequest(type: rankingType))
+      }
     }
   }
 }
