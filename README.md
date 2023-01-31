@@ -36,7 +36,7 @@ This app helps you access information of various anime such as season, score, ra
 
 * macOS Ventura 13.1
 * Xcode 14.2
-* iOS 16
+* iOS 16.2
 > Requirements might be lower, the app is developed using the system listed above
 
 ### Installation
