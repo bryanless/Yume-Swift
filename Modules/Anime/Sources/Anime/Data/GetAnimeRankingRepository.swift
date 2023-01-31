@@ -12,16 +12,16 @@ public struct GetAnimeRankingRepository<
   AnimeLocaleDataSource: LocaleDataSource,
   RemoteDataSource: DataSource,
   Transformer: Mapper>: Repository
-where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
+where AnimeLocaleDataSource.Request == AnimeRankingRequest,
       AnimeLocaleDataSource.Response == AnimeModuleEntity,
-      RemoteDataSource.Request == AnimeRankingModuleRequest,
+      RemoteDataSource.Request == AnimeRankingRequest,
       RemoteDataSource.Response == [AnimeDataResponse],
       Transformer.Request == Any,
       Transformer.Response == [AnimeDataResponse],
       Transformer.Entity == [AnimeModuleEntity],
       Transformer.Domain == [AnimeDomainModel] {
 
-  public typealias Request = AnimeRankingModuleRequest
+  public typealias Request = AnimeRankingRequest
   public typealias Response = [AnimeDomainModel]
 
   private let _localeDataSource: AnimeLocaleDataSource
@@ -37,7 +37,7 @@ where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
       _mapper = mapper
     }
 
-  public func execute(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeDomainModel], Error> {
+  public func execute(request: AnimeRankingRequest?) -> AnyPublisher<[AnimeDomainModel], Error> {
     guard let request = request else {
       fatalError("Request cannot be empty")
     }

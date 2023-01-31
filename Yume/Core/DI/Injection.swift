@@ -14,7 +14,7 @@ import RealmSwift
 final class Injection: NSObject {
   func provideAnimeRanking<U: UseCase>() -> U
   where
-  U.Request == AnimeRankingModuleRequest,
+  U.Request == AnimeRankingRequest,
   U.Response == [AnimeDomainModel] {
     let locale = GetAnimeRankingLocaleDataSource(realm: AppDelegate.instance.realm)
 

@@ -1,26 +1,26 @@
 //
-//  AnimeListRemoteRequest.swift
+//  AnimeRankingRemoteRequest.swift
 //  
 //
 //  Created by Bryan on 01/02/23.
 //
 
-public struct AnimeListRemoteRequest: Encodable {
-  let q: String
+public struct AnimeRankingRemoteRequest: Encodable {
+  let rankingType: String
   let limit: Int
   let offset: Int
   let fields: String
   let nsfw: Bool
 
   public init(
-    title q: String,
+    type rankingType: String,
     limit: Int?,
     offset: Int?,
     fields: String?,
     nsfw: Bool?
   ) {
-    self.q = q
-    self.limit = limit ?? 100
+    self.rankingType = rankingType
+    self.limit = limit ?? 20
     self.offset = offset ?? 0
     self.fields = fields ?? (
       "alternative_titles,start_date,end_date,synopsis,mean,"

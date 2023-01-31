@@ -12,7 +12,7 @@ import RealmSwift
 
 public struct GetAnimeRankingLocaleDataSource: LocaleDataSource {
 
-  public typealias Request = AnimeRankingModuleRequest
+  public typealias Request = AnimeRankingRequest
   public typealias Response = AnimeModuleEntity
 
   private let _realm: Realm
@@ -21,7 +21,7 @@ public struct GetAnimeRankingLocaleDataSource: LocaleDataSource {
     _realm = realm
   }
 
-  public func list(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeModuleEntity], Error> {
+  public func list(request: AnimeRankingRequest?) -> AnyPublisher<[AnimeModuleEntity], Error> {
     return Future<[AnimeModuleEntity], Error> { completion in
       let animes: Results<AnimeModuleEntity> = {
         switch request?.rankingType {

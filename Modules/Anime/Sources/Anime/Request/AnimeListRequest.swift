@@ -1,5 +1,5 @@
 //
-//  AnimeListModuleRequest.swift
+//  AnimeListRequest.swift
 //  
 //
 //  Created by Bryan on 08/01/23.

@@ -13,69 +13,69 @@ import SwiftUI
 public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
   @ObservedObject var presenter: HomePresenter<
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
   @State var scrollOffset: CGFloat
-  let seeAllDestination: ((_ rankingType: String) -> SeeAllDestination)
+  let seeAllDestination: ((_ rankingType: RankingTypeRequest) -> SeeAllDestination)
   let detailDestination: ((_ anime: AnimeDomainModel) -> DetailDestination)
 
   public init(
     presenter: HomePresenter<
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel],
     GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel],
     GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel],
     GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel],
     GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>>,
     scrollOffset: CGFloat = CGFloat.zero,
-    seeAllDestination: @escaping ((String) -> SeeAllDestination),
+    seeAllDestination: @escaping ((RankingTypeRequest) -> SeeAllDestination),
     detailDestination: @escaping ((AnimeDomainModel) -> DetailDestination)
   ) {
     self.presenter = presenter
@@ -143,7 +143,7 @@ extension HomeView {
         Text("now_airing_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        NavigationLink(destination: seeAllDestination("airing")) {
+        NavigationLink(destination: seeAllDestination(.airing)) {
           Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
@@ -167,7 +167,7 @@ extension HomeView {
         Text("upcoming_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        NavigationLink(destination: seeAllDestination("upcoming")) {
+        NavigationLink(destination: seeAllDestination(.upcoming)) {
           Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
@@ -191,7 +191,7 @@ extension HomeView {
         Text("most_popular_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        NavigationLink(destination: seeAllDestination("bypopularity")) {
+        NavigationLink(destination: seeAllDestination(.byPopularity)) {
           Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)
@@ -215,7 +215,7 @@ extension HomeView {
         Text("top_rated_title".localized(bundle: .common))
           .typography(.headline(color: YumeColor.onBackground))
         Spacer()
-        NavigationLink(destination: seeAllDestination("all")) {
+        NavigationLink(destination: seeAllDestination(.all)) {
           Text("see_all_label".localized(bundle: .module))
             .typography(.subheadline(color: YumeColor.primary))
         }.buttonStyle(.plain)

@@ -15,7 +15,7 @@ public class SearchPresenter<
   TopFavoriteAnimeUseCase: UseCase>: ObservableObject
 where SearchAnimeUseCase.Request == AnimeListRequest,
       SearchAnimeUseCase.Response == [AnimeDomainModel],
-      TopFavoriteAnimeUseCase.Request == AnimeRankingModuleRequest,
+      TopFavoriteAnimeUseCase.Request == AnimeRankingRequest,
       TopFavoriteAnimeUseCase.Response == [AnimeDomainModel] {
   private var cancellables: Set<AnyCancellable> = []
 
@@ -74,7 +74,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
 
   func getTopFavoriteAnimes() {
     isLoading = true
-    _topFavoriteAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "favorite"))
+    _topFavoriteAnimeUseCase.execute(request: AnimeRankingRequest(type: .favorite))
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {

@@ -15,13 +15,13 @@ public class HomePresenter<
   TopUpcomingAnimeUseCase: UseCase,
   PopularAnimeUseCase: UseCase,
   TopAllAnimeUseCase: UseCase>: ObservableObject
-where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
+where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
       TopAiringAnimeUseCase.Response == [AnimeDomainModel],
-      TopUpcomingAnimeUseCase.Request == AnimeRankingModuleRequest,
+      TopUpcomingAnimeUseCase.Request == AnimeRankingRequest,
       TopUpcomingAnimeUseCase.Response == [AnimeDomainModel],
-      PopularAnimeUseCase.Request == AnimeRankingModuleRequest,
+      PopularAnimeUseCase.Request == AnimeRankingRequest,
       PopularAnimeUseCase.Response == [AnimeDomainModel],
-      TopAllAnimeUseCase.Request == AnimeRankingModuleRequest,
+      TopAllAnimeUseCase.Request == AnimeRankingRequest,
       TopAllAnimeUseCase.Response == [AnimeDomainModel] {
   private var cancellables: Set<AnyCancellable> = []
 
@@ -54,20 +54,20 @@ where TopAiringAnimeUseCase.Request == AnimeRankingModuleRequest,
     isLoading = true
 
     // Get top airing anime
-    let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "airing"))
+    let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(request: AnimeRankingRequest(type: .airing))
     getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
-      request: AnimeRankingModuleRequest(type: "upcoming"))
+      request: AnimeRankingRequest(type: .upcoming))
     getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
-    let popularAnimePublisher = _popularAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "bypopularity"))
+    let popularAnimePublisher = _popularAnimeUseCase.execute(request: AnimeRankingRequest(type: .byPopularity))
     getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series
-    let topAllAnimePublisher = _topAllAnimeUseCase.execute(request: AnimeRankingModuleRequest(type: "all"))
+    let topAllAnimePublisher = _topAllAnimeUseCase.execute(request: AnimeRankingRequest(type: .all))
     getTopAllAnimes(publisher: topAllAnimePublisher)
 
     let loadingPublishers = Publishers.CombineLatest4(

@@ -20,28 +20,28 @@ struct YumeApp: App {
 
     // Home
     let topAiringAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>> = injection.provideAnimeRanking()
     let topUpcomingAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>> = injection.provideAnimeRanking()
     let popularAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>> = injection.provideAnimeRanking()
     let topAllAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
@@ -56,7 +56,7 @@ struct YumeApp: App {
         GetAnimeListRemoteDataSource,
         AnimesTransformer>> = injection.provideSearchAnime()
     let topFavoriteAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,

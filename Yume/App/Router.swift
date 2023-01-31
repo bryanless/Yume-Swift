@@ -36,16 +36,16 @@ class Router {
   }
 
   func makeSeeAllAnimeView(
-    for rankingType: String,
+    for rankingType: RankingTypeRequest,
     detailDestination: @escaping ((_ anime: AnimeDomainModel) -> AnimeDetailView)) -> SeeAllAnimeView<AnimeDetailView> {
     var navigationTitle: String
 
     switch rankingType {
-    case "airing":
+    case .airing:
       navigationTitle = "now_airing_title"
-    case "upcoming":
+    case .upcoming:
       navigationTitle = "upcoming_title"
-    case "bypopularity":
+    case .byPopularity:
       navigationTitle = "most_popular_title"
     default:
       // All
@@ -53,7 +53,7 @@ class Router {
     }
 
     let seeAllAnimeUseCase: Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,

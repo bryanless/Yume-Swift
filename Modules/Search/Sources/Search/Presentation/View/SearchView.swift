@@ -26,7 +26,7 @@ public struct SearchView<DetailDestination: View>: View {
         GetAnimeListRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
@@ -43,7 +43,7 @@ public struct SearchView<DetailDestination: View>: View {
     GetAnimeListRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel], GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,

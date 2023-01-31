@@ -12,7 +12,7 @@ import Foundation
 
 public struct GetAnimeRankingRemoteDataSource: DataSource {
 
-  public typealias Request = AnimeRankingModuleRequest
+  public typealias Request = AnimeRankingRequest
   public typealias Response = [AnimeDataResponse]
 
   private let _endpoint: String
@@ -29,16 +29,24 @@ public struct GetAnimeRankingRemoteDataSource: DataSource {
     _headers = headers
   }
 
-  public func execute(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeDataResponse], Error> {
+  public func execute(request: AnimeRankingRequest?) -> AnyPublisher<[AnimeDataResponse], Error> {
     return Future<[AnimeDataResponse], Error> { completion in
       guard let request = request else {
         return completion(.failure(URLError.invalidRequest))
       }
 
+      let remoteRequest = AnimeRankingRemoteRequest(
+        type: request.rankingType,
+        limit: request.limit,
+        offset: request.offset,
+        fields: request.fields,
+        nsfw: request.nsfw
+      )
+
       if let url = URL(string: _endpoint) {
         AF.request(
           url,
-          parameters: request,
+          parameters: remoteRequest,
           encoder: _encoder,
           headers: _headers
         )
