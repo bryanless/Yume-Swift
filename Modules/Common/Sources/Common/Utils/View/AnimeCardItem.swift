@@ -22,11 +22,13 @@ public struct AnimeCardItem: View {
       mainPicture
       content
       Spacer()
-    }.frame(height: 150)
-      .overlay(
-        RoundedRectangle(cornerRadius: 8)
-          .stroke(YumeColor.outline, lineWidth: 1)
-      )
+    }
+    .frame(height: 150)
+    .background(YumeColor.surface)
+    .overlay(
+      RoundedRectangle(cornerRadius: 8)
+        .stroke(YumeColor.outline, lineWidth: 1)
+    )
   }
 
 }
