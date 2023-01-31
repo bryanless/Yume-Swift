@@ -36,7 +36,7 @@ final class Injection: NSObject {
 
   func provideSearchAnime<U: UseCase>() -> U
   where
-  U.Request == AnimeListModuleRequest,
+  U.Request == AnimeListRequest,
   U.Response == [AnimeDomainModel] {
     let remote = GetAnimeListRemoteDataSource(
       endpoint: Endpoints.Gets.search.url,

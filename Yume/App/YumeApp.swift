@@ -50,7 +50,7 @@ struct YumeApp: App {
 
     // Search
     let searchAnimeUseCase: Interactor<
-      AnimeListModuleRequest,
+      AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
         GetAnimeListRemoteDataSource,

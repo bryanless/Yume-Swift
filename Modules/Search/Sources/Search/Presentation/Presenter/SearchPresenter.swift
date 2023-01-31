@@ -13,7 +13,7 @@ import Foundation
 public class SearchPresenter<
   SearchAnimeUseCase: UseCase,
   TopFavoriteAnimeUseCase: UseCase>: ObservableObject
-where SearchAnimeUseCase.Request == AnimeListModuleRequest,
+where SearchAnimeUseCase.Request == AnimeListRequest,
       SearchAnimeUseCase.Response == [AnimeDomainModel],
       TopFavoriteAnimeUseCase.Request == AnimeRankingModuleRequest,
       TopFavoriteAnimeUseCase.Response == [AnimeDomainModel] {
@@ -56,7 +56,7 @@ where SearchAnimeUseCase.Request == AnimeListModuleRequest,
   private func searchAnime(title: String) {
     isLoading = true
     searchAnimeList = []
-    _searchAnimeUseCase.execute(request: AnimeListModuleRequest(title: title))
+    _searchAnimeUseCase.execute(request: AnimeListRequest(title: title))
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {

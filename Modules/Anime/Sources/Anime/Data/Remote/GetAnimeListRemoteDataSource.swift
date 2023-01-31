@@ -12,7 +12,7 @@ import Foundation
 
 public struct GetAnimeListRemoteDataSource: DataSource {
 
-  public typealias Request = AnimeListModuleRequest
+  public typealias Request = AnimeListRequest
   public typealias Response = [AnimeDataResponse]
 
   private let _endpoint: String
@@ -29,16 +29,24 @@ public struct GetAnimeListRemoteDataSource: DataSource {
     _headers = headers
   }
 
-  public func execute(request: AnimeListModuleRequest?) -> AnyPublisher<[AnimeDataResponse], Error> {
+  public func execute(request: AnimeListRequest?) -> AnyPublisher<[AnimeDataResponse], Error> {
     return Future<[AnimeDataResponse], Error> { completion in
       guard let request = request else {
         return completion(.failure(URLError.invalidRequest))
       }
 
+      let remoteRequest = AnimeListRemoteRequest(
+        title: request.q,
+        limit: request.limit,
+        offset: request.offset,
+        fields: request.fields,
+        nsfw: request.nsfw
+      )
+
       if let url = URL(string: _endpoint) {
         AF.request(
           url,
-          parameters: request,
+          parameters: remoteRequest,
           encoder: _encoder,
           headers: _headers
         )

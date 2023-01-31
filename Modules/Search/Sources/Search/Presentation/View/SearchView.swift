@@ -20,7 +20,7 @@ import SwiftUI
 public struct SearchView<DetailDestination: View>: View {
   @ObservedObject var presenter: SearchPresenter<
     Interactor<
-      AnimeListModuleRequest,
+      AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
         GetAnimeListRemoteDataSource,
@@ -37,7 +37,7 @@ public struct SearchView<DetailDestination: View>: View {
 
   public init(
     presenter: SearchPresenter<
-    Interactor<AnimeListModuleRequest,
+    Interactor<AnimeListRequest,
     [AnimeDomainModel],
     SearchAnimeRepository<
     GetAnimeListRemoteDataSource,

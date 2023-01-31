@@ -48,7 +48,7 @@ struct ContentView: View {
         AnimesTransformer>>>
   @EnvironmentObject var searchPresenter: SearchPresenter<
     Interactor<
-      AnimeListModuleRequest,
+      AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
         GetAnimeListRemoteDataSource,
