@@ -61,7 +61,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
@@ -70,7 +69,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
     let popularAnimePublisher = _popularAnimeUseCase.execute(
@@ -79,7 +77,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series
     let topAllAnimePublisher = _topAllAnimeUseCase.execute(
@@ -88,96 +85,31 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopAllAnimes(publisher: topAllAnimePublisher)
 
     let loadingPublishers = Publishers.CombineLatest4(
       topAiringAnimePublisher,
       topUpcomingAnimePublisher,
       popularAnimePublisher,
       topAllAnimePublisher
-    ).map { topAiringAnimes, topUpcomingAnimes, popularAnimes, topAllAnimes in
-      topAiringAnimes.isEmpty || topUpcomingAnimes.isEmpty || popularAnimes.isEmpty || topAllAnimes.isEmpty
-    }
+    )
 
-    loadingPublishers.sink(receiveCompletion: { completion in
-      switch completion {
-      case .failure:
-        self.errorMessage = String(describing: completion)
-        print(self.errorMessage)
-      case .finished:
-        ()
-      }
-    }, receiveValue: { isLoading in
-      self.isLoading = isLoading
-    }).store(in: &cancellables)
-  }
-
-  private func getTopAiringAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
-    publisher
+    loadingPublishers
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {
         case .failure:
           self.errorMessage = String(describing: completion)
-          print(self.errorMessage)
+          self.isError = true
+          self.isLoading = false
         case .finished:
-          ()
+          self.isLoading = false
         }
       }, receiveValue: { animes in
-        self.topAiringAnimeList = animes
-      })
-      .store(in: &cancellables)
-  }
-
-  private func getTopUpcomingAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
-    publisher
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
-          print(self.errorMessage)
-        case .finished:
-          ()
-        }
-      }, receiveValue: { animes in
-        self.topUpcomingAnimeList = animes
-      })
-      .store(in: &cancellables)
-  }
-
-  private func getPopularAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
-    publisher
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
-          print(self.errorMessage)
-        case .finished:
-          ()
-        }
-      }, receiveValue: { animes in
-        self.popularAnimeList = animes
-      })
-      .store(in: &cancellables)
-  }
-
-  private func getTopAllAnimes(publisher: AnyPublisher<[AnimeDomainModel], Error>) {
-    publisher
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
-          print(self.errorMessage)
-        case .finished:
-          ()
-        }
-      }, receiveValue: { animes in
-        self.topAllAnimeList = animes
-      })
-      .store(in: &cancellables)
+        self.topAiringAnimeList = animes.0
+        self.topUpcomingAnimeList = animes.1
+        self.popularAnimeList = animes.2
+        self.topAllAnimeList = animes.3
+      }).store(in: &cancellables)
   }
 
   public func refreshHomeView() {
@@ -190,7 +122,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
@@ -199,7 +130,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
     let popularAnimePublisher = _popularAnimeUseCase.execute(
@@ -208,7 +138,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series
     let topAllAnimePublisher = _topAllAnimeUseCase.execute(
@@ -217,7 +146,6 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         refresh: true
       )
     )
-    getTopAllAnimes(publisher: topAllAnimePublisher)
 
     let loadingPublishers = Publishers.CombineLatest4(
       topAiringAnimePublisher,
@@ -226,15 +154,22 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
       topAllAnimePublisher
     )
 
-    loadingPublishers.sink(receiveCompletion: { completion in
-      switch completion {
-      case .failure:
-        self.errorMessage = String(describing: completion)
-        print(self.errorMessage)
-      case .finished:
-        self.isRefreshing = false
-      }
-    }, receiveValue: { _ in
-    }).store(in: &cancellables)
+    loadingPublishers
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { completion in
+        switch completion {
+        case .failure(let error):
+          self.errorMessage = error.localizedDescription
+          self.isError = true
+          self.isLoading = false
+        case .finished:
+          self.isRefreshing = false
+        }
+      }, receiveValue: { animes in
+        self.topAiringAnimeList = animes.0
+        self.topUpcomingAnimeList = animes.1
+        self.popularAnimeList = animes.2
+        self.topAllAnimeList = animes.3
+      }).store(in: &cancellables)
   }
 }
