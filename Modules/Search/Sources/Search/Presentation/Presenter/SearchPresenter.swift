@@ -112,7 +112,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
       case .failure(let error):
         self.errorMessage = error.localizedDescription
         self.isError = true
-        self.isLoading = false
+        self.isRefreshing = false
       case .finished:
         self.isRefreshing = false
       }
