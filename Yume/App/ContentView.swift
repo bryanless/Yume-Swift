@@ -72,6 +72,8 @@ struct ContentView: View {
   @State private var selection: Tab = .home
 
   init() {
+    NetworkMonitor.shared.startMonitoring()
+
     UITabBar.appearance().isHidden = true
   }
 

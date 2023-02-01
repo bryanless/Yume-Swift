@@ -44,7 +44,7 @@ where AnimeLocaleDataSource.Request == AnimeRankingRequest,
 
     return _localeDataSource.list(request: request)
       .flatMap { result -> AnyPublisher<[AnimeDomainModel], Error> in
-        if result.isEmpty || request.refresh {
+        if result.isEmpty || (request.refresh && NetworkMonitor.shared.isConnected ) {
           return _remoteDataSource.execute(request: request)
             .map { _mapper.transformResponseToEntity(request: request, response: $0) }
             .flatMap { _localeDataSource.add(entities: $0) }
