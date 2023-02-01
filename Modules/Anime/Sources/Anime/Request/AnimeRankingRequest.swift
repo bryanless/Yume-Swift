@@ -5,8 +5,8 @@
 //  Created by Bryan on 06/01/23.
 //
 
-public struct AnimeRankingRequest: Encodable {
-  let rankingType: String
+public struct AnimeRankingRequest {
+  let rankingType: RankingTypeRequest
   let limit: Int?
   let offset: Int?
   let fields: String?
@@ -21,7 +21,7 @@ public struct AnimeRankingRequest: Encodable {
     nsfw: Bool? = nil,
     refresh: Bool = false
   ) {
-    self.rankingType = rankingType.name
+    self.rankingType = rankingType
     self.limit = limit
     self.offset = offset
     self.fields = fields

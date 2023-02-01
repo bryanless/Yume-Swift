@@ -5,7 +5,7 @@
 //  Created by Bryan on 08/01/23.
 //
 
-public struct AnimeListRequest: Encodable {
+public struct AnimeListRequest {
   let q: String
   let limit: Int?
   let offset: Int?

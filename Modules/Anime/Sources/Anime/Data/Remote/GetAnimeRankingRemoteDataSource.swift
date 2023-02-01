@@ -36,7 +36,7 @@ public struct GetAnimeRankingRemoteDataSource: DataSource {
       }
 
       let remoteRequest = AnimeRankingRemoteRequest(
-        type: request.rankingType,
+        type: request.rankingType.name,
         limit: request.limit,
         offset: request.offset,
         fields: request.fields,

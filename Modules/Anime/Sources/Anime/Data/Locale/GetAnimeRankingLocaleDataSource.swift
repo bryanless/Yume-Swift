@@ -23,31 +23,35 @@ public struct GetAnimeRankingLocaleDataSource: LocaleDataSource {
 
   public func list(request: AnimeRankingRequest?) -> AnyPublisher<[AnimeModuleEntity], Error> {
     return Future<[AnimeModuleEntity], Error> { completion in
+      guard let request = request else {
+        return completion(.failure(URLError.invalidRequest))
+      }
+
       let animes: Results<AnimeModuleEntity> = {
-        switch request?.rankingType {
-        case "airing":
+        switch request.rankingType {
+        case RankingTypeRequest.airing:
           return _realm.objects(AnimeModuleEntity.self)
             .where {
               $0.status == Status.currentlyAiring.name
               && $0.rank != 0
             }
-            .sorted(byKeyPath: "rank")
-        case "upcoming":
+            .sorted(byKeyPath: request.rankingType.sortKey)
+        case .upcoming:
           return _realm.objects(AnimeModuleEntity.self)
             .where { $0.status == Status.notYetAired.name }
-            .sorted(byKeyPath: "popularity")
-        case "bypopularity":
+            .sorted(byKeyPath: request.rankingType.sortKey)
+        case .byPopularity:
           return _realm.objects(AnimeModuleEntity.self)
             .where { $0.popularity != 0 }
-            .sorted(byKeyPath: "popularity")
-        case "favorite":
+            .sorted(byKeyPath: request.rankingType.sortKey)
+        case .favorite:
           return _realm.objects(AnimeModuleEntity.self)
-            .sorted(byKeyPath: "favoriteAmount", ascending: false)
+            .sorted(byKeyPath: request.rankingType.sortKey, ascending: false)
         default:
           // All
           return _realm.objects(AnimeModuleEntity.self)
             .where { $0.rank != 0 }
-            .sorted(byKeyPath: "rank")
+            .sorted(byKeyPath: request.rankingType.sortKey)
         }
       }()
       completion(.success(animes.toArray(ofType: AnimeModuleEntity.self)))

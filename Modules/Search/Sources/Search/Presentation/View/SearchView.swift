@@ -86,7 +86,12 @@ public struct SearchView<DetailDestination: View>: View {
 extension SearchView {
   var content: some View {
     ZStack {
-      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+      RefreshableScrollView(
+        scrollOffset: $scrollOffset,
+        showsIndicators: false,
+        isRefreshing: $presenter.isRefreshing,
+        onRefresh: presenter.refreshTopFavoriteAnimes
+      ) { _ in
         LazyVStack(spacing: Space.small) {
           ForEach(
             presenter.searchAnimeList.isEmpty

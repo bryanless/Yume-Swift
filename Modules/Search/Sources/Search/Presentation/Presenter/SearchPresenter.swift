@@ -27,6 +27,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
   @Published public var topFavoriteAnimeList: [AnimeDomainModel] = []
   @Published public var errorMessage: String = ""
   @Published public var isLoading: Bool = false
+  @Published public var isRefreshing: Bool = false
   @Published public var isError: Bool = false
 
   public init(
@@ -88,5 +89,28 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         self.topFavoriteAnimeList = animes
       })
       .store(in: &cancellables)
+  }
+
+  func refreshTopFavoriteAnimes() {
+    isRefreshing = true
+    _topFavoriteAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .favorite,
+        refresh: true
+      )
+    )
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completion in
+      switch completion {
+      case .failure:
+        self.errorMessage = String(describing: completion)
+        print(self.errorMessage)
+      case .finished:
+        self.isRefreshing = false
+      }
+    }, receiveValue: { animes in
+      self.topFavoriteAnimeList = animes
+    })
+    .store(in: &cancellables)
   }
 }
