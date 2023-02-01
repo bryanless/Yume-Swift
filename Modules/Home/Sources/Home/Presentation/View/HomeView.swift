@@ -109,7 +109,12 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
 extension HomeView {
   var content: some View {
     ZStack(alignment: .top) {
-      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+      RefreshableScrollView(
+        scrollOffset: $scrollOffset,
+        showsIndicators: false,
+        isRefreshing: $presenter.isRefreshing,
+        onRefresh: presenter.refreshHomeView
+      ) { _ in
         LazyVStack(spacing: Space.large) {
           header
           topAiringAnime

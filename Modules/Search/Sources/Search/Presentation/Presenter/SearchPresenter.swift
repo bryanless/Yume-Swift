@@ -75,20 +75,25 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
 
   func getTopFavoriteAnimes() {
     isLoading = true
-    _topFavoriteAnimeUseCase.execute(request: AnimeRankingRequest(type: .favorite))
-      .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
-        switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
-          print(self.errorMessage)
-        case .finished:
-          self.isLoading = false
-        }
-      }, receiveValue: { animes in
-        self.topFavoriteAnimeList = animes
-      })
-      .store(in: &cancellables)
+    _topFavoriteAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .favorite,
+        refresh: true
+      )
+    )
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completion in
+      switch completion {
+      case .failure:
+        self.errorMessage = String(describing: completion)
+        print(self.errorMessage)
+      case .finished:
+        self.isLoading = false
+      }
+    }, receiveValue: { animes in
+      self.topFavoriteAnimeList = animes
+    })
+    .store(in: &cancellables)
   }
 
   func refreshTopFavoriteAnimes() {

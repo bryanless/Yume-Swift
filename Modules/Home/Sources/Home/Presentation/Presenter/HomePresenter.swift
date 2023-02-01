@@ -36,6 +36,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
   @Published public var topAllAnimeList: [AnimeDomainModel] = []
   @Published public var errorMessage: String = ""
   @Published public var isLoading: Bool = false
+  @Published public var isRefreshing: Bool = false
   @Published public var isError: Bool = false
 
   public init(
@@ -54,20 +55,39 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
     isLoading = true
 
     // Get top airing anime
-    let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(request: AnimeRankingRequest(type: .airing))
+    let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .airing,
+        refresh: true
+      )
+    )
     getTopAiringAnimes(publisher: topAiringAnimePublisher)
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
-      request: AnimeRankingRequest(type: .upcoming))
+      request: AnimeRankingRequest(
+        type: .upcoming,
+        refresh: true
+      )
+    )
     getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
 
     // Get popular anime
-    let popularAnimePublisher = _popularAnimeUseCase.execute(request: AnimeRankingRequest(type: .byPopularity))
+    let popularAnimePublisher = _popularAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .byPopularity,
+        refresh: true
+      )
+    )
     getPopularAnimes(publisher: popularAnimePublisher)
 
     // Get top anime series
-    let topAllAnimePublisher = _topAllAnimeUseCase.execute(request: AnimeRankingRequest(type: .all))
+    let topAllAnimePublisher = _topAllAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .all,
+        refresh: true
+      )
+    )
     getTopAllAnimes(publisher: topAllAnimePublisher)
 
     let loadingPublishers = Publishers.CombineLatest4(
@@ -158,5 +178,63 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         self.topAllAnimeList = animes
       })
       .store(in: &cancellables)
+  }
+
+  public func refreshHomeView() {
+    isRefreshing = true
+
+    // Get top airing anime
+    let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .airing,
+        refresh: true
+      )
+    )
+    getTopAiringAnimes(publisher: topAiringAnimePublisher)
+
+    // Get top upcoming anime
+    let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .upcoming,
+        refresh: true
+      )
+    )
+    getTopUpcomingAnimes(publisher: topUpcomingAnimePublisher)
+
+    // Get popular anime
+    let popularAnimePublisher = _popularAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .byPopularity,
+        refresh: true
+      )
+    )
+    getPopularAnimes(publisher: popularAnimePublisher)
+
+    // Get top anime series
+    let topAllAnimePublisher = _topAllAnimeUseCase.execute(
+      request: AnimeRankingRequest(
+        type: .all,
+        refresh: true
+      )
+    )
+    getTopAllAnimes(publisher: topAllAnimePublisher)
+
+    let loadingPublishers = Publishers.CombineLatest4(
+      topAiringAnimePublisher,
+      topUpcomingAnimePublisher,
+      popularAnimePublisher,
+      topAllAnimePublisher
+    )
+
+    loadingPublishers.sink(receiveCompletion: { completion in
+      switch completion {
+      case .failure:
+        self.errorMessage = String(describing: completion)
+        print(self.errorMessage)
+      case .finished:
+        self.isRefreshing = false
+      }
+    }, receiveValue: { _ in
+    }).store(in: &cancellables)
   }
 }

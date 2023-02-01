@@ -35,15 +35,19 @@ public struct RefreshableScrollView<Content>: View where Content: View {
   }
 
   public var body: some View {
-    ObservableScrollView(scrollOffset: $scrollOffset, content: content)
-      .onAppear {
-        UIRefreshControl.appearance().tintColor = UIColor(YumeColor.onSurfaceVariant)
-        UIRefreshControl.appearance().attributedTitle = NSAttributedString(string: refreshLabel)
-      }
-      .refreshable {
-        onRefresh()
-        await refreshing()
-      }
+    ObservableScrollView(
+      scrollOffset: $scrollOffset,
+      showsIndicators: showsIndicators,
+      content: content
+    )
+    .onAppear {
+      UIRefreshControl.appearance().tintColor = UIColor(YumeColor.onSurfaceVariant)
+      UIRefreshControl.appearance().attributedTitle = NSAttributedString(string: refreshLabel)
+    }
+    .refreshable {
+      onRefresh()
+      await refreshing()
+    }
   }
 }
 
