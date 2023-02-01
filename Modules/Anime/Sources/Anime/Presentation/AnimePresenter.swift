@@ -54,8 +54,10 @@ where AnimeUseCase.Request == AnimeRequest,
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
+        case .failure(let error):
+          self.errorMessage = error.localizedDescription
+          self.isError = true
+          self.isLoading = false
         case .finished:
           self.isLoading = false
         }

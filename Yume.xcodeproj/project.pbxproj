@@ -29,7 +29,6 @@
 		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
 		93648F0F296866F000CAB465 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0E296866F000CAB465 /* SDWebImageSwiftUI */; };
 		93648F132968858000CAB465 /* Anime in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F122968858000CAB465 /* Anime */; };
-		93648F242968B8BF00CAB465 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93648F232968B8BF00CAB465 /* AppDelegate.swift */; };
 		93648F2A2968C8E400CAB465 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F292968C8E400CAB465 /* Home */; };
 		93648F2F2968E1B200CAB465 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F2E2968E1B200CAB465 /* Common */; };
 		93648F602968E36E00CAB465 /* Nunito-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93648F502968E36D00CAB465 /* Nunito-BlackItalic.ttf */; };
@@ -93,7 +92,6 @@
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		93648F11296873D400CAB465 /* Anime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Anime; path = Modules/Anime; sourceTree = "<group>"; };
-		93648F232968B8BF00CAB465 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93648F282968C7F600CAB465 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Home; path = Modules/Home; sourceTree = "<group>"; };
 		93648F2B2968D3E700CAB465 /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Common; path = Modules/Common; sourceTree = "<group>"; };
 		93648F502968E36D00CAB465 /* Nunito-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 		931BBF70295C176E00359359 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				93648F232968B8BF00CAB465 /* AppDelegate.swift */,
 				934AF4B82958A82200C413B4 /* YumeApp.swift */,
 				934AF4BA2958A82200C413B4 /* ContentView.swift */,
 				93A3C9EE296A164200B4483F /* Router.swift */,
@@ -527,7 +524,6 @@
 			files = (
 				931BBFA1295C395100359359 /* Injection.swift in Sources */,
 				93298D02296BED12006AEC25 /* UINavigationController+Ext.swift in Sources */,
-				93648F242968B8BF00CAB465 /* AppDelegate.swift in Sources */,
 				93A3C9EF296A164200B4483F /* Router.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
 				931BBFAB295C3C7500359359 /* PreviewData copy.swift in Sources */,
