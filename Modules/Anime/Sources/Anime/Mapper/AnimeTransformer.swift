@@ -68,7 +68,7 @@ public struct AnimeTransformer: Mapper {
       startSeason: entity.startSeason,
       startSeasonYear: entity.startSeasonYear,
       source: entity.source,
-      episodeDuration: entity.episodeDuration,
+      episodeDuration: entity.episodeDuration.description,
       studios: Array(entity.studios),
       isFavorite: entity.isFavorite
     )

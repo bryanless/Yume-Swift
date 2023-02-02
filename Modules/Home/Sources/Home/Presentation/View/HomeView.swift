@@ -90,8 +90,7 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        CustomEmptyView(label: presenter.errorMessage)
       } else {
         content
       }

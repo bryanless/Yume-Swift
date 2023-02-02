@@ -9,7 +9,9 @@ import Combine
 import Core
 import Foundation
 
-public class AnimePresenter<AnimeUseCase: UseCase, FavoriteUseCase: UseCase>: ObservableObject
+public class AnimePresenter<
+  AnimeUseCase: UseCase,
+  FavoriteUseCase: UseCase>: ObservableObject
 where AnimeUseCase.Request == AnimeRequest,
       AnimeUseCase.Response == AnimeDomainModel,
       FavoriteUseCase.Request == Int,
@@ -25,7 +27,10 @@ where AnimeUseCase.Request == AnimeRequest,
   @Published public var isLoading: Bool = false
   @Published public var isError: Bool = false
 
-  public init(animeUseCase: AnimeUseCase, favoriteUseCase: FavoriteUseCase) {
+  public init(
+    animeUseCase: AnimeUseCase,
+    favoriteUseCase: FavoriteUseCase
+  ) {
     _animeUseCase = animeUseCase
     _favoriteUseCase = favoriteUseCase
   }
@@ -44,7 +49,23 @@ where AnimeUseCase.Request == AnimeRequest,
           self.isLoading = false
         }
       }, receiveValue: { item in
-        self.item = item
+        var anime = item
+
+        anime.startDate = item.startDate.apiFullStringDateToFullStringDate()
+        anime.endDate = item.endDate.apiFullStringDateToFullStringDate()
+
+        var episodeDuration = ""
+        let (hours, minutes, _) = Int(item.episodeDuration)?.secondsToHoursMinutesSeconds() ?? (0, 0, 0)
+        if hours > 0 {
+          episodeDuration += "\(hours) \("hours_label".localized(bundle: .module)) "
+        }
+
+        if minutes > 0 {
+          episodeDuration += "\(minutes) \("minutes_label".localized(bundle: .module)) "
+        }
+        anime.episodeDuration = episodeDuration
+
+        self.item = anime
       })
       .store(in: &cancellables)
   }

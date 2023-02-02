@@ -71,7 +71,7 @@ public struct AnimesTransformer: Mapper {
         startSeason: result.startSeason,
         startSeasonYear: result.startSeasonYear,
         source: result.source,
-        episodeDuration: result.episodeDuration,
+        episodeDuration: result.episodeDuration.description,
         studios: Array(result.studios),
         isFavorite: result.isFavorite
       )

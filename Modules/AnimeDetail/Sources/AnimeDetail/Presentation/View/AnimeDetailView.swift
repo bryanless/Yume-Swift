@@ -45,7 +45,8 @@ public struct AnimeDetailView: View {
     UpdateFavoriteAnimeRepository<
     GetFavoriteAnimeLocaleDataSource,
     AnimeDataTransformer>>>,
-    scrollOffset: CGFloat = CGFloat.zero, anime: AnimeDomainModel
+    scrollOffset: CGFloat = CGFloat.zero,
+    anime: AnimeDomainModel
   ) {
     self.presenter = presenter
     self.scrollOffset = scrollOffset
@@ -58,15 +59,16 @@ public struct AnimeDetailView: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        CustomEmptyView(label: presenter.errorMessage)
       } else {
         content
       }
     }
     .toolbar(.hidden)
     .onAppear {
-      presenter.getAnime(request: AnimeRequest(id: anime.id))
+      if presenter.item == nil {
+        presenter.getAnime(request: AnimeRequest(id: anime.id))
+      }
     }
   }
 }
@@ -89,7 +91,7 @@ extension AnimeDetailView {
             bottom: Space.medium,
             trailing: Space.medium)
         )
-      }
+      }.background(YumeColor.background)
 
       BackAppBar(scrollOffset: scrollOffset, label: "", trailing: {
         Button {
@@ -207,18 +209,23 @@ extension AnimeDetailView {
         )
         AnimeInformationItem(
           label: "duration_label".localized(bundle: .module),
-          value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == 0
+          value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == ""
           ? "unknown_label".localized(bundle: .common)
-          : (presenter.item?.episodeDuration ?? anime.episodeDuration).secondsToHoursMinutes()
+          : (presenter.item?.episodeDuration ?? anime.episodeDuration)
         )
+        let startDate = presenter.item?.startDate ?? anime.startDate
+        let endDate = presenter.item?.endDate ?? anime.endDate
+        let airedDate = (startDate == "Unknown" && endDate == "Unknown")
+        ? "unknown_label".localized(bundle: .common)
+        : ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
+           ? "unknown_label".localized(bundle: .common)
+           : (presenter.item?.startDate ?? anime.startDate)) + " - "
+        + ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
+           ? "unknown_label".localized(bundle: .common)
+           : (presenter.item?.startDate ?? anime.startDate))
         AnimeInformationItem(
           label: "aired_label".localized(bundle: .module),
-          value: ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-                  ? "unknown_label".localized(bundle: .common)
-                  : (presenter.item?.startDate ?? anime.startDate)) + " - "
-          + ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-             ? "unknown_label".localized(bundle: .common)
-             : (presenter.item?.startDate ?? anime.startDate))
+          value: airedDate
         )
         AnimeInformationItem(
           label: "studios_label".localized(bundle: .module),

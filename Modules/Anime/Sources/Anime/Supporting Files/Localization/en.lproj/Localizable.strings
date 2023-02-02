@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 02/02/23.
+  
+*/
+
+"hours_label" = "hours";
+"minutes_label" = "minutes";
