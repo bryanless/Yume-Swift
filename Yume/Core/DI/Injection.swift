@@ -41,6 +41,8 @@ final class Injection: NSObject {
   where
   U.Request == AnimeListRequest,
   U.Response == [AnimeDomainModel] {
+    let locale = GetAnimeListLocaleDataSource(realm: realm!)
+
     let remote = GetAnimeListRemoteDataSource(
       endpoint: Endpoints.Gets.search.url,
       encoder: API.encoder,
@@ -50,6 +52,7 @@ final class Injection: NSObject {
     let mapper = AnimesTransformer()
 
     let repository = SearchAnimeRepository(
+      localeDataSource: locale,
       remoteDataSource: remote,
       mapper: mapper)
 

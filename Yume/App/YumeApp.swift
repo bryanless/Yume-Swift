@@ -48,6 +48,7 @@ let searchAnimeUseCase: Interactor<
   AnimeListRequest,
   [AnimeDomainModel],
   SearchAnimeRepository<
+    GetAnimeListLocaleDataSource,
     GetAnimeListRemoteDataSource,
     AnimesTransformer>> = injection.provideSearchAnime()
 let topFavoriteAnimeUseCase: Interactor<

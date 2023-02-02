@@ -5,13 +5,6 @@
 //  Created by Bryan on 08/01/23.
 //
 
-//
-//  SearchView.swift
-//  Yume
-//
-//  Created by Bryan on 28/12/22.
-//
-
 import Anime
 import Common
 import Core
@@ -23,6 +16,7 @@ public struct SearchView<DetailDestination: View>: View {
       AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
+        GetAnimeListLocaleDataSource,
         GetAnimeListRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
@@ -40,6 +34,7 @@ public struct SearchView<DetailDestination: View>: View {
     Interactor<AnimeListRequest,
     [AnimeDomainModel],
     SearchAnimeRepository<
+    GetAnimeListLocaleDataSource,
     GetAnimeListRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
@@ -64,8 +59,7 @@ public struct SearchView<DetailDestination: View>: View {
                           : "searching_anime_label".localized(bundle: .module))
         .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        CustomEmptyView(label: presenter.errorMessage)
       } else {
         content
       }
@@ -105,6 +99,7 @@ extension SearchView {
       }
       .padding(.top, 40.0)
       .background(YumeColor.background)
+      .scrollDismissesKeyboard(.immediately)
     }
   }
 

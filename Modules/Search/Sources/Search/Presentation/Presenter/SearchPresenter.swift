@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SearchPresenter.swift
 //  
 //
 //  Created by Bryan on 08/01/23.
@@ -41,9 +41,8 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
 
   private func doSearchAnime() {
     $searchText
-      .removeDuplicates()
       .debounce(for: 0.6, scheduler: RunLoop.main)
-      .receive(on: RunLoop.main)
+      .removeDuplicates()
       .sink(receiveValue: { [weak self] searchText in
         if searchText.count > 2 {
           self?.searchAnime(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))

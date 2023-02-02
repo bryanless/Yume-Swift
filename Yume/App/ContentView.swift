@@ -51,6 +51,7 @@ struct ContentView: View {
       AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
+        GetAnimeListLocaleDataSource,
         GetAnimeListRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
@@ -106,7 +107,7 @@ struct ContentView: View {
         }.tag(Tab.profile)
       }
       TabBar(selection: $selection)
-    }
+    }.ignoresSafeArea(.keyboard)
   }
 
 }
