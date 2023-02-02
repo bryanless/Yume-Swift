@@ -97,7 +97,36 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
     .store(in: &cancellables)
   }
 
-  func refreshTopFavoriteAnimes() {
+  func refreshSearchView() {
+    if !searchAnimeList.isEmpty {
+      refreshSearchAnime()
+    } else {
+      refreshTopFavoriteAnimes()
+    }
+  }
+
+  private func refreshSearchAnime() {
+    isRefreshing = true
+    _searchAnimeUseCase.execute(
+      request: AnimeListRequest(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+    )
+    .receive(on: RunLoop.main)
+    .sink(receiveCompletion: { completion in
+      switch completion {
+      case .failure(let error):
+        self.errorMessage = error.localizedDescription
+        self.isError = true
+        self.isRefreshing = false
+      case .finished:
+        self.isRefreshing = false
+      }
+    }, receiveValue: { animes in
+      self.searchAnimeList = animes
+    })
+    .store(in: &cancellables)
+  }
+
+  private func refreshTopFavoriteAnimes() {
     isRefreshing = true
     _topFavoriteAnimeUseCase.execute(
       request: AnimeRankingRequest(

@@ -46,7 +46,6 @@ where AnimeLocaleDataSource.Request == AnimeListRequest,
           .map { _ in _mapper.transformEntityToDomain(entity: result) }
           .eraseToAnyPublisher()
       }
-      .map { _mapper.transformEntityToDomain(entity: $0) }
       .eraseToAnyPublisher()
   }
 

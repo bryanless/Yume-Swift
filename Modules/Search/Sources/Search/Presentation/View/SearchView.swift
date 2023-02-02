@@ -84,7 +84,7 @@ extension SearchView {
         scrollOffset: $scrollOffset,
         showsIndicators: false,
         isRefreshing: $presenter.isRefreshing,
-        onRefresh: presenter.refreshTopFavoriteAnimes
+        onRefresh: presenter.refreshSearchView
       ) { _ in
         LazyVStack(spacing: Space.small) {
           ForEach(
