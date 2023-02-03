@@ -54,6 +54,7 @@ public struct AnimeTransformer: Mapper {
       alternativeTitleJapanese: entity.alternativeTitleJapanese,
       startDate: entity.startDate,
       endDate: entity.endDate,
+      airedDate: AnimeTransformer.transformToAiredDate(startDate: entity.startDate, endDate: entity.endDate),
       synopsis: entity.synopsis,
       rating: entity.rating,
       rank: entity.rank,
@@ -68,10 +69,40 @@ public struct AnimeTransformer: Mapper {
       startSeason: entity.startSeason,
       startSeasonYear: entity.startSeasonYear,
       source: entity.source,
-      episodeDuration: entity.episodeDuration.description,
+      episodeDuration: entity.episodeDuration,
+      episodeDurationText: AnimeTransformer.transformToDurationText(duration: entity.episodeDuration),
       studios: Array(entity.studios),
       isFavorite: entity.isFavorite
     )
+  }
+
+  public static func transformToAiredDate(startDate: String, endDate: String) -> String {
+    // Start & end date unknown
+    if startDate == "Unknown" && endDate == "Unknown" {
+      return "unknown_label".localized(bundle: .module)
+    }
+
+    // Start or end date unknown
+    let start = startDate == "Unknown"
+    ? "unknown_label".localized(bundle: .module)
+    : startDate.apiFullStringDateToFullStringDate()
+    let end = endDate == "Unknown"
+    ? "unknown_label".localized(bundle: .module)
+    : endDate.apiFullStringDateToFullStringDate()
+
+    // Start & end date same (mostly for movie)
+    if start == end {
+      return start
+    }
+
+    return "\(start) - \(end)"
+  }
+
+  public static func transformToDurationText(duration: Int) -> String {
+    let (hours, minutes, _) = duration.secondsToHoursMinutesSeconds()
+    return String(
+      localized: "number_duration_label \(hours) \(minutes) \(0)",
+      bundle: .module)
   }
 
 }

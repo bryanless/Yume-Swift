@@ -54,17 +54,6 @@ where AnimeUseCase.Request == AnimeRequest,
         anime.startDate = item.startDate.apiFullStringDateToFullStringDate()
         anime.endDate = item.endDate.apiFullStringDateToFullStringDate()
 
-        var episodeDuration = ""
-        let (hours, minutes, _) = Int(item.episodeDuration)?.secondsToHoursMinutesSeconds() ?? (0, 0, 0)
-        if hours > 0 {
-          episodeDuration += "\(hours) \("hours_label".localized(bundle: .module)) "
-        }
-
-        if minutes > 0 {
-          episodeDuration += "\(minutes) \("minutes_label".localized(bundle: .module)) "
-        }
-        anime.episodeDuration = episodeDuration
-
         self.item = anime
       })
       .store(in: &cancellables)

@@ -55,7 +55,7 @@ public struct SearchBar: View {
         trailing: Space.medium)
     )
     .background(YumeColor.surfaceVariant)
-    .cornerRadius(Shape.rounded)
+    .cornerRadius(Shape.small)
   }
 }
 

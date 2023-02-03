@@ -15,6 +15,7 @@ public struct AnimeDomainModel: Equatable, Identifiable {
   public let alternativeTitleJapanese: String
   public var startDate: String
   public var endDate: String
+  public let airedDate: String
   public let synopsis: String
   public let rating: Double
   public let rank: Int
@@ -29,7 +30,8 @@ public struct AnimeDomainModel: Equatable, Identifiable {
   public let startSeason: String
   public let startSeasonYear: String
   public let source: String
-  public var episodeDuration: String
+  public let episodeDuration: Int
+  public let episodeDurationText: String
   public let studios: [String]
   public var isFavorite: Bool
 

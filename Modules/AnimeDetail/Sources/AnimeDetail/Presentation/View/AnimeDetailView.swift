@@ -121,7 +121,7 @@ extension AnimeDetailView {
       .transition(.fade(duration: 0.5))
       .scaledToFill()
       .frame(width: 120, height: 180)
-      .cornerRadius(Shape.rounded)
+      .cornerRadius(Shape.small)
   }
 
   var overviewDescription: some View {
@@ -211,23 +211,13 @@ extension AnimeDetailView {
         )
         AnimeInformationItem(
           label: "duration_label".localized(bundle: .module),
-          value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == ""
+          value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == 0
           ? "unknown_label".localized(bundle: .common)
-          : (presenter.item?.episodeDuration ?? anime.episodeDuration)
+          : (presenter.item?.episodeDurationText ?? anime.episodeDurationText)
         )
-        let startDate = presenter.item?.startDate ?? anime.startDate
-        let endDate = presenter.item?.endDate ?? anime.endDate
-        let airedDate = (startDate == "Unknown" && endDate == "Unknown")
-        ? "unknown_label".localized(bundle: .common)
-        : ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-           ? "unknown_label".localized(bundle: .common)
-           : (presenter.item?.startDate ?? anime.startDate)) + " - "
-        + ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-           ? "unknown_label".localized(bundle: .common)
-           : (presenter.item?.startDate ?? anime.startDate))
         AnimeInformationItem(
           label: "aired_label".localized(bundle: .module),
-          value: airedDate
+          value: (presenter.item?.airedDate ?? anime.airedDate)
         )
         AnimeInformationItem(
           label: "studios_label".localized(bundle: .module),

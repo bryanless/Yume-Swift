@@ -42,7 +42,7 @@ extension AnimeCardItem {
       .transition(.fade(duration: 0.5))
       .scaledToFill()
       .frame(width: 100, height: 150)
-      .cornerRadius(Shape.rounded)
+      .cornerRadius(Shape.small)
   }
 
   var content: some View {

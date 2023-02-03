@@ -57,6 +57,7 @@ public struct AnimesTransformer: Mapper {
         alternativeTitleJapanese: result.alternativeTitleJapanese,
         startDate: result.startDate,
         endDate: result.endDate,
+        airedDate: AnimeTransformer.transformToAiredDate(startDate: result.startDate, endDate: result.endDate),
         synopsis: result.synopsis,
         rating: result.rating,
         rank: result.rank,
@@ -71,7 +72,8 @@ public struct AnimesTransformer: Mapper {
         startSeason: result.startSeason,
         startSeasonYear: result.startSeasonYear,
         source: result.source,
-        episodeDuration: result.episodeDuration.description,
+        episodeDuration: result.episodeDuration,
+        episodeDurationText: AnimeTransformer.transformToDurationText(duration: result.episodeDuration),
         studios: Array(result.studios),
         isFavorite: result.isFavorite
       )

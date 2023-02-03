@@ -6,5 +6,7 @@
   
 */
 
+"unknown_label" = "Unknown";
+
 "hours_label" = "hours";
 "minutes_label" = "minutes";
