@@ -59,7 +59,11 @@ public struct SearchView<DetailDestination: View>: View {
                           : "searching_anime_label".localized(bundle: .module))
         .background(YumeColor.background)
       } else if presenter.isError {
-        CustomEmptyView(label: presenter.errorMessage)
+        if presenter.errorMessage == URLError.notConnectedToInternet.localizedDescription {
+          NoInternetView(onRetry: presenter.retryConnection)
+        } else {
+          CustomEmptyView(label: presenter.errorMessage)
+        }
       } else {
         content
       }

@@ -189,8 +189,10 @@ extension AnimeDetailView {
       VStack(alignment: .leading, spacing: Space.small) {
         Text("synopsis_label".localized(bundle: .module))
           .typography(.headline(color: YumeColor.onBackground))
-        Text(presenter.item?.synopsis ?? anime.synopsis)
-          .typography(.body(color: YumeColor.onBackground))
+        Text((presenter.item?.synopsis ?? anime.synopsis) == ""
+             ? "unknown_label".localized(bundle: .common)
+             : (presenter.item?.synopsis ?? anime.synopsis))
+        .typography(.body(color: YumeColor.onBackground))
       }
       Spacer()
     }

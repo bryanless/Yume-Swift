@@ -41,13 +41,19 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
 
   private func doSearchAnime() {
     $searchText
-      .debounce(for: 0.6, scheduler: RunLoop.main)
+      .debounce(for: 0.5, scheduler: RunLoop.main)
       .removeDuplicates()
       .sink(receiveValue: { [weak self] searchText in
+        // API will only search with 3 characters or more
         if searchText.count > 2 {
           self?.searchAnime(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
         } else {
           self?.searchAnimeList = []
+
+          // Hide no internet view
+          if self?.errorMessage == URLError.notConnectedToInternet.localizedDescription {
+            self?.isError = false
+          }
         }
       })
       .store(in: &cancellables)
@@ -148,5 +154,12 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
       self.topFavoriteAnimeList = animes
     })
     .store(in: &cancellables)
+  }
+
+  func retryConnection() {
+    if NetworkMonitor.shared.isConnected {
+      searchAnime(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+      isError = false
+    }
   }
 }
