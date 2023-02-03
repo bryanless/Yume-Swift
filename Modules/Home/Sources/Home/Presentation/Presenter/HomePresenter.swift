@@ -38,6 +38,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
   @Published public var isLoading: Bool = false
   @Published public var isRefreshing: Bool = false
   @Published public var isError: Bool = false
+  @Published public var showSnackbar: Bool = false
 
   public init(
     topAiringAnimeUseCase: TopAiringAnimeUseCase,
@@ -161,8 +162,8 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         switch completion {
         case .failure(let error):
           self.errorMessage = error.localizedDescription
-          self.isError = true
-          self.isLoading = false
+          self.showSnackbar = true
+          self.isRefreshing = false
         case .finished:
           self.isRefreshing = false
         }
@@ -171,7 +172,19 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
         self.topUpcomingAnimeList = animes.1
         self.popularAnimeList = animes.2
         self.topAllAnimeList = animes.3
+
+        if !NetworkMonitor.shared.isConnected {
+          self.errorMessage = URLError.notConnectedToInternet.localizedDescription
+          self.showSnackbar = true
+        }
       })
       .store(in: &cancellables)
+  }
+
+  func retryConnection() {
+    if NetworkMonitor.shared.isConnected {
+      setupHomeView()
+      isError = false
+    }
   }
 }

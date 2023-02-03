@@ -11,6 +11,9 @@ import Core
 import SwiftUI
 
 public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
+  @State private var showSnackbar = false
+  @State private var restartSnackbar = false
+
   @ObservedObject var presenter: HomePresenter<
     Interactor<
       AnimeRankingRequest,
@@ -90,7 +93,11 @@ public struct HomeView<SeeAllDestination: View, DetailDestination: View>: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else if presenter.isError {
-        CustomEmptyView(label: presenter.errorMessage)
+        if presenter.errorMessage == URLError.notConnectedToInternet.localizedDescription {
+          NoInternetView(onRetry: presenter.retryConnection)
+        } else {
+          CustomEmptyView(label: presenter.errorMessage)
+        }
       } else {
         content
       }
@@ -130,7 +137,21 @@ extension HomeView {
       }
 
       AppBar(scrollOffset: scrollOffset, label: "home_title".localized(bundle: .common))
-    }.background(YumeColor.background)
+    }
+    .background(YumeColor.background)
+    .onChange(of: presenter.showSnackbar) { _ in
+      withAnimation(.easeInOut) {
+        if showSnackbar {
+          restartSnackbar = true
+        }
+        showSnackbar = true
+      }
+    }
+    .snackbar(
+      message: presenter.errorMessage,
+      withCloseIcon: true,
+      isShowing: $showSnackbar,
+      restart: $restartSnackbar)
   }
 
   var header: some View {

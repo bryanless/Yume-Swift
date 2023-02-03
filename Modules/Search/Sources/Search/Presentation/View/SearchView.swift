@@ -11,6 +11,9 @@ import Core
 import SwiftUI
 
 public struct SearchView<DetailDestination: View>: View {
+  @State private var showSnackbar = false
+  @State private var restartSnackbar = false
+
   @ObservedObject var presenter: SearchPresenter<
     Interactor<
       AnimeListRequest,
@@ -104,6 +107,19 @@ extension SearchView {
       .padding(.top, 40.0)
       .background(YumeColor.background)
       .scrollDismissesKeyboard(.immediately)
+      .onChange(of: presenter.showSnackbar) { _ in
+        withAnimation(.easeInOut) {
+          if showSnackbar {
+            restartSnackbar = true
+          }
+          showSnackbar = true
+        }
+      }
+      .snackbar(
+        message: presenter.errorMessage,
+        withCloseIcon: true,
+        isShowing: $showSnackbar,
+        restart: $restartSnackbar)
     }
   }
 
