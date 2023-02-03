@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/bryanless/Yume-Core-Module",
       "state" : {
-        "revision" : "092402e276ada9ff50faa1929788f92964ae8834",
-        "version" : "1.3.4"
+        "revision" : "219579e0a76c846624075f894e1acba102bc4fb6",
+        "version" : "1.3.5"
       }
     }
   ],
