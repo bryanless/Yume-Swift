@@ -117,6 +117,9 @@ extension AnimeDetailView {
   var mainPicture: some View {
     WebImage(url: URL(string: presenter.item?.mainPicture ?? anime.mainPicture))
       .resizable()
+      .placeholder {
+        ImagePlaceholder()
+      }
       .indicator(.activity)
       .transition(.fade(duration: 0.5))
       .scaledToFill()

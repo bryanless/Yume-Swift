@@ -15,6 +15,7 @@ public struct Icons {
   public static let heartOutlined = UIImage(named: "HeartOutlinedIcon", in: Bundle.module, compatibleWith: nil)!
   public static let house = UIImage(named: "HouseIcon", in: .module, compatibleWith: nil)!
   public static let houseOutlined = UIImage(named: "HouseOutlinedIcon", in: .module, compatibleWith: nil)!
+  public static let imageOutlined = UIImage(named: "ImageOutlinedIcon", in: .module, compatibleWith: nil)!
   public static let infoOutlined = UIImage(named: "InfoOutlinedIcon", in: .module, compatibleWith: nil)!
   public static let search = UIImage(named: "SearchIcon", in: .module, compatibleWith: nil)!
   public static let starOutlined = UIImage(named: "StarOutlinedIcon", in: .module, compatibleWith: nil)!

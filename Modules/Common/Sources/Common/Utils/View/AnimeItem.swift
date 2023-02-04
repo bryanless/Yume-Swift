@@ -31,6 +31,9 @@ extension AnimeItem {
   var mainPicture: some View {
     WebImage(url: URL(string: anime.mainPicture))
       .resizable()
+      .placeholder {
+        ImagePlaceholder()
+      }
       .indicator(.activity)
       .transition(.fade(duration: 0.5))
       .scaledToFill()
