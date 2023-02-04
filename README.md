@@ -1,12 +1,14 @@
 ![Yume](readme/feature-graphic.jpg "Yume")
 
 # Yume
- An anime list iOS application
+Discover anime anywhere, anytime
 
-This app helps you access information of various anime such as season, score, rank, popularity, members, favorites, synopsis, and many more
+Get to know various information about anime such as season, score, rank, adaptation source, synopsis, and more. Find any anime by title using either in English or Rōmaji. Create your own favorite list for easy access.
+
+Yume is available in English and Bahasa Indonesia.
+> Support for Bahasa Indonesia is limited to some features and can only be used by changing device's system language
 
 ## Features
-
 <p align="center">
  <img src="readme/screen-1.jpg" width="19%">
  <img src="readme/screen-2.jpg" width="19%">
@@ -23,7 +25,7 @@ This app helps you access information of various anime such as season, score, ra
 
 ### Search
 - Top favorite anime
-- Search anime by name
+- Search anime by title using either English or Rōmaji
 
 ### Favorite
 - List of anime added to favorite
@@ -34,15 +36,23 @@ This app helps you access information of various anime such as season, score, ra
 
 ### Prerequisites
 
+#### OS & Software
+> Requirements might be lower, the app is developed using the system listed below
 * macOS Ventura 13.1
 * Xcode 14.2
 * iOS 16.2
-> Requirements might be lower, the app is developed using the system listed above
+
+
+#### App
+* Client ID (API token) from [MyAnimeList](https://myanimelist.net/apiconfig)
 
 ### Installation
 
 1. Download the repository
 2. Open the project by using Xcode
+3. Create `Keys.plist` file
+   > Recommended to be put at `Yume-Swift/Yume/Supporting Files/`
+4. Add `API_KEY` as key with your client ID (API token) as value to Keys.plist
 
 ## License
 
