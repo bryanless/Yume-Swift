@@ -2,12 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>API_KEY</key>
-	<string>23edfd1bf4b15809b72c7268fc63bd74</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Nunito-Regular.ttf</string>
 		<string>Nunito-SemiBold.ttf</string>
 	</array>
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<true/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

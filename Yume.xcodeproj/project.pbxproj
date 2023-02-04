@@ -24,6 +24,9 @@
 		934AF4CA2958A82200C413B4 /* YumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4C92958A82200C413B4 /* YumeTests.swift */; };
 		934AF4D42958A82200C413B4 /* YumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D32958A82200C413B4 /* YumeUITests.swift */; };
 		934AF4D62958A82200C413B4 /* YumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */; };
+		9362DECC298E03CC0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
+		9362DECD298E03CC0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
+		9362DECE298E03CD0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
 		93648F09296866D500CAB465 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F08296866D500CAB465 /* RealmSwift */; };
 		93648F0B296866DF00CAB465 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0A296866DF00CAB465 /* Realm */; };
 		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
@@ -91,6 +94,7 @@
 		934AF4CF2958A82200C413B4 /* YumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9362DEC9298E022A0090F067 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		93648F11296873D400CAB465 /* Anime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Anime; path = Modules/Anime; sourceTree = "<group>"; };
 		93648F282968C7F600CAB465 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Home; path = Modules/Home; sourceTree = "<group>"; };
 		93648F2B2968D3E700CAB465 /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Common; path = Modules/Common; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				934AF4BC2958A82200C413B4 /* Assets.xcassets */,
 				936AB609296C01FD00166602 /* Localizable.strings */,
 				931BBFD4295CC79900359359 /* Info.plist */,
+				9362DEC9298E022A0090F067 /* Keys.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 			files = (
 				93648F612968E36E00CAB465 /* Nunito-SemiBoldItalic.ttf in Resources */,
 				93648F652968E36E00CAB465 /* Nunito-ExtraBoldItalic.ttf in Resources */,
+				9362DECC298E03CC0090F067 /* Keys.plist in Resources */,
 				93648F692968E36E00CAB465 /* Nunito-MediumItalic.ttf in Resources */,
 				93648F6E2968E36E00CAB465 /* Nunito-Regular.ttf in Resources */,
 				93648F6D2968E36E00CAB465 /* Nunito-ExtraLight.ttf in Resources */,
@@ -484,6 +490,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9362DECD298E03CC0090F067 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +498,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9362DECE298E03CD0090F067 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,7 +710,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Yume/Supporting Files/Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -731,7 +738,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Yume/Supporting Files/Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
