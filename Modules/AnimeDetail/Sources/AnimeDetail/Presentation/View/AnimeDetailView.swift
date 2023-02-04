@@ -45,7 +45,8 @@ public struct AnimeDetailView: View {
     UpdateFavoriteAnimeRepository<
     GetFavoriteAnimeLocaleDataSource,
     AnimeDataTransformer>>>,
-    scrollOffset: CGFloat = CGFloat.zero, anime: AnimeDomainModel
+    scrollOffset: CGFloat = CGFloat.zero,
+    anime: AnimeDomainModel
   ) {
     self.presenter = presenter
     self.scrollOffset = scrollOffset
@@ -58,15 +59,16 @@ public struct AnimeDetailView: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        CustomEmptyView(label: presenter.errorMessage)
       } else {
         content
       }
     }
     .toolbar(.hidden)
     .onAppear {
-      presenter.getAnime(request: AnimeRequest(id: anime.id))
+      if presenter.item == nil {
+        presenter.getAnime(request: AnimeRequest(id: anime.id))
+      }
     }
   }
 }
@@ -89,7 +91,7 @@ extension AnimeDetailView {
             bottom: Space.medium,
             trailing: Space.medium)
         )
-      }
+      }.background(YumeColor.background)
 
       BackAppBar(scrollOffset: scrollOffset, label: "", trailing: {
         Button {
@@ -115,11 +117,14 @@ extension AnimeDetailView {
   var mainPicture: some View {
     WebImage(url: URL(string: presenter.item?.mainPicture ?? anime.mainPicture))
       .resizable()
+      .placeholder {
+        ImagePlaceholder()
+      }
       .indicator(.activity)
       .transition(.fade(duration: 0.5))
       .scaledToFill()
       .frame(width: 120, height: 180)
-      .cornerRadius(Shape.rounded)
+      .cornerRadius(Shape.small)
   }
 
   var overviewDescription: some View {
@@ -187,8 +192,10 @@ extension AnimeDetailView {
       VStack(alignment: .leading, spacing: Space.small) {
         Text("synopsis_label".localized(bundle: .module))
           .typography(.headline(color: YumeColor.onBackground))
-        Text(presenter.item?.synopsis ?? anime.synopsis)
-          .typography(.body(color: YumeColor.onBackground))
+        Text((presenter.item?.synopsis ?? anime.synopsis) == ""
+             ? "unknown_label".localized(bundle: .common)
+             : (presenter.item?.synopsis ?? anime.synopsis))
+        .typography(.body(color: YumeColor.onBackground))
       }
       Spacer()
     }
@@ -209,16 +216,11 @@ extension AnimeDetailView {
           label: "duration_label".localized(bundle: .module),
           value: (presenter.item?.episodeDuration ?? anime.episodeDuration) == 0
           ? "unknown_label".localized(bundle: .common)
-          : (presenter.item?.episodeDuration ?? anime.episodeDuration).secondsToHoursMinutes()
+          : (presenter.item?.episodeDurationText ?? anime.episodeDurationText)
         )
         AnimeInformationItem(
           label: "aired_label".localized(bundle: .module),
-          value: ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-                  ? "unknown_label".localized(bundle: .common)
-                  : (presenter.item?.startDate ?? anime.startDate)) + " - "
-          + ((presenter.item?.startDate ?? anime.startDate) == "Unknown"
-             ? "unknown_label".localized(bundle: .common)
-             : (presenter.item?.startDate ?? anime.startDate))
+          value: (presenter.item?.airedDate ?? anime.airedDate)
         )
         AnimeInformationItem(
           label: "studios_label".localized(bundle: .module),

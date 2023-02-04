@@ -6,6 +6,7 @@
 //
 
 import Core
+import Foundation
 
 public struct AnimesTransformer: Mapper {
   public typealias Request = Any
@@ -42,6 +43,7 @@ public struct AnimesTransformer: Mapper {
       animeEntity.source = result.anime.source?.name ?? "Unknown"
       animeEntity.episodeDuration = result.anime.episodeDuration ?? 0
       animeEntity.studios.append(objectsIn: result.anime.studios.map { $0.name })
+      animeEntity.updatedAt = Date()
       return animeEntity
     }
   }
@@ -57,6 +59,7 @@ public struct AnimesTransformer: Mapper {
         alternativeTitleJapanese: result.alternativeTitleJapanese,
         startDate: result.startDate,
         endDate: result.endDate,
+        airedDate: AnimeTransformer.transformToAiredDate(startDate: result.startDate, endDate: result.endDate),
         synopsis: result.synopsis,
         rating: result.rating,
         rank: result.rank,
@@ -72,6 +75,7 @@ public struct AnimesTransformer: Mapper {
         startSeasonYear: result.startSeasonYear,
         source: result.source,
         episodeDuration: result.episodeDuration,
+        episodeDurationText: AnimeTransformer.transformToDurationText(duration: result.episodeDuration),
         studios: Array(result.studios),
         isFavorite: result.isFavorite
       )

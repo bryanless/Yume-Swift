@@ -18,3 +18,6 @@
 "upcoming_title" = "Mendatang";
 "most_popular_title" = "Paling Populer";
 "top_rated_title" = "Peringkat Teratas";
+
+"no_internet_label" = "Tidak ada koneksi internet";
+"retry_label" = "Coba lagi";

@@ -13,33 +13,33 @@ import SwiftUI
 public struct SeeAllAnimeView<DetailDestination: View>: View {
 
   @ObservedObject var presenter: GetListPresenter<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     AnimeDomainModel,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>>
   @State var scrollOffset: CGFloat
-  let rankingType: String
+  let rankingType: RankingTypeRequest
   let navigationTitle: String
   let detailDestination: ((_ anime: AnimeDomainModel) -> DetailDestination)
 
   public init(
     presenter: GetListPresenter<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     AnimeDomainModel,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel],
     GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
     AnimesTransformer>>>,
     scrollOffset: CGFloat = CGFloat.zero,
-    rankingType: String,
+    rankingType: RankingTypeRequest,
     navigationTitle: String,
     detailDestination: @escaping (_ anime: AnimeDomainModel) -> DetailDestination
   ) {
@@ -56,8 +56,7 @@ public struct SeeAllAnimeView<DetailDestination: View>: View {
         ProgressIndicator()
           .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        CustomEmptyView(label: presenter.errorMessage)
       } else {
         content
       }
@@ -65,7 +64,7 @@ public struct SeeAllAnimeView<DetailDestination: View>: View {
     .toolbar(.hidden)
     .onAppear {
       if presenter.list.isEmpty {
-        presenter.getList(request: AnimeRankingModuleRequest(type: rankingType))
+        presenter.getList(request: AnimeRankingRequest(type: rankingType))
       }
     }
   }

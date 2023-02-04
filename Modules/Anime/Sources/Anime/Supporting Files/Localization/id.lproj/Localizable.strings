@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  
+
+  Created by Bryan on 02/02/23.
+  
+*/
+
+"unknown_label" = "Tidak diketahui";
+
+"hours_label" = "jam";
+"minutes_label" = "menit";

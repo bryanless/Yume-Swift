@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "caret_left.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "caret_left@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "caret_left@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "caret-left.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

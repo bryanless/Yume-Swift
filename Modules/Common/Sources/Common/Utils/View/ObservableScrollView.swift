@@ -42,8 +42,10 @@ public struct ObservableScrollView<Content>: View where Content: View {
           .background(GeometryReader { geo in
             let offset = -geo.frame(in: .named(scrollSpace)).minY
             Color.clear
-              .preference(key: ScrollViewOffsetPreferenceKey.self,
-                          value: offset)
+              .preference(
+                key: ScrollViewOffsetPreferenceKey.self,
+                value: offset
+              )
           })
       }
     }

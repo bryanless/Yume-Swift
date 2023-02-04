@@ -64,8 +64,7 @@ extension FavoriteView {
     VStack(alignment: .leading) {
       Text("favorite_title".localized(bundle: .common))
         .typography(.largeTitle(weight: .bold))
-      NothingFound(label: "no_favorite_anime_label".localized(bundle: .module))
-        .background(YumeColor.background)
+      CustomEmptyView(label: "no_favorite_anime_label".localized(bundle: .module))
     }
     .padding(
       EdgeInsets(

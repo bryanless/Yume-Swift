@@ -53,10 +53,8 @@ public struct AnimeResponse: Codable {
     self.title = try container.decode(String.self, forKey: .title)
     self.mainPicture = try? container.decodeIfPresent(MainPicture.self, forKey: .mainPicture)
     self.alternativeTitles = try? container.decodeIfPresent(AlternativeTitles.self, forKey: .alternativeTitles)
-    let startDateString = try? container.decodeIfPresent(String.self, forKey: .startDate)
-    self.startDate = startDateString?.apiToFullDate() ?? "Unknown"
-    let endDateString = try? container.decodeIfPresent(String.self, forKey: .endDate)
-    self.endDate = endDateString?.apiToFullDate() ?? "Unknown"
+    self.startDate = try? container.decodeIfPresent(String.self, forKey: .startDate)
+    self.endDate = try? container.decodeIfPresent(String.self, forKey: .endDate)
     self.synopsis = try? container.decodeIfPresent(String.self, forKey: .synopsis)
     self.rating = try? container.decodeIfPresent(Double.self, forKey: .rating)
     self.rank = try? container.decodeIfPresent(Int.self, forKey: .rank)

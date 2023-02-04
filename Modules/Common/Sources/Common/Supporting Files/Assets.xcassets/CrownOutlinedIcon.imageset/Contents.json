@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "crown_outlined.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "crown_outlined@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "crown_outlined@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "crown.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

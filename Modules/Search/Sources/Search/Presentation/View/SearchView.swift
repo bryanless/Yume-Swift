@@ -5,28 +5,25 @@
 //  Created by Bryan on 08/01/23.
 //
 
-//
-//  SearchView.swift
-//  Yume
-//
-//  Created by Bryan on 28/12/22.
-//
-
 import Anime
 import Common
 import Core
 import SwiftUI
 
 public struct SearchView<DetailDestination: View>: View {
+  @State private var showSnackbar = false
+  @State private var restartSnackbar = false
+
   @ObservedObject var presenter: SearchPresenter<
     Interactor<
-      AnimeListModuleRequest,
+      AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
+        GetAnimeListLocaleDataSource,
         GetAnimeListRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
@@ -37,13 +34,14 @@ public struct SearchView<DetailDestination: View>: View {
 
   public init(
     presenter: SearchPresenter<
-    Interactor<AnimeListModuleRequest,
+    Interactor<AnimeListRequest,
     [AnimeDomainModel],
     SearchAnimeRepository<
+    GetAnimeListLocaleDataSource,
     GetAnimeListRemoteDataSource,
     AnimesTransformer>>,
     Interactor<
-    AnimeRankingModuleRequest,
+    AnimeRankingRequest,
     [AnimeDomainModel], GetAnimeRankingRepository<
     GetAnimeRankingLocaleDataSource,
     GetAnimeRankingRemoteDataSource,
@@ -64,8 +62,11 @@ public struct SearchView<DetailDestination: View>: View {
                           : "searching_anime_label".localized(bundle: .module))
         .background(YumeColor.background)
       } else if presenter.isError {
-        Text(presenter.errorMessage)
-          .background(YumeColor.background)
+        if presenter.errorMessage == URLError.notConnectedToInternet.localizedDescription {
+          NoInternetView(onRetry: presenter.retryConnection)
+        } else {
+          CustomEmptyView(label: presenter.errorMessage)
+        }
       } else {
         content
       }
@@ -86,7 +87,12 @@ public struct SearchView<DetailDestination: View>: View {
 extension SearchView {
   var content: some View {
     ZStack {
-      ObservableScrollView(scrollOffset: $scrollOffset, showsIndicators: false) { _ in
+      RefreshableScrollView(
+        scrollOffset: $scrollOffset,
+        showsIndicators: false,
+        isRefreshing: $presenter.isRefreshing,
+        onRefresh: presenter.refreshSearchView
+      ) { _ in
         LazyVStack(spacing: Space.small) {
           ForEach(
             presenter.searchAnimeList.isEmpty
@@ -100,6 +106,23 @@ extension SearchView {
       }
       .padding(.top, 40.0)
       .background(YumeColor.background)
+      .scrollDismissesKeyboard(.immediately)
+      .onChange(of: presenter.showSnackbar) { presenterShowSnackbar in
+        if presenterShowSnackbar {
+          withAnimation(.easeInOut) {
+            if showSnackbar {
+              restartSnackbar = true
+            }
+            showSnackbar = true
+          }
+          presenter.showSnackbar = false
+        }
+      }
+      .snackbar(
+        message: presenter.errorMessage,
+        withCloseIcon: true,
+        isShowing: $showSnackbar,
+        restart: $restartSnackbar)
     }
   }
 

@@ -12,11 +12,14 @@ import Foundation
 import RealmSwift
 
 final class Injection: NSObject {
+
+  private let realm = try? Realm()
+
   func provideAnimeRanking<U: UseCase>() -> U
   where
-  U.Request == AnimeRankingModuleRequest,
+  U.Request == AnimeRankingRequest,
   U.Response == [AnimeDomainModel] {
-    let locale = GetAnimeRankingLocaleDataSource(realm: AppDelegate.instance.realm)
+    let locale = GetAnimeRankingLocaleDataSource(realm: realm!)
 
     let remote = GetAnimeRankingRemoteDataSource(
       endpoint: Endpoints.Gets.ranking.url,
@@ -36,8 +39,10 @@ final class Injection: NSObject {
 
   func provideSearchAnime<U: UseCase>() -> U
   where
-  U.Request == AnimeListModuleRequest,
+  U.Request == AnimeListRequest,
   U.Response == [AnimeDomainModel] {
+    let locale = GetAnimeListLocaleDataSource(realm: realm!)
+
     let remote = GetAnimeListRemoteDataSource(
       endpoint: Endpoints.Gets.search.url,
       encoder: API.encoder,
@@ -47,6 +52,7 @@ final class Injection: NSObject {
     let mapper = AnimesTransformer()
 
     let repository = SearchAnimeRepository(
+      localeDataSource: locale,
       remoteDataSource: remote,
       mapper: mapper)
 
@@ -57,7 +63,7 @@ final class Injection: NSObject {
   where
   U.Request == AnimeRequest,
   U.Response == AnimeDomainModel {
-    let locale = GetAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+    let locale = GetAnimeLocaleDataSource(realm: realm!)
 
     let remote = GetAnimeRemoteDataSource(
       endpoint: Endpoints.Gets.detail.url,
@@ -80,7 +86,7 @@ final class Injection: NSObject {
   where
   U.Request == Int,
   U.Response == AnimeDomainModel {
-    let locale = GetFavoriteAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+    let locale = GetFavoriteAnimeLocaleDataSource(realm: realm!)
 
     let mapper = AnimeDataTransformer()
 
@@ -96,7 +102,7 @@ final class Injection: NSObject {
   where
   U.Request == Int,
   U.Response == [AnimeDomainModel] {
-    let locale = GetFavoriteAnimeLocaleDataSource(realm: AppDelegate.instance.realm)
+    let locale = GetFavoriteAnimeLocaleDataSource(realm: realm!)
 
     let mapper = AnimesTransformer()
 

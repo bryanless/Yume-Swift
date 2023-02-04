@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "house_outlined.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "house_outlined@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "house_outlined@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "house (1).svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

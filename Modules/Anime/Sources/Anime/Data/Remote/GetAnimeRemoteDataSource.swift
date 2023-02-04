@@ -47,8 +47,13 @@ public struct GetAnimeRemoteDataSource: DataSource {
           switch response.result {
           case .success(let value):
             completion(.success(value))
-          case .failure:
-            completion(.failure(URLError.invalidResponse))
+          case .failure(let error):
+            if let error = error.underlyingError as? Foundation.URLError, error.code == .notConnectedToInternet {
+              // No internet connection
+              completion(.failure(URLError.notConnectedToInternet))
+            } else {
+              completion(.failure(URLError.invalidResponse))
+            }
           }
         }
       }

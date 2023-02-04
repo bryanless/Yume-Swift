@@ -18,3 +18,6 @@
 "upcoming_title" = "Upcoming";
 "most_popular_title" = "Most Popular";
 "top_rated_title" = "Top Rated";
+
+"no_internet_label" = "No internet";
+"retry_label" = "Retry";

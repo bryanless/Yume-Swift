@@ -9,7 +9,9 @@ import Combine
 import Core
 import Foundation
 
-public class AnimePresenter<AnimeUseCase: UseCase, FavoriteUseCase: UseCase>: ObservableObject
+public class AnimePresenter<
+  AnimeUseCase: UseCase,
+  FavoriteUseCase: UseCase>: ObservableObject
 where AnimeUseCase.Request == AnimeRequest,
       AnimeUseCase.Response == AnimeDomainModel,
       FavoriteUseCase.Request == Int,
@@ -25,7 +27,10 @@ where AnimeUseCase.Request == AnimeRequest,
   @Published public var isLoading: Bool = false
   @Published public var isError: Bool = false
 
-  public init(animeUseCase: AnimeUseCase, favoriteUseCase: FavoriteUseCase) {
+  public init(
+    animeUseCase: AnimeUseCase,
+    favoriteUseCase: FavoriteUseCase
+  ) {
     _animeUseCase = animeUseCase
     _favoriteUseCase = favoriteUseCase
   }
@@ -44,7 +49,12 @@ where AnimeUseCase.Request == AnimeRequest,
           self.isLoading = false
         }
       }, receiveValue: { item in
-        self.item = item
+        var anime = item
+
+        anime.startDate = item.startDate.apiFullStringDateToFullStringDate()
+        anime.endDate = item.endDate.apiFullStringDateToFullStringDate()
+
+        self.item = anime
       })
       .store(in: &cancellables)
   }
@@ -54,8 +64,10 @@ where AnimeUseCase.Request == AnimeRequest,
       .receive(on: RunLoop.main)
       .sink(receiveCompletion: { completion in
         switch completion {
-        case .failure:
-          self.errorMessage = String(describing: completion)
+        case .failure(let error):
+          self.errorMessage = error.localizedDescription
+          self.isError = true
+          self.isLoading = false
         case .finished:
           self.isLoading = false
         }

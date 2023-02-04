@@ -19,28 +19,28 @@ import SwiftUI
 struct ContentView: View {
   @EnvironmentObject var homePresenter: HomePresenter<
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
         GetAnimeRankingRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
@@ -48,13 +48,14 @@ struct ContentView: View {
         AnimesTransformer>>>
   @EnvironmentObject var searchPresenter: SearchPresenter<
     Interactor<
-      AnimeListModuleRequest,
+      AnimeListRequest,
       [AnimeDomainModel],
       SearchAnimeRepository<
+        GetAnimeListLocaleDataSource,
         GetAnimeListRemoteDataSource,
         AnimesTransformer>>,
     Interactor<
-      AnimeRankingModuleRequest,
+      AnimeRankingRequest,
       [AnimeDomainModel],
       GetAnimeRankingRepository<
         GetAnimeRankingLocaleDataSource,
@@ -72,6 +73,8 @@ struct ContentView: View {
   @State private var selection: Tab = .home
 
   init() {
+    NetworkMonitor.shared.startMonitoring()
+
     UITabBar.appearance().isHidden = true
   }
 
@@ -104,7 +107,7 @@ struct ContentView: View {
         }.tag(Tab.profile)
       }
       TabBar(selection: $selection)
-    }
+    }.ignoresSafeArea(.keyboard)
   }
 
 }

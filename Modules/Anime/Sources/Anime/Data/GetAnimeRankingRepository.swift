@@ -12,16 +12,16 @@ public struct GetAnimeRankingRepository<
   AnimeLocaleDataSource: LocaleDataSource,
   RemoteDataSource: DataSource,
   Transformer: Mapper>: Repository
-where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
+where AnimeLocaleDataSource.Request == AnimeRankingRequest,
       AnimeLocaleDataSource.Response == AnimeModuleEntity,
-      RemoteDataSource.Request == AnimeRankingModuleRequest,
+      RemoteDataSource.Request == AnimeRankingRequest,
       RemoteDataSource.Response == [AnimeDataResponse],
       Transformer.Request == Any,
       Transformer.Response == [AnimeDataResponse],
       Transformer.Entity == [AnimeModuleEntity],
       Transformer.Domain == [AnimeDomainModel] {
 
-  public typealias Request = AnimeRankingModuleRequest
+  public typealias Request = AnimeRankingRequest
   public typealias Response = [AnimeDomainModel]
 
   private let _localeDataSource: AnimeLocaleDataSource
@@ -37,20 +37,25 @@ where AnimeLocaleDataSource.Request == AnimeRankingModuleRequest,
       _mapper = mapper
     }
 
-  public func execute(request: AnimeRankingModuleRequest?) -> AnyPublisher<[AnimeDomainModel], Error> {
+  public func execute(request: AnimeRankingRequest?) -> AnyPublisher<[AnimeDomainModel], Error> {
     guard let request = request else {
       fatalError("Request cannot be empty")
     }
 
     return _localeDataSource.list(request: request)
       .flatMap { result -> AnyPublisher<[AnimeDomainModel], Error> in
-        if result.isEmpty {
+        if result.isEmpty || request.refresh {
           return _remoteDataSource.execute(request: request)
             .map { _mapper.transformResponseToEntity(request: request, response: $0) }
             .flatMap { _localeDataSource.add(entities: $0) }
             .filter { $0 }
             .flatMap { _ in _localeDataSource.list(request: request)
                 .map { _mapper.transformEntityToDomain(entity: $0) }
+            }
+            .catch { _ in
+              return _localeDataSource.list(request: request)
+                .map { _mapper.transformEntityToDomain(entity: $0) }
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
         } else {
