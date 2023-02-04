@@ -107,12 +107,15 @@ extension SearchView {
       .padding(.top, 40.0)
       .background(YumeColor.background)
       .scrollDismissesKeyboard(.immediately)
-      .onChange(of: presenter.showSnackbar) { _ in
-        withAnimation(.easeInOut) {
-          if showSnackbar {
-            restartSnackbar = true
+      .onChange(of: presenter.showSnackbar) { presenterShowSnackbar in
+        if presenterShowSnackbar {
+          withAnimation(.easeInOut) {
+            if showSnackbar {
+              restartSnackbar = true
+            }
+            showSnackbar = true
           }
-          showSnackbar = true
+          presenter.showSnackbar = false
         }
       }
       .snackbar(

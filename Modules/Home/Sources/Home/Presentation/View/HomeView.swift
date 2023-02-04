@@ -139,12 +139,15 @@ extension HomeView {
       AppBar(scrollOffset: scrollOffset, label: "home_title".localized(bundle: .common))
     }
     .background(YumeColor.background)
-    .onChange(of: presenter.showSnackbar) { _ in
-      withAnimation(.easeInOut) {
-        if showSnackbar {
-          restartSnackbar = true
+    .onChange(of: presenter.showSnackbar) { presenterShowSnackbar in
+      if presenterShowSnackbar {
+        withAnimation(.easeInOut) {
+          if showSnackbar {
+            restartSnackbar = true
+          }
+          showSnackbar = true
         }
-        showSnackbar = true
+        presenter.showSnackbar = false
       }
     }
     .snackbar(
