@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "heart_outlined.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "heart_outlined@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "heart_outlined@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "heart.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
