@@ -43,7 +43,28 @@ where AnimeLocaleDataSource.Request == Int,
     }
 
     return _localeDataSource.get(id: request.animeId)
-      .map { _mapper.transformEntityToDomain(entity: $0) }
+      .flatMap { entity -> AnyPublisher<AnimeDomainModel, Error> in
+        // Refresh anime if cached more than 24 hours
+        if entity.updatedAt.isExpired() {
+          return _remoteDataSource.execute(request: request)
+            .map { _mapper.transformResponseToEntity(request: request, response: $0) }
+            .flatMap { _localeDataSource.add(entities: [$0]) }
+            .filter { $0 }
+            .flatMap { _ in _localeDataSource.get(id: request.animeId)
+                .map { _mapper.transformEntityToDomain(entity: $0) }
+            }
+            .catch { _ in
+              return _localeDataSource.get(id: request.animeId)
+                .map { _mapper.transformEntityToDomain(entity: $0) }
+                .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+        } else {
+          return _localeDataSource.get(id: request.animeId)
+            .map { _mapper.transformEntityToDomain(entity: $0) }
+            .eraseToAnyPublisher()
+        }
+      }
       .catch { _ in
         return _remoteDataSource.execute(request: request)
           .map { _mapper.transformResponseToEntity(request: request, response: $0) }

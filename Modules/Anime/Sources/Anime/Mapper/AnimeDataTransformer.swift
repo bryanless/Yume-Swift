@@ -6,6 +6,7 @@
 //
 
 import Core
+import Foundation
 
 public struct AnimeDataTransformer: Mapper {
   public typealias Request = Any
@@ -41,6 +42,7 @@ public struct AnimeDataTransformer: Mapper {
     animeEntity.source = response.anime.source?.name ?? "Unknown"
     animeEntity.episodeDuration = response.anime.episodeDuration ?? 0
     animeEntity.studios.append(objectsIn: response.anime.studios.map { $0.name })
+    animeEntity.updatedAt = Date()
     return animeEntity
   }
 

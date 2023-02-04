@@ -5,6 +5,7 @@
 //  Created by Bryan on 06/01/23.
 //
 
+import Foundation
 import RealmSwift
 
 public class AnimeModuleEntity: Object {
@@ -34,6 +35,8 @@ public class AnimeModuleEntity: Object {
   @Persisted var episodeDuration: Int = 0
   @Persisted var studios: List<String> = List<String>()
   @Persisted var isFavorite: Bool = false
+  @Persisted var createdAt: Date = Date()
+  @Persisted var updatedAt: Date = Date()
 
   public override static func primaryKey() -> String? {
     return "id"
