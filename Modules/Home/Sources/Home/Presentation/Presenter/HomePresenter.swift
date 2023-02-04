@@ -57,35 +57,19 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
 
     // Get top airing anime
     let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .airing,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .airing, refresh: true))
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .upcoming,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .upcoming, refresh: true))
 
     // Get popular anime
     let popularAnimePublisher = _popularAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .byPopularity,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .byPopularity, refresh: true))
 
     // Get top anime series
     let topAllAnimePublisher = _topAllAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .all,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .all, refresh: true))
 
     let loadingPublishers = Publishers.CombineLatest4(
       topAiringAnimePublisher,
@@ -119,35 +103,19 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
 
     // Get top airing anime
     let topAiringAnimePublisher = _topAiringAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .airing,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .airing, refresh: true))
 
     // Get top upcoming anime
     let topUpcomingAnimePublisher = _topUpcomingAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .upcoming,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .upcoming, refresh: true))
 
     // Get popular anime
     let popularAnimePublisher = _popularAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .byPopularity,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .byPopularity, refresh: true))
 
     // Get top anime series
     let topAllAnimePublisher = _topAllAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .all,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .all, refresh: true))
 
     let loadingPublishers = Publishers.CombineLatest4(
       topAiringAnimePublisher,
@@ -166,17 +134,17 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
           self.isRefreshing = false
         case .finished:
           self.isRefreshing = false
+
+          if !NetworkMonitor.shared.isConnected {
+            self.errorMessage = URLError.notConnectedToInternet.localizedDescription
+            self.showSnackbar = true
+          }
         }
       }, receiveValue: { animes in
         self.topAiringAnimeList = animes.0
         self.topUpcomingAnimeList = animes.1
         self.popularAnimeList = animes.2
         self.topAllAnimeList = animes.3
-
-        if !NetworkMonitor.shared.isConnected {
-          self.errorMessage = URLError.notConnectedToInternet.localizedDescription
-          self.showSnackbar = true
-        }
       })
       .store(in: &cancellables)
   }

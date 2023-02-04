@@ -83,11 +83,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
   func getTopFavoriteAnimes() {
     isLoading = true
     _topFavoriteAnimeUseCase.execute(
-      request: AnimeRankingRequest(
-        type: .favorite,
-        refresh: true
-      )
-    )
+      request: AnimeRankingRequest(type: .favorite, refresh: true))
     .receive(on: RunLoop.main)
     .sink(receiveCompletion: { completion in
       switch completion {
@@ -115,8 +111,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
   private func refreshSearchAnime() {
     isRefreshing = true
     _searchAnimeUseCase.execute(
-      request: AnimeListRequest(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
-    )
+      request: AnimeListRequest(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines)))
     .receive(on: RunLoop.main)
     .sink(receiveCompletion: { completion in
       switch completion {
@@ -126,14 +121,14 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         self.isRefreshing = false
       case .finished:
         self.isRefreshing = false
+
+        if !NetworkMonitor.shared.isConnected {
+          self.errorMessage = URLError.notConnectedToInternet.localizedDescription
+          self.showSnackbar = true
+        }
       }
     }, receiveValue: { animes in
       self.searchAnimeList = animes
-
-      if !NetworkMonitor.shared.isConnected {
-        self.errorMessage = URLError.notConnectedToInternet.localizedDescription
-        self.showSnackbar = true
-      }
     })
     .store(in: &cancellables)
   }
@@ -155,14 +150,14 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         self.isRefreshing = false
       case .finished:
         self.isRefreshing = false
+
+        if !NetworkMonitor.shared.isConnected {
+          self.errorMessage = URLError.notConnectedToInternet.localizedDescription
+          self.showSnackbar = true
+        }
       }
     }, receiveValue: { animes in
       self.topFavoriteAnimeList = animes
-
-      if !NetworkMonitor.shared.isConnected {
-        self.errorMessage = URLError.notConnectedToInternet.localizedDescription
-        self.showSnackbar = true
-      }
     })
     .store(in: &cancellables)
   }

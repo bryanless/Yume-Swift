@@ -43,15 +43,17 @@ where AnimeLocaleDataSource.Request == Int,
     }
 
     return _localeDataSource.get(id: request.animeId)
+      .map { _mapper.transformEntityToDomain(entity: $0) }
       .catch { _ in
-        _remoteDataSource.execute(request: request)
+        return _remoteDataSource.execute(request: request)
           .map { _mapper.transformResponseToEntity(request: request, response: $0) }
           .flatMap { _localeDataSource.add(entities: [$0]) }
           .filter { $0 }
-          .flatMap { _ in _localeDataSource.get(id: request.animeId) }
+          .flatMap { _ in _localeDataSource.get(id: request.animeId)
+              .map { _mapper.transformEntityToDomain(entity: $0) }
+          }
           .eraseToAnyPublisher()
       }
-      .map { _mapper.transformEntityToDomain(entity: $0) }
       .eraseToAnyPublisher()
   }
 

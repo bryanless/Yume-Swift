@@ -44,13 +44,18 @@ where AnimeLocaleDataSource.Request == AnimeRankingRequest,
 
     return _localeDataSource.list(request: request)
       .flatMap { result -> AnyPublisher<[AnimeDomainModel], Error> in
-        if result.isEmpty || (request.refresh && NetworkMonitor.shared.isConnected ) {
+        if result.isEmpty || request.refresh {
           return _remoteDataSource.execute(request: request)
             .map { _mapper.transformResponseToEntity(request: request, response: $0) }
             .flatMap { _localeDataSource.add(entities: $0) }
             .filter { $0 }
             .flatMap { _ in _localeDataSource.list(request: request)
                 .map { _mapper.transformEntityToDomain(entity: $0) }
+            }
+            .catch { _ in
+              return _localeDataSource.list(request: request)
+                .map { _mapper.transformEntityToDomain(entity: $0) }
+                .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
         } else {
