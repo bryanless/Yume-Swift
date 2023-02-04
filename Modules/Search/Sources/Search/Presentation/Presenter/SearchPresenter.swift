@@ -122,13 +122,18 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
       switch completion {
       case .failure(let error):
         self.errorMessage = error.localizedDescription
-        self.isError = true
+        self.showSnackbar = true
         self.isRefreshing = false
       case .finished:
         self.isRefreshing = false
       }
     }, receiveValue: { animes in
       self.searchAnimeList = animes
+
+      if !NetworkMonitor.shared.isConnected {
+        self.errorMessage = URLError.notConnectedToInternet.localizedDescription
+        self.showSnackbar = true
+      }
     })
     .store(in: &cancellables)
   }

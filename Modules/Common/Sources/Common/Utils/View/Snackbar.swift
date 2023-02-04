@@ -41,7 +41,6 @@ public struct SnackbarModifier: ViewModifier {
               }
             }
           }
-          .foregroundColor(Color.white)
           .padding(Space.medium)
           .background(YumeColor.inverseSurface)
           .cornerRadius(Shape.extraSmall)
