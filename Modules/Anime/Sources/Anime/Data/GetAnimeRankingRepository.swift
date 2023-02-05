@@ -52,10 +52,17 @@ where AnimeLocaleDataSource.Request == AnimeRankingRequest,
             .flatMap { _ in _localeDataSource.list(request: request)
                 .map { _mapper.transformEntityToDomain(entity: $0) }
             }
-            .catch { _ in
-              return _localeDataSource.list(request: request)
-                .map { _mapper.transformEntityToDomain(entity: $0) }
-                .eraseToAnyPublisher()
+            .catch { error in
+              if result.isEmpty {
+                // First time request and no cache
+                return Fail<[AnimeDomainModel], Error>(error: error)
+                  .eraseToAnyPublisher()
+              } else {
+                // Failed to refresh
+                return _localeDataSource.list(request: request)
+                  .map { _mapper.transformEntityToDomain(entity: $0) }
+                  .eraseToAnyPublisher()
+              }
             }
             .eraseToAnyPublisher()
         } else {
