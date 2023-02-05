@@ -24,9 +24,6 @@
 		934AF4CA2958A82200C413B4 /* YumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4C92958A82200C413B4 /* YumeTests.swift */; };
 		934AF4D42958A82200C413B4 /* YumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D32958A82200C413B4 /* YumeUITests.swift */; };
 		934AF4D62958A82200C413B4 /* YumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */; };
-		9362DECC298E03CC0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
-		9362DECD298E03CC0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
-		9362DECE298E03CD0090F067 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9362DEC9298E022A0090F067 /* Keys.plist */; };
 		93648F09296866D500CAB465 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F08296866D500CAB465 /* RealmSwift */; };
 		93648F0B296866DF00CAB465 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0A296866DF00CAB465 /* Realm */; };
 		93648F0D296866EB00CAB465 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 93648F0C296866EB00CAB465 /* Alamofire */; };
@@ -57,6 +54,8 @@
 		93A3C9F5296A5B2400B4483F /* Favorite in Frameworks */ = {isa = PBXBuildFile; productRef = 93A3C9F4296A5B2400B4483F /* Favorite */; };
 		93C14CE229602B5400097AFB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 93C14CE129602B5400097AFB /* .swiftlint.yml */; };
 		93C5814A29690B0900D3C1A0 /* AnimeDetail in Frameworks */ = {isa = PBXBuildFile; productRef = 93C5814929690B0900D3C1A0 /* AnimeDetail */; };
+		93DB39A029904A4900EE7205 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DB399F29904A4900EE7205 /* Keys.plist */; };
+		93DB39A229904B5E00EE7205 /* File+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB39A129904B5E00EE7205 /* File+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +93,6 @@
 		934AF4CF2958A82200C413B4 /* YumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		934AF4D32958A82200C413B4 /* YumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITests.swift; sourceTree = "<group>"; };
 		934AF4D52958A82200C413B4 /* YumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		9362DEC9298E022A0090F067 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		93648F11296873D400CAB465 /* Anime */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Anime; path = Modules/Anime; sourceTree = "<group>"; };
 		93648F282968C7F600CAB465 /* Home */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Home; path = Modules/Home; sourceTree = "<group>"; };
 		93648F2B2968D3E700CAB465 /* Common */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Common; path = Modules/Common; sourceTree = "<group>"; };
@@ -123,6 +121,8 @@
 		93A3C9F3296A5A8700B4483F /* Favorite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Favorite; path = Modules/Favorite; sourceTree = "<group>"; };
 		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		93C581482968F0FC00D3C1A0 /* AnimeDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AnimeDetail; path = Modules/AnimeDetail; sourceTree = "<group>"; };
+		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		93DB39A129904B5E00EE7205 /* File+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +183,7 @@
 				934AF4BC2958A82200C413B4 /* Assets.xcassets */,
 				936AB609296C01FD00166602 /* Localizable.strings */,
 				931BBFD4295CC79900359359 /* Info.plist */,
-				9362DEC9298E022A0090F067 /* Keys.plist */,
+				93DB399F29904A4900EE7205 /* Keys.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -218,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
+				93DB39A129904B5E00EE7205 /* File+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,7 +464,7 @@
 			files = (
 				93648F612968E36E00CAB465 /* Nunito-SemiBoldItalic.ttf in Resources */,
 				93648F652968E36E00CAB465 /* Nunito-ExtraBoldItalic.ttf in Resources */,
-				9362DECC298E03CC0090F067 /* Keys.plist in Resources */,
+				93DB39A029904A4900EE7205 /* Keys.plist in Resources */,
 				93648F692968E36E00CAB465 /* Nunito-MediumItalic.ttf in Resources */,
 				93648F6E2968E36E00CAB465 /* Nunito-Regular.ttf in Resources */,
 				93648F6D2968E36E00CAB465 /* Nunito-ExtraLight.ttf in Resources */,
@@ -490,7 +491,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9362DECD298E03CC0090F067 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,7 +498,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9362DECE298E03CD0090F067 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +534,7 @@
 				93A3C9EF296A164200B4483F /* Router.swift in Sources */,
 				934AF4BB2958A82200C413B4 /* ContentView.swift in Sources */,
 				931BBFAB295C3C7500359359 /* PreviewData copy.swift in Sources */,
+				93DB39A229904B5E00EE7205 /* File+Ext.swift in Sources */,
 				931BBF89295C19C400359359 /* APICall.swift in Sources */,
 				934AF4B92958A82200C413B4 /* YumeApp.swift in Sources */,
 			);
