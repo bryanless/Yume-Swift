@@ -17,6 +17,10 @@ struct API {
       fatalError("Value of 'API_KEY' in 'Keys.plist' is not a String")
     }
 
+    guard !apiKey.starts(with: "_") else {
+      fatalError("Create a MyAnimeList account and get a Client ID (API key) at https://myanimelist.net/apiconfig.")
+    }
+
     return ["X-MAL-CLIENT-ID": apiKey]
   }
 
