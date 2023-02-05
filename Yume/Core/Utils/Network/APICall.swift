@@ -13,16 +13,11 @@ struct API {
   static let baseUrl = "https://api.myanimelist.net/v2/"
   static let encoder = URLEncodedFormParameterEncoder(encoder: URLEncodedFormEncoder(keyEncoding: .convertToSnakeCase))
   static var headers: HTTPHeaders {
-    guard let filePath = Bundle.main.path(forResource: "Keys", ofType: "plist") else {
-      fatalError("Couldn't find file 'Keys.plist'.")
+    guard let apiKey = File.loadDictionaryKey(forKey: "API_KEY", forResource: "Keys", ofType: "plist") as? String else {
+      fatalError("Value of 'API_KEY' in 'Keys.plist' is not a String")
     }
 
-    let plist = NSDictionary(contentsOfFile: filePath)
-    guard let value = plist?.object(forKey: "API_KEY") as? String else {
-      fatalError("Couldn't find key 'API_KEY' in 'Keys.plist'.")
-    }
-
-    return ["X-MAL-CLIENT-ID": value]
+    return ["X-MAL-CLIENT-ID": apiKey]
   }
 
 }
