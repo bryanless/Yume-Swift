@@ -44,16 +44,16 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
     $searchText
       .debounce(for: 0.5, scheduler: RunLoop.main)
       .removeDuplicates()
-      .sink(receiveValue: { [weak self] searchText in
+      .sink(receiveValue: { text in
         // API will only search with 3 characters or more
-        if searchText.count > 2 {
-          self?.searchAnime(title: searchText.trimmingCharacters(in: .whitespacesAndNewlines))
+        if text.count > 2 {
+          self.searchAnime(title: text.trimmingCharacters(in: .whitespacesAndNewlines))
         } else {
-          self?.searchAnimeList = []
+          self.searchAnimeList = []
 
-          // Hide no internet view
-          if self?.errorMessage == URLError.notConnectedToInternet.localizedDescription {
-            self?.isError = false
+          // Hide no internet view when search failed because of no internet
+          if !self.topFavoriteAnimeList.isEmpty {
+            self.isError = false
           }
         }
       })
