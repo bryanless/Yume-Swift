@@ -122,7 +122,7 @@
 		93A3C9F3296A5A8700B4483F /* Favorite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Favorite; path = Modules/Favorite; sourceTree = "<group>"; };
 		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		93C581482968F0FC00D3C1A0 /* AnimeDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AnimeDetail; path = Modules/AnimeDetail; sourceTree = "<group>"; };
-		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Keys.plist; path = "Yume/Supporting Files/Keys.plist"; sourceTree = SOURCE_ROOT; };
 		93DB39A129904B5E00EE7205 /* File+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Ext.swift"; sourceTree = "<group>"; };
 		93DB39A42990668B00EE7205 /* Keys-Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Keys-Example.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
