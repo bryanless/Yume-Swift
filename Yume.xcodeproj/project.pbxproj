@@ -122,7 +122,7 @@
 		93A3C9F3296A5A8700B4483F /* Favorite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Favorite; path = Modules/Favorite; sourceTree = "<group>"; };
 		93C14CE129602B5400097AFB /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		93C581482968F0FC00D3C1A0 /* AnimeDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AnimeDetail; path = Modules/AnimeDetail; sourceTree = "<group>"; };
-		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Keys.plist; path = "Yume/Supporting Files/Keys.plist"; sourceTree = SOURCE_ROOT; };
+		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		93DB39A129904B5E00EE7205 /* File+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Ext.swift"; sourceTree = "<group>"; };
 		93DB39A42990668B00EE7205 /* Keys-Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Keys-Example.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -342,9 +342,9 @@
 			buildPhases = (
 				934AF4B12958A82100C413B4 /* Sources */,
 				934AF4B22958A82100C413B4 /* Frameworks */,
+				93DB39A3299065BD00EE7205 /* Create Keys.plist */,
 				934AF4B32958A82100C413B4 /* Resources */,
 				931BBF66295C14AC00359359 /* Run SwiftLint Script */,
-				93DB39A3299065BD00EE7205 /* Create Keys.plist */,
 			);
 			buildRules = (
 			);
@@ -536,17 +536,17 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/$(PRODUCT_NAME)/Supporting Files/Keys.plist",
+				"$(SRCROOT)/$(PRODUCT_NAME)/Supporting Files/Keys-Example.plist",
 			);
 			name = "Create Keys.plist";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/temp.txt",
+				"$(SRCROOT)/$(PRODUCT_NAME)/Supporting Files/Keys.plist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CONFIG_FILE_BASE_NAME=\"Keys\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Sample.plist\n\nCONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
+			shellScript = "CONFIG_FILE_BASE_NAME=\"Keys\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Example.plist\n\nCONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
