@@ -56,6 +56,7 @@
 		93C5814A29690B0900D3C1A0 /* AnimeDetail in Frameworks */ = {isa = PBXBuildFile; productRef = 93C5814929690B0900D3C1A0 /* AnimeDetail */; };
 		93DB39A029904A4900EE7205 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DB399F29904A4900EE7205 /* Keys.plist */; };
 		93DB39A229904B5E00EE7205 /* File+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93DB39A129904B5E00EE7205 /* File+Ext.swift */; };
+		93DB39A52990668B00EE7205 /* Keys-Example.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93DB39A42990668B00EE7205 /* Keys-Example.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		93C581482968F0FC00D3C1A0 /* AnimeDetail */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AnimeDetail; path = Modules/AnimeDetail; sourceTree = "<group>"; };
 		93DB399F29904A4900EE7205 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		93DB39A129904B5E00EE7205 /* File+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+Ext.swift"; sourceTree = "<group>"; };
+		93DB39A42990668B00EE7205 /* Keys-Example.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Keys-Example.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				936AB609296C01FD00166602 /* Localizable.strings */,
 				931BBFD4295CC79900359359 /* Info.plist */,
 				93DB399F29904A4900EE7205 /* Keys.plist */,
+				93DB39A42990668B00EE7205 /* Keys-Example.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -217,8 +220,8 @@
 		931BBF85295C199F00359359 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
 				93DB39A129904B5E00EE7205 /* File+Ext.swift */,
+				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,8 +342,9 @@
 			buildPhases = (
 				934AF4B12958A82100C413B4 /* Sources */,
 				934AF4B22958A82100C413B4 /* Frameworks */,
+				93DB39A3299065BD00EE7205 /* Create Keys.plist */,
 				934AF4B32958A82100C413B4 /* Resources */,
-				931BBF66295C14AC00359359 /* ShellScript */,
+				931BBF66295C14AC00359359 /* Run SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -478,6 +482,7 @@
 				934AF4BD2958A82200C413B4 /* Assets.xcassets in Resources */,
 				93648F682968E36E00CAB465 /* Nunito-Black.ttf in Resources */,
 				93648F622968E36E00CAB465 /* Nunito-Medium.ttf in Resources */,
+				93DB39A52990668B00EE7205 /* Keys-Example.plist in Resources */,
 				93648F6C2968E36E00CAB465 /* Nunito-Bold.ttf in Resources */,
 				93648F6A2968E36E00CAB465 /* Nunito-ExtraBold.ttf in Resources */,
 				931BBFAD295C3C8900359359 /* top_all_anime_response.json in Resources */,
@@ -504,7 +509,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		931BBF66295C14AC00359359 /* ShellScript */ = {
+		931BBF66295C14AC00359359 /* Run SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -514,6 +519,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run SwiftLint Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -521,6 +527,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		93DB39A3299065BD00EE7205 /* Create Keys.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(PRODUCT_NAME)/Supporting Files/Keys-Example.plist",
+			);
+			name = "Create Keys.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/$(PRODUCT_NAME)/Supporting Files/Keys.plist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "CONFIG_FILE_BASE_NAME=\"Keys\"\n\nCONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}.plist\nSAMPLE_CONFIG_FILE_NAME=${CONFIG_FILE_BASE_NAME}-Example.plist\n\nCONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$CONFIG_FILE_NAME\nSAMPLE_CONFIG_FILE_PATH=$SRCROOT/$PRODUCT_NAME/Supporting\\ Files/$SAMPLE_CONFIG_FILE_NAME\n\nif [ -f \"$CONFIG_FILE_PATH\" ]; then\n  echo \"$CONFIG_FILE_PATH exists.\"\nelse\n  echo \"$CONFIG_FILE_PATH does not exist, copying sample\"\n  cp -v \"${SAMPLE_CONFIG_FILE_PATH}\" \"${CONFIG_FILE_PATH}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

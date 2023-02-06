@@ -50,9 +50,9 @@ Yume is available in English and Bahasa Indonesia.
 
 1. Download the repository
 2. Open the project by using Xcode
-3. Create `Keys.plist` file
-   > Recommended to be put at `Yume-Swift/Yume/Supporting Files/`
-4. Add `API_KEY` as key with your client ID (API token) as value to Keys.plist
+3. Build the project and a `Keys.plist` file should be created automatically at `Yume/Supporting Files/`
+   > If it isn't created automatically, copy `Keys-Example.plist` at `Yume/Supporting Files/` and paste it as `Keys.plist` at `Yume/Supporting Files/`
+4. Replace the value of key `API_KEY` with your Client ID (API token) at Keys.plist
 
 ## License
 
