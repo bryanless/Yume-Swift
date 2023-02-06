@@ -66,9 +66,7 @@ public struct AnimeDetailView: View {
     }
     .toolbar(.hidden)
     .onAppear {
-      if presenter.item == nil {
-        presenter.getAnime(request: AnimeRequest(id: anime.id))
-      }
+      presenter.getAnime(request: AnimeRequest(id: anime.id))
     }
   }
 }
