@@ -1,7 +1,7 @@
 ![Yume](readme/feature-graphic.jpg "Yume")
 
 # Yume
-Discover anime anywhere, anytime
+Discover anime anytime, anywhere
 
 Get to know various information about anime such as season, score, rank, adaptation source, synopsis, and more. Find any anime by title using either in English or Rōmaji. Create your own favorite list for easy access.
 
