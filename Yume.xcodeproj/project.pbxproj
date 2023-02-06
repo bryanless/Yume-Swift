@@ -220,8 +220,8 @@
 		931BBF85295C199F00359359 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
 				93DB39A129904B5E00EE7205 /* File+Ext.swift */,
+				93298D01296BED12006AEC25 /* UINavigationController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
