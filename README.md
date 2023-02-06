@@ -32,22 +32,21 @@ Yume is available in English and Bahasa Indonesia.
 
 ### Profile
 
+## Dependency Diagram
+![Yume Dependency Diagram](readme/dependency-diagram.png "Yume Dependency Diagram")
+
 ## Getting Started
-
 ### Prerequisites
-
 #### OS & Software
 > Requirements might be lower, the app is developed using the system listed below
 * macOS Ventura 13.1
 * Xcode 14.2
 * iOS 16.2
 
-
 #### App
 * Client ID (API token) from [MyAnimeList](https://myanimelist.net/apiconfig)
 
 ### Installation
-
 1. Download the repository
 2. Open the project by using Xcode
 3. Build the project and a `Keys.plist` file should be created automatically at `Yume/Supporting Files/`
@@ -55,9 +54,7 @@ Yume is available in English and Bahasa Indonesia.
 4. Replace the value of key `API_KEY` with your Client ID (API token) at Keys.plist
 
 ## License
-
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/bryanless/Yume-Swift/blob/main/LICENSE) file for details
 
 ## Acknowledgments
-
 * [MyAnimeList API](https://myanimelist.net/apiconfig/references/api/v2) by [MyAnimeList](https://myanimelist.net)
