@@ -3,7 +3,7 @@
 # Yume
 Discover anime anytime, anywhere
 
-Get to know various information about anime such as season, score, rank, adaptation source, synopsis, and more. Find any anime by title using either in English or Rōmaji. Create your own favorite list for easy access.
+Get to know various information about anime such as season, score, rank, adaptation source, synopsis, and more. Find any anime by title using either English or Rōmaji. Create your own favorite list for easy access.
 
 Yume is available in English and Bahasa Indonesia.
 > Support for Bahasa Indonesia is limited to some features and can only be used by changing device's system language
