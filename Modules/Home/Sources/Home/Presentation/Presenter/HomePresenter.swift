@@ -90,6 +90,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
           self.isLoading = false
         }
       }, receiveValue: { animes in
+        self.isError = false
         self.topAiringAnimeList = animes.0
         self.topUpcomingAnimeList = animes.1
         self.popularAnimeList = animes.2
@@ -141,6 +142,7 @@ where TopAiringAnimeUseCase.Request == AnimeRankingRequest,
           }
         }
       }, receiveValue: { animes in
+        self.isError = false
         self.topAiringAnimeList = animes.0
         self.topUpcomingAnimeList = animes.1
         self.popularAnimeList = animes.2
