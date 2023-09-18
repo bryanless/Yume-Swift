@@ -75,6 +75,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
           self.isLoading = false
         }
       }, receiveValue: { animes in
+        self.isError = false
         self.searchAnimeList = animes
       })
       .store(in: &cancellables)
@@ -95,6 +96,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         self.isLoading = false
       }
     }, receiveValue: { animes in
+      self.isError = false
       self.topFavoriteAnimeList = animes
     })
     .store(in: &cancellables)
@@ -128,6 +130,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         }
       }
     }, receiveValue: { animes in
+      self.isError = false
       self.searchAnimeList = animes
     })
     .store(in: &cancellables)
@@ -157,6 +160,7 @@ where SearchAnimeUseCase.Request == AnimeListRequest,
         }
       }
     }, receiveValue: { animes in
+      self.isError = false
       self.topFavoriteAnimeList = animes
     })
     .store(in: &cancellables)

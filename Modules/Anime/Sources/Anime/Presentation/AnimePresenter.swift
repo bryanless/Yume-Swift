@@ -49,6 +49,8 @@ where AnimeUseCase.Request == AnimeRequest,
           self.isLoading = false
         }
       }, receiveValue: { item in
+        self.isError = false
+
         var anime = item
 
         anime.startDate = item.startDate.apiFullStringDateToFullStringDate()
@@ -72,6 +74,7 @@ where AnimeUseCase.Request == AnimeRequest,
           self.isLoading = false
         }
       }, receiveValue: { item in
+        self.isError = false
         self.item = item
       })
       .store(in: &cancellables)
